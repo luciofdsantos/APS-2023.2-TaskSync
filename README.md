@@ -19,19 +19,8 @@ O principal objetivo do **Task Sync** é oferecer um ambiente com diversas área
 | <img src="https://github.com/HudsonRikelme.png" width="60px;"/><br /> | Hudson Rikelme | https://github.com/HudsonRikelme | Desenvolvedor Front-end | Gerente de Design | Desenvolvedor Back-end|
 | <img src="https://github.com/pduartp.png" width="60px;"/><br /> | Patrick Duarte | https://github.com/pduartp | Desenvolvedor Front-end |
 | <img src="https://github.com/FriedrichNaum.png" width="60px;"/><br /> | Friedrich Naum | https://github.com/FriedrichNaum | Desenvolvedor Back-end |
-| <img src="https://github.com/DiegogMagalhaes" width="60px;"/><br /> | Diego Gabriel | https://github.com/DiegogMagalhaes | Desenvolvedor Back-end |
+| <img src="https://github.com/DiegogMagalhaes.png" width="60px;"/><br /> | Diego Gabriel | https://github.com/DiegogMagalhaes | Desenvolvedor Back-end |
 
 
 **Documentacao do Projeto**
 
-
-Divisão dos diretórios
-O repositório será dividido em dois diretórios: docs, src e HOW-TO.
-
-O diretório docs deve conter todos os documentos desenvolvidos durante o projeto, sendo eles divididos em: Visão do Negócio, Casos de Uso, Diagrama de Domínio, Diagrama de Sequência de Sistema, Especificação Suplementar e o Projeto de Arquitetura, Feedback sobre o Desenvolvimento.
-
-O diretório src é o clone do repositório que vocês utilizaram para o desenvolvimento do sistema. Detalhe importante, cuidado em deixar senhas que serão utilizadas no servidor.
-
-O diretório HOW-TO é um guia sobre como subir o projeto, além de ilustrar as versões das ferramentas utilizadas.
-
-Uma Maneira simples de gerar documentação usando o estilo Markdown é usando o MkDocs (https://www.mkdocs.org/), acaba criando uma página bem intuitiva para toda a documentação e é possível integrar no GitHub.
