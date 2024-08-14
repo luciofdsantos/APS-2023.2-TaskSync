@@ -23,4 +23,5 @@ O principal objetivo do **Task Sync** é oferecer um ambiente com diversas área
 
 
 **Documentacao do Projeto**
-
+1. [Visão de Negócio] (https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/ModeloVisaoDoNegocio.docx.pdf)
+2. [Casos de Uso] (https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/DocumentodeCasosdeUso.pdf)
