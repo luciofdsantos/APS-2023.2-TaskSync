@@ -18,8 +18,8 @@ O principal objetivo do **Task Sync** é oferecer um ambiente com diversas área
 | <img src="https://github.com/LucasFreitaslpf1.png" width="60px;"/><br /> | Lucas Pereira Freitas | https://github.com/LucasFreitaslpf1 | Gerente de Desenvolvimento, Desenvolvedor Back-end|
 | <img src="https://github.com/HudsonRikelme.png" width="60px;"/><br /> | Hudson Rikelme | https://github.com/HudsonRikelme | Desenvolvedor Front-end | Gerente de Design | Desenvolvedor Back-end|
 | <img src="https://github.com/pduartp.png" width="60px;"/><br /> | Patrick Duarte | https://github.com/pduartp | Desenvolvedor Front-end |
-| <img src="https://github.com/FriedrichNaum.png" width="60px;"/><br /> | Friedrich Naum | https://github.com/pduartp | Desenvolvedor Back-end |
-| <img src="https://github.com/DiegogMagalhaes" width="60px;"/><br /> | Diego Gabriel | https://github.com/pduartp | Desenvolvedor Back-end |
+| <img src="https://github.com/FriedrichNaum.png" width="60px;"/><br /> | Friedrich Naum | https://github.com/FriedrichNaum | Desenvolvedor Back-end |
+| <img src="https://github.com/DiegogMagalhaes" width="60px;"/><br /> | Diego Gabriel | https://github.com/DiegogMagalhaes | Desenvolvedor Back-end |
 
 
 **Documentacao do Projeto**
