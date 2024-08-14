@@ -4,15 +4,26 @@
 Seções que devem ser adicionadas no README.md
 Sobre o Projeto
 
-A primeira seção Sobre o Projeto deve apresentar a finalidade do projeto e do repositório, por exemplo:
+# **Sobre o Projeto**
 
-"Repositório destinado ao desenvolvimento do trabalho da disciplina Análise de Projeto de Sistemas do Instituto Federal do Norte de Minas Gerais (IFNMG - Montes Claros) do curso de Ciência da Computação. Nele estará mantido o processo de documentação de requisitos, modelagem, análise e código desenvolvido pela turma. O tema escolhido foi <nome_projeto_aqui> , o qual foi submetidos a etapa de elicitação de requisitos, elaboração, análise do projeto e desenvolvimento do código, snedo as técnicas utilizadas em conformidade com a disciplina. "
+"Repositório destinado ao desenvolvimento do trabalho da disciplina Análise de Projeto de Sistemas do Instituto Federal do Norte de Minas Gerais (IFNMG - Montes Claros) do curso de Ciência da Computação. Nele estará mantido o processo de documentação de requisitos, modelagem, análise e código desenvolvido pela turma. O tema escolhido foi **Task Sync** , o qual foi submetidos a etapa de elicitação de requisitos, elaboração, análise do projeto e desenvolvimento do código, snedo as técnicas utilizadas em conformidade com a disciplina. "
 
-O que é o <nome_projeto_aqui>
-A Segunda seção O que é o <nome_projeto_aqui> apresenta o significado do tema do projeto escolhido. Assim, adicione um parágrafo ou dois para possibilitar o entendimento do domínio do projeto.
+**O que é o Task Sync**
 
-Desenvolvedores
-A terceira e última seção Desenvolvedores apresenta os colaboradores do repositório. Adicione uma tabela com os membros do grupo da disciplina. A tabela deve ter 4 colunas (Foto, Nome, GitHub, papel no projeto). GitHub é o endereço para o repositório do aluno e o papel no projeto deve indicar as atividades realizadas tanto no desenvolvimento quanto na documentação.
+O principal objetivo do **Task Sync** é oferecer um ambiente com diversas áreas de serviços para que ajude na organização dos processos de prestação de serviços de empresas desse ramo. Desta forma, o gerente da empresa terá acesso ao calendário de atividades, e poderá criar agendamento de ordens de serviços ou ver quais já estão agendadas ao longo da semana, juntamente com informação de cada funcionário a realizá-la. Já o administrador, ele terá como responsabilidade de ter acesso a relatórios relacionados a atividades da empresa e rendimento dos funcionários. A plataforma pretende ocupar o nicho de mercado organização de processos de prestadoras de serviços. 
+
+**Desenvolvedores**
+| Foto | Nome | Github | Papel |
+| --- | --- | --- | --- |
+| <img src="https://github.com/LucasFreitaslpf1.png" width="60px;"/><br /> | Lucas Pereira Freitas | https://github.com/LucasFreitaslpf1 | Gerente de Desenvolvimento, Desenvolvedor Back-end|
+| <img src="https://github.com/HudsonRikelme.png" width="60px;"/><br /> | Hudson Rikelme | https://github.com/HudsonRikelme | Desenvolvedor Front-end | Gerente de Design | Desenvolvedor Back-end|
+| <img src="https://github.com/pduartp.png" width="60px;"/><br /> | Patrick Duarte | https://github.com/pduartp | Desenvolvedor Front-end |
+| <img src="https://github.com/FriedrichNaum.png" width="60px;"/><br /> | Friedrich Naum | https://github.com/pduartp | Desenvolvedor Back-end |
+| <img src="https://github.com/DiegogMagalhaes" width="60px;"/><br /> | Diego Gabriel | https://github.com/pduartp | Desenvolvedor Back-end |
+
+
+**Documentacao do Projeto**
+
 
 Divisão dos diretórios
 O repositório será dividido em dois diretórios: docs, src e HOW-TO.
