@@ -12,6 +12,10 @@ Sobre o Projeto
 
 O principal objetivo do **Task Sync** é oferecer um ambiente com diversas áreas de serviços para que ajude na organização dos processos de prestação de serviços de empresas desse ramo. Desta forma, o gerente da empresa terá acesso ao calendário de atividades, e poderá criar agendamento de ordens de serviços ou ver quais já estão agendadas ao longo da semana, juntamente com informação de cada funcionário a realizá-la. Já o administrador, ele terá como responsabilidade de ter acesso a relatórios relacionados a atividades da empresa e rendimento dos funcionários. A plataforma pretende ocupar o nicho de mercado organização de processos de prestadoras de serviços. 
 
+** Como rodar o projeto **
+Necessários: php, composer e nodejs
+Faça o clone do projeto, dentro da pasta src atualize as dependências do composer com ```composer update``` e do nodejs com ```npm install```. Depois lance o servidor local do Laravel com ```php artisan serve``` e do node com ```npm run dev```. Rode as migrations com ```php artisan migrate```.
+
 **Desenvolvedores**
 | Foto | Nome | Github | Papel |
 | --- | --- | --- | --- |
