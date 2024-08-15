@@ -1,0 +1,279 @@
+/* Reset básico para remover margens e preenchimentos padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do corpo do documento */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Estilo do cabeçalho */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Estilo do logo no cabeçalho */
+header .logo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Estilo da navegação no cabeçalho */
+nav {
+    margin-top: 0.5rem;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo do conteúdo principal */
+main {
+    padding: 2rem;
+}
+
+/* Estilo das seções */
+section {
+    margin-bottom: 2rem;
+}
+
+section h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+section p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Estilo do rodapé */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Estilo dos links no rodapé */
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Reset básico para remover margens e preenchimentos padrões */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo do corpo do documento */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 1rem;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do container do formulário */
+.form-custom {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo dos campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Estilo dos campos de entrada com foco */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilo dos rótulos dos campos */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo das mensagens de erro */
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+/* Estilo das mensagens de sucesso */
+.success-message {
+    color: #28a745;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+/* Estilo para mensagens de erro */
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* Estilo para mensagens de erro */
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* Estilo para mensagens de erro */
+.error-message {
+    color: #e74c3c; /* Vermelho chamativo */
+    background-color: #fce4e4; /* Fundo levemente rosado */
+    border: 1px solid #e74c3c; /* Borda vermelha */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 10px; /* Espaçamento inferior */
+    border-radius: 5px; /* Bordas arredondadas */
+    display: flex; /* Flexbox para alinhamento */
+    align-items: center; /* Alinha o texto e o ícone */
+    font-size: 14px; /* Tamanho do texto */
+}
+
+.error-message i {
+    margin-right: 10px; /* Espaço entre ícone e texto */
+    color: #e74c3c; /* Cor do ícone */
+}
+
+/* Estilo para os campos de formulário com erro */
+input.error,
+textarea.error,
+select.error {
+    border-color: #e74c3c; /* Borda vermelha */
+    background-color: #fce4e4; /* Fundo levemente rosado */
+}
+
+input[type="date"] {
+    appearance: none; /* Remove o estilo padrão do sistema */
+    background-color: #fff; /* Fundo branco */
+    color: #333; /* Cor do texto */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Borda padrão */
+    font-size: 16px;
+    position: relative;
+}
+
+.card {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Estilo da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo das células de cabeçalho da tabela */
+th {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+/* Estilo das células de dados da tabela */
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo das linhas alternadas */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo da linha de cabeçalho e da linha de rodapé */
+thead th {
+    font-weight: bold;
+}
+
+/* Estilo da linha de rodapé */
+tfoot {
+    background-color: #f1f1f1;
+}
+
+/* Estilo das células da linha de rodapé */
+tfoot td {
+    padding: 0.75rem;
+    font-weight: bold;
+}
