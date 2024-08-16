@@ -6,7 +6,7 @@ Sobre o Projeto
 
 # **Sobre o Projeto**
 
-"Repositório destinado ao desenvolvimento do trabalho da disciplina Análise de Projeto de Sistemas do Instituto Federal do Norte de Minas Gerais (IFNMG - Montes Claros) do curso de Ciência da Computação. Nele estará mantido o processo de documentação de requisitos, modelagem, análise e código desenvolvido pela turma. O tema escolhido foi **Task Sync** , o qual foi submetidos a etapa de elicitação de requisitos, elaboração, análise do projeto e desenvolvimento do código, snedo as técnicas utilizadas em conformidade com a disciplina. "
+"Repositório destinado ao desenvolvimento do trabalho da disciplina Análise de Projeto de Sistemas do Instituto Federal do Norte de Minas Gerais (IFNMG - Montes Claros) do curso de Ciência da Computação. Nele estará mantido o processo de documentação de requisitos, modelagem, análise e código desenvolvido pela turma. O tema escolhido foi **Task Sync** , o qual foi submetidos a etapa de elicitação de requisitos, elaboração, análise do projeto e desenvolvimento do código, sendo as técnicas utilizadas em conformidade com a disciplina. "
 
 # **O que é o Task Sync**
 
@@ -21,7 +21,7 @@ Faça o clone do projeto, dentro da pasta src atualize as dependências do compo
 | --- | --- | --- | --- |
 | <img src="https://github.com/LucasFreitaslpf1.png" width="60px;"/><br /> | Lucas Pereira Freitas | https://github.com/LucasFreitaslpf1 | Gerente de Desenvolvimento, Desenvolvedor Back-end|
 | <img src="https://github.com/HudsonRikelme.png" width="60px;"/><br /> | Hudson Rikelme | https://github.com/HudsonRikelme | Desenvolvedor Front-end, Gerente de Projeto e Design|
-| <img src="https://github.com/pduartp.png" width="60px;"/><br /> | Patrick Duarte | https://github.com/pduartp | Desenvolvedor Front-end|
+| <img src="https://github.com/pduartp.png" width="60px;"/><br /> | Patrick Duarte | https://github.com/pduartp | Desenvolvedor Front-end e Design|
 | <img src="https://github.com/FriedrichNaum.png" width="60px;"/><br /> | Friedrich Naum | https://github.com/FriedrichNaum | Desenvolvedor Back-end |
 | <img src="https://github.com/DiegogMagalhaes.png" width="60px;"/><br /> | Diego Gabriel | https://github.com/DiegogMagalhaes | Desenvolvedor Back-end |
 
