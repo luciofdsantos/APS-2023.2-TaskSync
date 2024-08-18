@@ -1,0 +1,73 @@
+/*CSS Autenticação */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.card-main {
+    width: 90%;
+    max-width: 400px;
+    min-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background-color: rgba(0, 0, 0, 0.2); /* Transparente com opacidade */
+    border: 1px solid #ffffff; /* Borda azul */
+    border-radius: 30px;
+    box-shadow: 0px 10px 50px #00000056;
+    backdrop-filter: blur(10px)
+}
+
+.card-main > h2 {
+    color: #ffffff;
+    font-weight: 800;
+    margin: 0;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.space{
+    margin-bottom: 20px;
+}
+
+.form-c {
+    width: 100%;
+    max-width: 350px;
+    min-width: 250px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #ffffff; /* Mesma cor da borda do card */
+    background-color: rgba(0, 0, 0, 0.1); /* Transparente com opacidade */
+    color: #ffffff;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.form-c:focus {
+    border-color: #0056b3;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.3); /* Leve opacidade ao focar */
+}
+
+.btnS {
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgba(55, 0, 255, 0.4); /* Transparente com opacidade */
+    border-color: #0056b3;
+    border: 1px solid #3700ff; /* Mesma cor da borda do card */
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: rgba(55, 0, 255, 0.7);
+}
+
+.text-danger {
+    color: #dc3545; /* Cor padrão para mensagens de erro */
+}

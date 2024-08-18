@@ -4,6 +4,8 @@ import Inputmask from "inputmask";
 
 import "../scss/app.scss";
 
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import * as bootstrap from "bootstrap";
 
 document.addEventListener("DOMContentLoaded", function () {
