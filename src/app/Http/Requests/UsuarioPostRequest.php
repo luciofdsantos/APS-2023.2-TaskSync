@@ -47,6 +47,7 @@ class UsuarioPostRequest extends FormRequest
             'cep' => ['required', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'tipo_usuario' => ['integer', 'required'],
             // 'password' => ['required', 'confirmed', Password::defaults()],
         ];
     }

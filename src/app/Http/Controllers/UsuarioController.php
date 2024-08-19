@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsuarioPostRequest;
 use App\Http\Requests\UsuarioPostUpdateRequest;
 use App\Models\User;
+use App\Models\Usuario\TipoUsuario;
 use App\Models\Usuario\Usuario;
 use Exception;
 use Illuminate\Auth\Events\Registered;
@@ -16,7 +17,7 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        $usuarios = Usuario::with('users')->paginate(10);
+        $usuarios = Usuario::with('user')->paginate(10);
 
 
         return view('usuario.index', ['usuarios' => $usuarios]);
@@ -24,8 +25,9 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        // dd(old('nascimento') == null);
-        return view('usuario.create');
+        $tipos = TipoUsuario::getAll();
+
+        return view('usuario.create', ['tipos' => $tipos]);
     }
 
     public function salvar(UsuarioPostRequest $request)
@@ -33,12 +35,14 @@ class UsuarioController extends Controller
         $campos = $request->validated();
         $usuario = Usuario::create($campos);
 
-        $user = User::create([
+        $user = new User([
             'id' => $usuario->id,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        $user->save();
+
 
 
         event(new Registered($user));
@@ -66,7 +70,7 @@ class UsuarioController extends Controller
         // dd($request->validated());
         $usuario->update($request->validated());
 
-        $user = $usuario->users;
+        $user = $usuario->user;
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
