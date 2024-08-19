@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AreaDeServicoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TarefaController;
+use App\Models\AreaDeServico;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// USUARIO
 Route::controller(UsuarioController::class)->group(
     function () {
         Route::get('/usuario', 'index')->name('/usuario');
@@ -31,6 +34,15 @@ Route::controller(UsuarioController::class)->group(
     }
 );
 
+// AREA DE SERVIÇO
+Route::resource('area-de-servico', AreaDeServicoController::class);
+// Route::controller(AreaDeServicoController::class)->group(
+//     function () {
+//         Route::post('/area-de-servico/create', 'selectFuncionario')->name("area-servico.select-funcionario");
+//     }
+// );
+
+// TAREFA
 Route::controller(TarefaController::class)->group(
     function () {
         Route::get('/tarefa', 'index')->name('tarefa.index');
@@ -41,6 +53,7 @@ Route::controller(TarefaController::class)->group(
     }
 );
 
+// HOME
 Route::get('/', function () {
     return view('welcome');
 });
@@ -49,10 +62,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__ . '/auth.php';
