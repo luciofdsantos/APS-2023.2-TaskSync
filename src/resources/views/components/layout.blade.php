@@ -14,6 +14,7 @@
         <h1>TaskSync</h1>
         <a href="/usuario" class="btn btn-info">Usuarios</a>
         <a href="/tarefa" class="btn btn-info">Tarefas</a>
+        <a href="/area-de-servico" class="btn btn-info">Area de Serviço</a>
     </header>
 
     <main class="container">
