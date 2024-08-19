@@ -4,7 +4,7 @@
         @csrf
         @method('PUT')
         <label for="name">Nome</label>
-        <input type="text" name="name" value={{ $usuario->users->name }}>
+        <input type="text" name="name" value={{ $usuario->user->name }}>
 
         @error('name')
             <div class="error-message">
@@ -14,7 +14,7 @@
         @enderror
 
         <label for="email">Email</label>
-        <input type="text" name="email" value={{ $usuario->users->email }}>
+        <input type="text" name="email" value={{ $usuario->user->email }}>
         @error('email')
             <div class="error-message">
                 <i>&#9888;</i> <!-- Ícone de alerta -->

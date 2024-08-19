@@ -5,11 +5,11 @@
     <table>
         <tr>
             <td>Nome:</td>
-            <td>{{ $usuario->users->name }}</td>
+            <td>{{ $usuario->user->name }}</td>
         </tr>
         <tr>
             <td>Email:</td>
-            <td>{{ $usuario->users->email }}</td>
+            <td>{{ $usuario->user->email }}</td>
         </tr>
         <tr>
             <td>Data de Nascimento:</td>

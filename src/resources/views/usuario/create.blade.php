@@ -22,7 +22,7 @@
         @enderror
 
         <label for="telefone">Telefone</label>
-    <input type="text" id="phone" name="telefone" value="{{ old('telefone') }}">
+        <input type="text" id="phone" name="telefone" value="{{ old('telefone') }}">
         @error('telefone')
             <div class="error-message">
                 <i>&#9888;</i> <!-- Ícone de alerta -->
@@ -83,6 +83,20 @@
                 {{ $message }}
             </div>
         @enderror
+
+        <label for="tipo_usuario">Tipo de Usuário</label>
+        <select class="form-control" name="tipo_usuario" value="0">
+            @foreach ($tipos as $key => $item)
+                <option value="{{ $key }}">{{ $item }}</option>
+            @endforeach
+        </select>
+        @error('tipo_usuario')
+            <div class="error-message">
+                <i>&#9888;</i> <!-- Ícone de alerta -->
+                {{ $message }}
+            </div>
+        @enderror
+
 
         <label for="password">Senha</label>
         <input type="password" name="password" class="form-control">

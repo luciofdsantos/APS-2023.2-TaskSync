@@ -14,8 +14,8 @@
                     @foreach ($usuarios as $usuario)
                         <tr>
                             <td>{{ $usuario->id }}</td>
-                            <td>{{ $usuario->users->name ?? '' }}</td>
-                            <td>{{ $usuario->users->email ?? '' }}</td>
+                            <td>{{ $usuario->user->name ?? '' }}</td>
+                            <td>{{ $usuario->user->email ?? '' }}</td>
                             <td> {{ $usuario->telefone }}</td>
                             <td> {{ $usuario->cpf }}</td>
                             <td>{{ $usuario->data_nascimento }}</td>

@@ -14,8 +14,7 @@ class Usuario extends Model
     protected $table = "usuario";
 
     protected $fillable = [
-        // 'nome',
-        // 'email',
+        'id',
         'telefone',
         'cpf',
         'data_nascimento',
@@ -23,9 +22,10 @@ class Usuario extends Model
         'bairro',
         'rua',
         'cep',
+        'tipo_usuario'
     ];
 
-    public function users(): HasOne
+    public function user(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'id');
     }

@@ -1,7 +1,12 @@
 <?php
 
+use App\Models\User;
+use App\Models\Usuario\TipoUsuario;
+use App\Models\Usuario\Usuario;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,9 +17,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('usuario', function (Blueprint $table) {
-            $table->id();
-            // $table->string('nome', 255)->nullable(false);
-            // $table->string('email', 255)->nullable(false)->unique();
+            $table->id()->autoIncrement();
             $table->string('telefone', 255)->nullable(false);
             $table->string('cpf', 255)->nullable(false)->unique();
             $table->date('data_nascimento')->nullable(false);
@@ -23,9 +26,9 @@ return new class extends Migration
             $table->integer('numero')->nullable(false);
             $table->string('bairro', 255)->nullable(false);
             $table->string('cep', 255)->nullable(false);
+            $table->integer('tipo_usuario')->nullable(false);
 
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
         });
     }
 
