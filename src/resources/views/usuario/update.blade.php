@@ -93,6 +93,21 @@
         @enderror
         <br>
 
+        <label for="tipo_usuario">Tipo de Usuário</label>
+        <select class="form-control" name="tipo_usuario">
+            @foreach ($tipos as $key => $item)
+                <option value="{{ $key }}" @if ($key == $usuario->tipo_usuario) selected="selected" @endif>
+                    {{ $item }}
+                </option>
+            @endforeach
+        </select>
+        @error('tipo_usuario')
+            <div class="error-message">
+                <i>&#9888;</i> <!-- Ícone de alerta -->
+                {{ $message }}
+            </div>
+        @enderror
+
         <label for="password">Senha</label>
         <input type="password" name="password" class="form-control">
         @error('password')

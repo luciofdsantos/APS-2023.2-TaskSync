@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\AreaDeServico;
 use App\Models\Tarefa\Tarefa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TarefaController extends Controller
 {
@@ -18,9 +21,9 @@ class TarefaController extends Controller
         return view('tarefa.index', compact('tarefas'));
     }
 
-    public function create()
+    public function create(AreaDeServico $areaDeServico = null)
     {
-        return view('tarefa.create');
+        return view('tarefa.create', ['area_de_servico' => $areaDeServico]);
     }
 
     public function store(Request $request)
@@ -33,9 +36,18 @@ class TarefaController extends Controller
             'descricao' => 'required',
         ]);
 
-        Tarefa::create($request->all());
+        $tarefa = Tarefa::create($request->all());
 
-        return redirect()->route('tarefa.index')->with('success', 'Tarefa criada com sucesso.');
+        if ($request->area_de_servico_id) {
+            DB::table('area_de_servico_tarefas')->insert(
+                [
+                    'area_de_servico_id' => $request->area_de_servico_id,
+                    'tarefa_id' => $tarefa->id,
+                ]
+            );
+        }
+
+        return redirect()->route('area-de-servico.show', ['area_de_servico' => $request->area_de_servico_id]);
     }
 
     public function show(Tarefa $tarefa)
@@ -43,4 +55,3 @@ class TarefaController extends Controller
         return view('tarefa.show', compact('tarefa'));
     }
 }
-

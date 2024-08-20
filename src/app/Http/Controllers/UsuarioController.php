@@ -19,6 +19,7 @@ class UsuarioController extends Controller
     {
         $usuarios = Usuario::with('user')->paginate(10);
 
+        flash('Welcome Aboard!')->success();
 
         return view('usuario.index', ['usuarios' => $usuarios]);
     }
@@ -60,8 +61,9 @@ class UsuarioController extends Controller
 
     public function update(Usuario $usuario)
     {
+        $tipos = TipoUsuario::getAll();
 
-        return view('usuario.update', ['usuario' => $usuario]);
+        return view('usuario.update', ['usuario' => $usuario, 'tipos' => $tipos]);
     }
 
     public function atualizar(UsuarioPostUpdateRequest $request, Usuario $usuario)

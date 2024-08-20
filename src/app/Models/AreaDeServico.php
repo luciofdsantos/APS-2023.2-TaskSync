@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Tarefa\Tarefa;
 use App\Models\Usuario\Usuario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +36,16 @@ class AreaDeServico extends Model
             'area_de_servico_funcionarios',
             'area_de_servico_id',
             'funcionario_id'
+        );
+    }
+
+    public function tarefas(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Tarefa::class,
+            'area_de_servico_tarefas',
+            'area_de_servico_id',
+            'tarefa_id',
         );
     }
 

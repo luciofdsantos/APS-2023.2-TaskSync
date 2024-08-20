@@ -7,8 +7,11 @@ use App\Models\AreaDeServico;
 use App\Http\Requests\StoreAreaDeServicoRequest;
 use App\Http\Requests\UpdateAreaDeServicoRequest;
 use App\Models\AreaDeServicoFuncionarios;
+use App\Models\Tarefa\StatusTarefa;
+use App\Models\Tarefa\Tarefa;
 use App\Models\Usuario\TipoUsuario;
 use App\Models\Usuario\Usuario;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -62,8 +65,12 @@ class AreaDeServicoController extends Controller
      */
     public function show(AreaDeServico $areaDeServico)
     {
-        // ddd($areaDeServico->funcionarios);
-        return view('area-de-servico.show', ['area_de_servico' => $areaDeServico]);
+        $tarefas = $areaDeServico->tarefas;
+
+        return view('area-de-servico.show', [
+            'area_de_servico' => $areaDeServico,
+            'tarefas' => $tarefas,
+        ]);
     }
 
     /**
@@ -118,6 +125,54 @@ class AreaDeServicoController extends Controller
     public function destroy(AreaDeServico $areaDeServico)
     {
         //
+    }
+
+    public function modifica(Request $request, AreaDeServico $area_de_servico)
+    {
+
+        $return = [];
+        if ($request->tarefas_a_fazer) {
+            $tarefas = explode(',', $request->tarefas_a_fazer);
+            foreach ($tarefas as $tarefa_id) {
+                $return[] = Tarefa::whereId($tarefa_id)->update([
+                    'status' => StatusTarefa::A_FAZER,
+                ]);
+            }
+        }
+
+        if ($request->tarefas_fazendo) {
+            $tarefas = explode(',', $request->tarefas_fazendo);
+            foreach ($tarefas as $tarefa_id) {
+                $return[] = Tarefa::whereId($tarefa_id)->update([
+                    'status' => StatusTarefa::FAZENDO,
+                ]);
+            }
+        }
+
+        if ($request->tarefas_concluida) {
+            $tarefas = explode(',', $request->tarefas_concluida);
+            foreach ($tarefas as $tarefa_id) {
+                $return[] = Tarefa::whereId($tarefa_id)->update([
+                    'status' => StatusTarefa::CONCLUIDA,
+                ]);
+            }
+        }
+
+        return response()->json(["success" => [$return]]);
+    }
+
+    public function adicionaFuncionario(Request $request, AreaDeServico $area_de_servico, Tarefa $tarefa)
+    {
+        if ($request->funcionarios) {
+            foreach ($request->funcionarios as $funcionario_id) {
+                DB::table('tarefa_usuarios')->updateOrInsert([
+                    'tarefa_id' => $request->tarefa,
+                    'usuario_id' => $funcionario_id,
+                ]);
+            }
+        }
+
+        return redirect()->route("area-de-servico.show", ['area_de_servico' => $area_de_servico]);
     }
 
     private function getFuncionarios()
