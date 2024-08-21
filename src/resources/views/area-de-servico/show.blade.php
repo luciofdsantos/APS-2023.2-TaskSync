@@ -90,16 +90,13 @@
         </div>
     </div>
 </div>
-{{--
+
 <div class="modal fade" id="funcionarios-form" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="card">
-                @include('area-de-servico.funcionarios', [
-                    'funcionarios' => $area_de_servico->funcionarios,
-                    'tarefa' => $tarefas[0],
-                ])
-            </div>
+            @include('area-de-servico.funcionarios', [
+                'funcionarios' => $area_de_servico->funcionarios,
+            ])
         </div>
     </div>
-</div> --}}
+</div>

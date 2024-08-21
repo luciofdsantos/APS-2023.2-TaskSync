@@ -38,8 +38,17 @@ Route::controller(UsuarioController::class)->group(
 
 Route::post('/area-de-servico/{area_de_servico}', [AreaDeServicoController::class, 'modifica'])
     ->name("area-de-servico.modifica");
-Route::post('/area-de-servico/{area_de_servico}/adiciona-funcionario', [AreaDeServicoController::class, 'adicionaFuncionario'])
-    ->name("area-de-servico.adiciona-funcionario");
+
+Route::post(
+    '/area-de-servico/{area_de_servico}/adiciona-funcionario',
+    [AreaDeServicoController::class, 'salvaFuncionario']
+)->name("area-de-servico.salva-funcionario");
+
+Route::get(
+    '/area-de-servico/{area_de_servico}/adiciona-funcionario/{tarefa}',
+    [AreaDeServicoController::class, 'adicionaFuncionario']
+)->name("area-de-servico.adiciona-funcionario");
+
 Route::resource('area-de-servico', AreaDeServicoController::class);
 
 // TAREFA

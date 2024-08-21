@@ -161,18 +161,44 @@ class AreaDeServicoController extends Controller
         return response()->json(["success" => [$return]]);
     }
 
-    public function adicionaFuncionario(Request $request, AreaDeServico $area_de_servico, Tarefa $tarefa)
+    public function salvaFuncionario(Request $request, AreaDeServico $area_de_servico)
     {
         if ($request->funcionarios) {
-            foreach ($request->funcionarios as $funcionario_id) {
+            $tarefa_salva = Tarefa::where('id', '=', $request->tarefa_id)->first();
+            $funcionarios_selecionados = $request->funcionarios;
+            $funcionarios_salvos = $tarefa_salva->funcionarios->toArray();
+
+            foreach ($funcionarios_salvos as $funcionario) {
+                if (!in_array($funcionario['id'], $funcionarios_selecionados)) {
+                    DB::table('tarefa_usuarios')->where([
+                        'usuario_id' => $funcionario['id'],
+                        'tarefa_id' => $tarefa_salva->id,
+                    ])->delete();
+                }
+            }
+
+            foreach ($funcionarios_selecionados as $funcionario_id) {
                 DB::table('tarefa_usuarios')->updateOrInsert([
-                    'tarefa_id' => $request->tarefa,
+                    'tarefa_id' => $tarefa_salva->id,
                     'usuario_id' => $funcionario_id,
                 ]);
             }
+        } else {
+            DB::table('tarefa_usuarios')->where(['tarefa_id' => $request->tarefa_id])->delete();
         }
 
         return redirect()->route("area-de-servico.show", ['area_de_servico' => $area_de_servico]);
+    }
+
+    public function adicionaFuncionario(Request $request, AreaDeServico $area_de_servico, Tarefa $tarefa)
+    {
+        $funcionarios_id = array_column($area_de_servico->funcionarios->toArray(), 'id');
+        $funcionarios_tarefa = array_column($tarefa->funcionarios->toArray(), 'id');
+
+        return response()->json([
+            'funcionarios_id' => $funcionarios_id,
+            'funcionarios_tarefa' => $funcionarios_tarefa,
+        ]);
     }
 
     private function getFuncionarios()

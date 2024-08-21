@@ -63,7 +63,6 @@ const itera_filhos = () => {
     altera_campo("tarefas_fazendo", doing);
     altera_campo("tarefas_concluida", finished);
     salva_tarefas();
-    console.log("asdadada");
 };
 
 const altera_campo = (campo_id, painel) => {
@@ -115,5 +114,42 @@ const salva_tarefas = () => {
         $("#ajax-form").submit();
     }
 };
+
+$(document).ready(function () {
+    $("#funcionarios-form").on("show.bs.modal", function (event) {
+        var button = $(event.relatedTarget); // Botão que acionou o modal
+        var url = button.data("url");
+        var tarefa = button.data("tarefa");
+        $("#tarefa_id").prop("value", tarefa);
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (data) {
+                const func = Array.from(data["funcionarios_tarefa"]);
+                data["funcionarios_id"].forEach((id) => {
+                    if (func.includes(id)) {
+                        $("#" + id).prop("checked", true);
+                    } else {
+                        $("#" + id).prop("checked", false);
+                    }
+                });
+            },
+            error: function () {
+                console.log("erro");
+            },
+        });
+    });
+});
+
+$(document).ready(function () {
+    $("#funcionarios-form").on("hide.bs.modal", function (event) {
+        let opcoes = document.querySelectorAll(".opcao");
+
+        opcoes.forEach((element) => {
+            element.checked = false;
+        });
+    });
+});
 
 itera_filhos();

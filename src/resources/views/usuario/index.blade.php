@@ -27,11 +27,11 @@
 
                                 <a class="btn btn-info btn-sm"
                                     href="{{ route('usuario.view', ['id' => $usuario['id']]) }}">Visualizar</a>
-                                <form method="post" action="{{ route('usuario.destroy', ['usuario' => $usuario]) }}">
+                                <form method="post" action="{{ route('usuario.destroy', ['usuario' => $usuario]) }}"
+                                    onsubmit="return confirm('Deseja excluir este usuário?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm"
-                                        onclick="confirm('Deseja excluir este usuário??')">Deletar</button>
+                                    <button class="btn btn-danger btn-sm">Deletar</button>
                                 </form>
                             </td>
                         </tr>
