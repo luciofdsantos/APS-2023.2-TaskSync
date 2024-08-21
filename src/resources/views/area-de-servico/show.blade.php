@@ -9,8 +9,7 @@
     <a class="btn btn-secondary" href="{{ route('area-de-servico.index') }}">Voltar</a>
     {{-- <a class="btn btn-success" href="{{ route('tarefa.create', ['area_de_servico' => $area_de_servico]) }}">Adicionar
         Tarefa</a> --}}
-    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tarefa-form">Adicionar
-        Tarefa</a>
+    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tarefa-form">Adicionar Tarefa</a>
 
     <table>
         <tr>
