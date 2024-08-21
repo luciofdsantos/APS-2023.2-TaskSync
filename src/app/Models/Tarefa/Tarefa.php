@@ -9,7 +9,7 @@ class Tarefa extends Model
 {
 
     protected $fillable = [
-        'nome', 'gerente_responsavel', 'email_contato', 'status', 'descricao'
+        'titulo', 'descricao', 'deadline'
     ];
 
 }

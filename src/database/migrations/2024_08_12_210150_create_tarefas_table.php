@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('tarefas', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->string('gerente_responsavel'); //Reevaluate the task manager field - 
-            $table->string('email_contato');
-            $table->string('status');
-            $table->text('descricao');
+            $table->string('titulo');
+            $table->text('descricao'); //Reevaluate the task manager field - 
+            $table->date('deadline')->nullable(); // Campo opcional
+            // $table->enum('status', ['pendente', 'em_progresso', 'completo'])->default('pendente'); // Status com valores padrão
             $table->timestamps();
         });
     }

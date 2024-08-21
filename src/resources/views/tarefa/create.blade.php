@@ -1,23 +1,26 @@
 <x-layout>
         <h1>Criar Tarefa</h1>
+
         <form action="{{ route('tarefa.store') }}" method="POST">
             @csrf
-            <label for="nome">Nome da Tarefa:</label>
-            <input type="text" name="nome" id="nome" required>
-            
-            <label for="gerente_responsavel">Gerente Responsável:</label>
-            <input type="text" name="gerente_responsavel" id="gerente_responsavel" required>
-            
-            <label for="email_contato">E-mail de Contato:</label>
-            <input type="email" name="email_contato" id="email_contato" required>
-            
-            <label for="status">Status:</label>
-            <input type="text" name="status" id="status" required>
-            
-            <label for="descricao">Descrição:</label>
-            <textarea name="descricao" id="descricao" required></textarea>
-            
-            <button type="submit" class="btn btn-success">Salvar</button>
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" required>
+                @error('titulo')
+                <div class="error-message">
+                    <i>&#9888;</i> <!-- Ícone de alerta -->
+                    {{ $message }}
+                </div>
+                @enderror
+                <label for="descricao">Descrição:</label>
+                <textarea class="form-control" id="descricao" name="descricao" required></textarea>
+                @error('descricao')
+                <div class="error-message">
+                    <i>&#9888;</i> <!-- Ícone de alerta -->
+                    {{ $message }}
+                </div>
+                @enderror
+                <label for="deadline">Prazo:</label>
+                <input type="date" class="form-control" id="deadline" name="deadline">
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
-
  </x-layout>

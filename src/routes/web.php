@@ -45,11 +45,23 @@ Route::resource('area-de-servico', AreaDeServicoController::class);
 // TAREFA
 Route::controller(TarefaController::class)->group(
     function () {
-        Route::get('/tarefa', 'index')->name('tarefa.index');
+        //Listar Tarefas
+        Route::get('/tarefa', 'index')->name('tarefa.index'); // Listagem de tarefas
+        
+        // Criar Tarefa
         Route::get('/tarefa/create', 'create')->name('tarefa.create');
         Route::post('/tarefa', 'store')->name("tarefa.store");
-        Route::get('/tarefa/{tarefa}', 'show')->name("tarefa.show");
+        
+        // Editar Tarefa
+        Route::get('/tarefa/{tarefa}/edit', 'edit')->name('tarefa.edit');
+        Route::put('/tarefa/{tarefa}', 'update')->name("tarefa.update");
+        
+        // Visualizar Tarefa
+        Route::get('/tarefa/{tarefa}', 'show')->name("tarefa.show"); 
+        
+        //Apagar Tarefa
         Route::delete('/tarefa/{tarefa}', 'destroy')->name("tarefa.destroy");
+  
     }
 );
 
