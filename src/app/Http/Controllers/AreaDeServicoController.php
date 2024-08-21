@@ -124,7 +124,9 @@ class AreaDeServicoController extends Controller
      */
     public function destroy(AreaDeServico $areaDeServico)
     {
-        //
+        $var = $areaDeServico->delete();
+
+        return redirect()->route('area-de-servico.index');
     }
 
     public function modifica(Request $request, AreaDeServico $area_de_servico)

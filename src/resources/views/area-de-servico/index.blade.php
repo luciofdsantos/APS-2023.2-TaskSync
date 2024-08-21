@@ -20,11 +20,11 @@
                                 <a class="btn btn-info btn-sm"
                                     href="{{ route('area-de-servico.show', ['area_de_servico' => $area_de_servico['id']]) }}">Visualizar</a>
                                 <form method="post"
-                                    action="{{ route('area-de-servico.destroy', ['area_de_servico' => $area_de_servico]) }}">
+                                    action="{{ route('area-de-servico.destroy', ['area_de_servico' => $area_de_servico]) }}"
+                                    onsubmit="return confirm('Deseja excluir esta area de serviço?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger btn-sm"
-                                        onclick="confirm('Deseja excluir este usuário??')">Deletar</button>
+                                    <button class="btn btn-danger btn-sm">Deletar</button>
                                 </form>
                             </td>
                         </tr>
