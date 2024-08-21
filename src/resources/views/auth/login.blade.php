@@ -47,10 +47,9 @@
                 <!-- Email Address -->
                 <div class="space">
                 <div class="form">
-                    <!--<label for="email">Email</label>-->
                     <input id="email" type="email" class="form-c" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="Email">
                     @if ($errors->has('email'))
-                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                        <span class="text-danger">{{ $errors->first('email', 'Credenciais Inválidas!') }}</span>
                     @endif
                 </div>
                 </div>
@@ -61,7 +60,7 @@
                     <!--<label for="password">Password</label>-->
                     <input id="password" type="password" class="form-c" name="password" required autocomplete="current-password" placeholder="Senha">
                     @if ($errors->has('password'))
-                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                        <span class="text-danger">{{ $errors->first('password', 'Credenciais Inválidas!') }}</span>
                     @endif
                 </div>
                 </div>
