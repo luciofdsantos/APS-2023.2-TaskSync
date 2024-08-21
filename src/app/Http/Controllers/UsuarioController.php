@@ -19,8 +19,6 @@ class UsuarioController extends Controller
     {
         $usuarios = Usuario::with('user')->paginate(10);
 
-        flash('Welcome Aboard!')->success();
-
         return view('usuario.index', ['usuarios' => $usuarios]);
     }
 
