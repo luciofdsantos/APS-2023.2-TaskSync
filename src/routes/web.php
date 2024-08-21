@@ -35,33 +35,41 @@ Route::controller(UsuarioController::class)->group(
 );
 
 // AREA DE SERVIÇO
+
+Route::post('/area-de-servico/{area_de_servico}', [AreaDeServicoController::class, 'modifica'])
+    ->name("area-de-servico.modifica");
+
+Route::post(
+    '/area-de-servico/{area_de_servico}/adiciona-funcionario',
+    [AreaDeServicoController::class, 'salvaFuncionario']
+)->name("area-de-servico.salva-funcionario");
+
+Route::get(
+    '/area-de-servico/{area_de_servico}/adiciona-funcionario/{tarefa}',
+    [AreaDeServicoController::class, 'adicionaFuncionario']
+)->name("area-de-servico.adiciona-funcionario");
+
 Route::resource('area-de-servico', AreaDeServicoController::class);
-// Route::controller(AreaDeServicoController::class)->group(
-//     function () {
-//         Route::post('/area-de-servico/create', 'selectFuncionario')->name("area-servico.select-funcionario");
-//     }
-// );
 
 // TAREFA
 Route::controller(TarefaController::class)->group(
     function () {
         //Listar Tarefas
         Route::get('/tarefa', 'index')->name('tarefa.index'); // Listagem de tarefas
-        
+
         // Criar Tarefa
-        Route::get('/tarefa/create', 'create')->name('tarefa.create');
+        Route::get('/tarefa/create/{area_de_servico?}', 'create')->name('tarefa.create');
         Route::post('/tarefa', 'store')->name("tarefa.store");
-        
+
         // Editar Tarefa
         Route::get('/tarefa/{tarefa}/edit', 'edit')->name('tarefa.edit');
         Route::put('/tarefa/{tarefa}', 'update')->name("tarefa.update");
-        
+
         // Visualizar Tarefa
-        Route::get('/tarefa/{tarefa}', 'show')->name("tarefa.show"); 
-        
+        Route::get('/tarefa/{tarefa}', 'show')->name("tarefa.show");
+
         //Apagar Tarefa
         Route::delete('/tarefa/{tarefa}', 'destroy')->name("tarefa.destroy");
-  
     }
 );
 

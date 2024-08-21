@@ -5,11 +5,13 @@
             <table>
                 <th>Id</th>
                 <th>Nome</th>
+                <th>Gerente</th>
                 <th>
                     @foreach ($areas_de_servico as $area_de_servico)
                         <tr>
                             <td>{{ $area_de_servico->id }}</td>
-                            <td>{{ $area_de_servico->nome ?? '' }}</td>
+                            <td>{{ $area_de_servico->nome }}</td>
+                            <td>{{ $area_de_servico->gerente->user->name ?? '' }}</td>
                             <td>
                                 <a class="btn btn-primary btn-sm"
                                     href="{{ route('area-de-servico.edit', ['area_de_servico' => $area_de_servico]) }}">Editar</a>
