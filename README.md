@@ -29,3 +29,4 @@ Faça o clone do projeto, dentro da pasta src atualize as dependências do compo
 **Documentacao do Projeto**
 1. [Visão de Negócio] (https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/ModeloVisaoDoNegocio.docx.pdf)
 2. [Casos de Uso] (https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/DocumentodeCasosdeUso.pdf)
+3. [Diagrama de Sequência] (https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/Diagrama%20de%20Sequencia.pdf)
