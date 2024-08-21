@@ -1,5 +1,6 @@
 <div class="card">
     <div class="card-body">
+        <h3>Funcionários:</h3>
         <form method="post"
             action="{{ route('area-de-servico.salva-funcionario', [
                 'area_de_servico' => $area_de_servico,

@@ -1,4 +1,5 @@
 <x-layout>
+    <x-message/>
     <h1>Gerenciar Tarefas</h1>
 
     <div class="card">

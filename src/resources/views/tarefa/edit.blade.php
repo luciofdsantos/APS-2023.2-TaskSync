@@ -36,8 +36,8 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="deadline">Prazo:</label>
-                <input type="text" class="form-control" id="deadline" name="deadline" value="{{ $tarefa->deadline }}" required>
+                <label for="prazo">Prazo:</label>
+                <input type="date" class="form-control" id="prazo" name="prazo" value="{{$tarefa->prazo}}" >
             </div>
 
             <button type="submit" class="btn btn-primary">Salvar</button>

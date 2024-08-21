@@ -11,6 +11,8 @@
         Tarefa</a> --}}
     <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tarefa-form">Adicionar Tarefa</a>
 
+    <x-message/>
+
     <table>
         <tr>
             <td>Nome:</td>

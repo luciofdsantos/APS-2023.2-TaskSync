@@ -1,6 +1,10 @@
 <x-layout>
+
+
+
     <a href="{{ route('usuario.create') }}" class="btn btn-success" role="button">Criar</a>
     <div class="card">
+        <x-message/>
         <div class="card-body">
             <table>
                 <th>Id</th>

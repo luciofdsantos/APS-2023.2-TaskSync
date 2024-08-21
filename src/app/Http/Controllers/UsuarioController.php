@@ -46,7 +46,7 @@ class UsuarioController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('/usuario');
+        return redirect()->route('usuario.view',  ['id' => $usuario->id]);
     }
 
     public function view(int $id)
@@ -82,7 +82,11 @@ class UsuarioController extends Controller
 
     public function destroy(Usuario $usuario)
     {
-        $usuario->delete();
+        try{
+            $usuario->delete();
+        } catch(Exception $e){
+            return redirect()->route('/usuario')->with('danger','Não foi possível excluir este usuário.');
+        }
         return redirect()->route('/usuario');
     }
 

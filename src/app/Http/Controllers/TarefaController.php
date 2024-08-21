@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AreaDeServico;
 use App\Models\Tarefa\Tarefa;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -43,7 +44,7 @@ class TarefaController extends Controller
                 ]
             );
         }
-        return redirect()->route('area-de-servico.show', ['area_de_servico' => $area_de_servico]);
+        return redirect()->route('area-de-servico.show', ['area_de_servico' => $area_de_servico])->with('success', 'Tarefa criada com sucesso!');
     }
 
     //Mostra detalhes de uma tarefa
@@ -75,7 +76,11 @@ class TarefaController extends Controller
     // Excluir uma tarefa
     public function destroy(Tarefa $tarefa)
     {
-        $tarefa->delete();
+        try {
+            $tarefa->delete();
+        } catch (Exception $e) {
+           return redirect()->route('tarefa.index')->with('danger', "Não é possível excluir tarefa!\nTarefa com funcionários.");
+        }
         return redirect()->route('tarefa.index')->with('success', 'Tarefa excluída com sucesso!');
     }
 }

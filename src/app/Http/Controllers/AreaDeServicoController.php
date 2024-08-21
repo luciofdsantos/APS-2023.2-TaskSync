@@ -57,7 +57,7 @@ class AreaDeServicoController extends Controller
             $area_funcionario->save();
         }
 
-        return redirect()->route('area-de-servico.index');
+        return redirect()->route('area-de-servico.show', ['area_de_servico' => $area]);
     }
 
     /**
@@ -116,7 +116,7 @@ class AreaDeServicoController extends Controller
 
         $areaDeServico->update($campos);
 
-        return view('area-de-servico.show', ['area_de_servico' => $areaDeServico]);
+        return view('area-de-servico.show', ['area_de_servico' => $areaDeServico, 'tarefas' => $areaDeServico->tarefas]);
     }
 
     /**
