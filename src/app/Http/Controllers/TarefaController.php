@@ -13,7 +13,7 @@ class TarefaController extends Controller
     //Listar Todas as Tarefas
     public function index()
     {
-        $tarefas = Tarefa::all();
+        $tarefas = Tarefa::paginate(10);
         return view('tarefa.index', compact('tarefas'));
     }
 
@@ -24,26 +24,26 @@ class TarefaController extends Controller
 
 
     //Armazenar ma nova Tarefa
-    public function store(Request $request)
+    public function store(Request $request, AreaDeServico $area_de_servico)
     {
         $request->validate([
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string',
             'deadline' => 'nullable|date',
         ]);
+        $area_de_servico = AreaDeServico::where('id', '=', $request->area_de_servico)->first();
 
         $tarefa = Tarefa::create($request->all());
 
-        if ($request->area_de_servico_id) {
+        if ($area_de_servico->id) {
             DB::table('area_de_servico_tarefas')->insert(
                 [
-                    'area_de_servico_id' => $request->area_de_servico_id,
+                    'area_de_servico_id' => $area_de_servico->id,
                     'tarefa_id' => $tarefa->id,
                 ]
             );
         }
-
-        return redirect()->route('area-de-servico.show', ['area_de_servico' => $request->area_de_servico_id]);
+        return redirect()->route('area-de-servico.show', ['area_de_servico' => $area_de_servico]);
     }
 
     //Mostra detalhes de uma tarefa

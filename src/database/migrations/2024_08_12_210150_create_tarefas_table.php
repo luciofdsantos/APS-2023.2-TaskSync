@@ -14,9 +14,10 @@ return new class extends Migration
     {
         Schema::create('tarefas', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->text('descricao'); //Reevaluate the task manager field -
-            $table->date('deadline')->nullable(); // Campo opcional
+            $table->string('titulo')->nullable(true);
+            $table->text('descricao')->nullable(false); //Reevaluate the task manager field -
+            $table->date('prazo')->nullable(); // Campo opcional
+            $table->integer('status')->default(StatusTarefa::A_FAZER);
             // $table->enum('status', ['pendente', 'em_progresso', 'completo'])->default('pendente'); // Status com valores padrão
             $table->timestamps();
         });

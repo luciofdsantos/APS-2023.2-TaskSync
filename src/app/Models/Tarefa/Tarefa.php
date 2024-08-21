@@ -14,7 +14,7 @@ class Tarefa extends Model
     protected $fillable = [
         'titulo',
         'descricao',
-        'deadline'
+        'prazo'
     ];
 
     public function funcionarios(): BelongsToMany

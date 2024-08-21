@@ -16,4 +16,14 @@ class StatusTarefa
             self::CONCLUIDA => 'CONCLUIDA',
         ];
     }
+
+    public static function get(int $status)
+    {
+        if (isset(self::getAll()[$status])) {
+
+            return self::getAll()[$status];
+        }
+
+        return '';
+    }
 }

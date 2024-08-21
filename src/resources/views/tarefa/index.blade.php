@@ -1,33 +1,40 @@
 <x-layout>
-        <!-- <h1>Lista de Tarefas</h1>
-        <a href="{{ route('tarefa.create') }}" class="btn btn-primary">Criar Tarefa</a>
-        <ul>
-            @foreach ($tarefas as $tarefa)
-                <li>
-                    <a href="{{ route('tarefa.show', $tarefa->id) }}">{{ $tarefa->nome }}</a>
-                    <form action="{{ route('tarefa.destroy', $tarefa->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Excluir</button>
-                    </form>
-                </li>
-            @endforeach
-        </ul> -->
-        <h1>Gerenciar Tarefas</h1>
+    <h1>Gerenciar Tarefas</h1>
 
-        <a href="{{ route('tarefa.create') }}" class="btn btn-primary">Criar Tarefa</a>
+    <div class="card">
+        <div class="card-body">
+            <table>
+                <th>Id</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Prazo</th>
+                <th>Ações
+                <th>
+                    @foreach ($tarefas as $tarefa)
+                        <tr>
+                            <td>{{ $tarefa->id }}</td>
+                            <td>{{ $tarefa->titulo }}</td>
+                            <td>{{ $tarefa->descricao }}</td>
+                            <td> {{ $tarefa->prazo }}</td>
+                            <td>
 
-            <ul>
-                @foreach ($tarefas as $tarefa)
-                    <li>
-                    <a href="{{ route('tarefa.show', $tarefa->id) }}">{{ $tarefa->title }}</a>
-                        <a href="{{ route('tarefa.edit', $tarefa->id) }}" class="btn btn-warning">Editar</a>
-                        <form action="{{ route('tarefa.destroy', $tarefa->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
-                    </li>
-                @endforeach
-            </ul>
+                                <a class="btn btn-primary btn-sm"
+                                    href="{{ route('tarefa.edit', ['tarefa' => $tarefa]) }}">Editar</a>
+                                <br>
+
+                                <a class="btn btn-info btn-sm"
+                                    href="{{ route('tarefa.show', ['tarefa' => $tarefa]) }}">Visualizar</a>
+                                <form method="post" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
+                                    onsubmit="return confirm('Deseja excluir esta tarefa?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm">Deletar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+            </table>
+            {{ $tarefas->links() }}
+        </div>
+    </div>
 </x-layout>
