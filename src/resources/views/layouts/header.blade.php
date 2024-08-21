@@ -16,7 +16,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
@@ -30,9 +30,12 @@
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="mb-0">Task Sync</h1>
+
+
+                    <!--Menu Toggle 
                     <button type="button" class="btn btn-light d-md-none" id="menuToggle">
                         <i class="bi bi-list"></i>
-                    </button>
+                    </button>-->
                 </div>
             </div>
         </header>
@@ -41,11 +44,12 @@
         <div style="height: 110px;"></div>
 
         <!-- Conteúdo principal -->
+        <!--
         <main id="mainContent" class="p-4">
             <div class="bg-white shadow-lg rounded-3 p-4">
-                <!-- Seu conteúdo aqui -->
+                
             </div>
-        </main>
+        </main>-->
     </div> 
 </body>
 </html>

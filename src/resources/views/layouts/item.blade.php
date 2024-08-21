@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,63 +14,95 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- Custom CSS -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sideBar.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
 </head>
 
-
-
 <body class="font-sans antialiased">
-    <div class="d-flex min-vh-100">
+    <div id="app" class="d-flex min-vh-100">
 
         <!-- Side Bar -->
-        <aside id="sidebar" class="bg-white text-dark p-3 position-fixed" style="width: 300px; 
+        <aside id="sidebar" class="bg-white text-dark p-3 position-fixed d-none" style="width: 300px; 
             margin: 15px; border-radius: 15px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increased shadow for better effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
             top: 80px; bottom: 15px; right: auto;">
 
             <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <span class="fs-3 fw-bold">Task Sync</span>
-                <button type="button" class="btn btn-outline-secondary d-md-none" id="sidebarToggle">
-                    <i class="bi bi-list"></i>
+                <h5>Início</h5>
+                <!--Toggle Menu -->
+                <button type="button" class="hideButton" id="sidebarToggle">
+                    <i id="toggleIcon" class="bi bi-chevron-left"></i>
                 </button>
             </div>
             <!-- Nav Links -->
-            <h5>Início</h5>
             <nav class="nav flex-column">
-                <a class="btn btn-outline-primary d-flex align-items-center mb-2" href="/dashboard">
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('dashboard') ? 'btn-primary' : 'btn-outline-primary' }}" href="/dashboard">
                     <i class="bi bi-house-door me-2"></i> Área de Trabalho
                 </a>
                 <h5>Menu</h5>
-                <a class="btn btn-outline-primary d-flex align-items-center mb-2" href="/calendar">
+                
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}" href="/calendar">
                     <i class="bi bi-calendar me-2"></i> Calendário
                 </a>
-                <a class="btn btn-outline-primary d-flex align-items-center mb-2" href="/usuario">
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('usuario') ? 'btn-primary' : 'btn-outline-primary' }}" href="/usuario">
                     <i class="bi bi-person me-2"></i> Usuários
                 </a>
-                <a class="btn btn-outline-primary d-flex align-items-center mb-2" href="/reports">
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('reports') ? 'btn-primary' : 'btn-outline-primary' }}" href="/reports">
                     <i class="bi bi-file-earmark-text me-2"></i> Relatórios
                 </a>
-                <a class="btn btn-outline-primary d-flex align-items-center mb-2" href="/tarefa">
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('tarefa') ? 'btn-primary' : 'btn-outline-primary' }}" href="/tarefa">
                     <i class="bi bi-list-task me-2"></i> Tarefas
                 </a>
-                <a>
-                     <!-- Logout Button -->
-                     <!--Provisório -->
+                
+                <!-- Logout Button -->
                 <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="btn btn-outline-danger">
-                    <i class="bi bi-box-arrow-right"></i> {{ __('Logout') }}
-                </button>
-            </form>
-                </a>
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="bi bi-box-arrow-right"></i> {{ __('Logout') }}
+                    </button>
+                </form>
             </nav>
         </aside>
+
+        <!-- Mini Sidebar -->
+        <aside id="miniSidebar" class="d-flex flex-column position-fixed bg-light p-2 text-center" 
+            style="width: 60px; top: 90px; bottom: 15px; left: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+            
+            <div class="d-flex flex-column align-items-center mt-4">
+                <!-- Placeholder for the collapsed state -->
+                <button id="expandButton" class="btn btn-outline-secondary">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+                <a href="/dashboard" class="text-dark mb-4 {{ request()->is('dashboard') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="bi bi-house-door" style="font-size: 1.5rem"></i>
+                </a>
+                <a href="/calendar" class="text-dark mb-4 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="bi bi-calendar" style="font-size: 1.5rem"></i>
+                </a>
+                <a href="/usuario" class="text-dark mb-4 {{ request()->is('usuario') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="bi bi-person" style="font-size: 1.5rem"></i>
+                </a>
+                <a href="/reports" class="text-dark mb-4 {{ request()->is('reports') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="bi bi-file-earmark-text" style="font-size: 1.5rem"></i>
+                </a>
+                <a href="/tarefa" class="text-dark mb-4 {{ request()->is('tarefa') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="bi bi-list-task" style="font-size: 1.5rem"></i>
+                </a>
+                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn text-dark mb-4">
+                        <i class="bi bi-box-arrow-right" style="font-size: 1.5rem"></i>
+                    </button>
+                </form>
+            </div>
+        </aside>
+
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
@@ -79,31 +110,41 @@
 
     <!-- Custom JS -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+       document.addEventListener('DOMContentLoaded', function () {
             const sidebar = document.getElementById('sidebar');
+            const miniSidebar = document.getElementById('miniSidebar');
             const sidebarToggle = document.getElementById('sidebarToggle');
-            const menuToggle = document.getElementById('menuToggle');
-            const mainContent = document.getElementById('mainContent');
+            const toggleIcon = document.getElementById('toggleIcon');
+            const expandButton = document.getElementById('expandButton');
+
+            // Inicialmente, miniSidebar visível e sidebar oculta
+            miniSidebar.classList.remove('d-none');
+            sidebar.classList.add('d-none');
 
             sidebarToggle.addEventListener('click', function () {
-                sidebar.classList.toggle('d-none');
-                adjustMainContentMargin();
-            });
-
-            menuToggle.addEventListener('click', function () {
-                sidebar.classList.toggle('d-none');
-                adjustMainContentMargin();
-            });
-
-            function adjustMainContentMargin() {
                 if (sidebar.classList.contains('d-none')) {
-                    mainContent.style.marginLeft = '0';
+                    // Mostrar sidebar e ocultar miniSidebar
+                    sidebar.classList.remove('d-none');
+                    miniSidebar.classList.add('d-none');
+                    toggleIcon.classList.remove('bi-chevron-right');
+                    toggleIcon.classList.add('bi-chevron-left');
+                    expandButton.classList.add('d-none');
                 } else {
-                    mainContent.style.marginLeft = '310px'; // Adjust for sidebar width + margin
+                    // Ocultar sidebar e mostrar miniSidebar
+                    sidebar.classList.add('d-none');
+                    miniSidebar.classList.remove('d-none');
+                    expandButton.classList.remove('d-none');
                 }
-            }
+            });
+
+            expandButton.addEventListener('click', function () {
+                sidebar.classList.remove('d-none');
+                miniSidebar.classList.add('d-none');
+                expandButton.classList.add('d-none');
+                toggleIcon.classList.remove('bi-chevron-right');
+                toggleIcon.classList.add('bi-chevron-left');
+            });
         });
     </script>
 </body>
-
 </html>
