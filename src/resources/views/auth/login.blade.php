@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt">
+
 <head>
     <title>Login</title>
 
@@ -15,7 +16,8 @@
     @vite(['resources/js/app.js'])
 
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             padding: 0;
@@ -31,10 +33,9 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-
-        
     </style>
 </head>
+
 <body>
     <div class="main">
         <div class="card-main">
@@ -46,40 +47,38 @@
 
                 <!-- Email Address -->
                 <div class="space">
-                <div class="form">
-                    <input id="email" type="email" class="form-c" name="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="Email">
-                    @if ($errors->has('email'))
-                        <span class="text-danger">{{ $errors->first('email', 'Credenciais Inválidas!') }}</span>
-                    @endif
-                </div>
+                    <div class="form">
+                        <input id="email" type="email" class="form-c" name="email" value="{{ old('email') }}"
+                            required autofocus autocomplete="username" placeholder="Email">
+                        @if ($errors->has('email'))
+                            <span class="text-danger">{{ $errors->first('email', 'Credenciais Inválidas!') }}</span>
+                        @endif
+                    </div>
                 </div>
 
                 <!-- Password -->
                 <div class="space">
-                <div class="form">
-                    <!--<label for="password">Password</label>-->
-                    <input id="password" type="password" class="form-c" name="password" required autocomplete="current-password" placeholder="Senha">
-                    @if ($errors->has('password'))
-                        <span class="text-danger">{{ $errors->first('password', 'Credenciais Inválidas!') }}</span>
-                    @endif
-                </div>
+                    <div class="form">
+                        <!--<label for="password">Password</label>-->
+                        <input id="password" type="password" class="form-c" name="password" required
+                            autocomplete="current-password" placeholder="Senha">
+                        @if ($errors->has('password'))
+                            <span class="text-danger">{{ $errors->first('password', 'Credenciais Inválidas!') }}</span>
+                        @endif
+                    </div>
                 </div>
 
                 <!-- Submit Button and Forgot Password Link -->
                 <div class="space">
-                <div class="form">
-                    <button type="submit" class="btnS">
-                        Entrar
-                    </button>
-                    @if (Route::has('password.request'))
-                        <a class="btn-link" href="{{ route('password.request') }}">
-                            Esqueceu a senha?
-                        </a>
-                    @endif
-                </div>
+                    <div class="form">
+                        <button type="submit" class="btnS">
+                            Entrar
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </body>
+
 </html>
