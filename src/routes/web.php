@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 // USUARIO
-Route::controller(UsuarioController::class)->group(
+Route::controller(UsuarioController::class)->middleware('auth')->group(
     function () {
         Route::get('/usuario', 'index')->name('/usuario');
         Route::get('/usuario-create', 'create')->name("usuario.create");
