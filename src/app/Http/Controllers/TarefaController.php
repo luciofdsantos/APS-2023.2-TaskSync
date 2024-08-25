@@ -14,6 +14,8 @@ class TarefaController extends Controller
     //Listar Todas as Tarefas
     public function index()
     {
+        $this->authorize('tarefas', Tarefa::class);
+
         $tarefas = Tarefa::paginate(10);
         return view('tarefa.index', compact('tarefas'));
     }
@@ -27,6 +29,7 @@ class TarefaController extends Controller
     //Armazenar ma nova Tarefa
     public function store(Request $request, AreaDeServico $area_de_servico)
     {
+        $this->authorize('tarefas', Tarefa::class);
         $request->validate([
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string',
@@ -50,18 +53,21 @@ class TarefaController extends Controller
     //Mostra detalhes de uma tarefa
     public function show(Tarefa $tarefa)
     {
+        $this->authorize('tarefas', Tarefa::class);
         return view('tarefa.show', compact('tarefa'));
     }
 
     // Mostrar formulário de edição de tarefa
     public function edit(Tarefa $tarefa)
     {
+        $this->authorize('tarefas', Tarefa::class);
         return view('tarefa.edit', compact('tarefa'));
     }
 
     // Atualizar uma tarefa
     public function update(Request $request, Tarefa $tarefa)
     {
+        $this->authorize('tarefas', Tarefa::class);
         $validated = $request->validate([
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string',
@@ -76,10 +82,11 @@ class TarefaController extends Controller
     // Excluir uma tarefa
     public function destroy(Tarefa $tarefa)
     {
+        $this->authorize('tarefas', Tarefa::class);
         try {
             $tarefa->delete();
         } catch (Exception $e) {
-           return redirect()->route('tarefa.index')->with('danger', "Não é possível excluir tarefa!\nTarefa com funcionários.");
+            return redirect()->route('tarefa.index')->with('danger', "Não é possível excluir tarefa!\nTarefa com funcionários.");
         }
         return redirect()->route('tarefa.index')->with('success', 'Tarefa excluída com sucesso!');
     }
