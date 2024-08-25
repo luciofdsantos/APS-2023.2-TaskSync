@@ -37,22 +37,23 @@ Route::controller(UsuarioController::class)->middleware('auth')->group(
 // AREA DE SERVIÇO
 
 Route::post('/area-de-servico/{area_de_servico}', [AreaDeServicoController::class, 'modifica'])
+    ->middleware('auth')
     ->name("area-de-servico.modifica");
 
 Route::post(
     '/area-de-servico/{area_de_servico}/adiciona-funcionario',
     [AreaDeServicoController::class, 'salvaFuncionario']
-)->name("area-de-servico.salva-funcionario");
+)->middleware('auth')->name("area-de-servico.salva-funcionario");
 
 Route::get(
     '/area-de-servico/{area_de_servico}/adiciona-funcionario/{tarefa}',
     [AreaDeServicoController::class, 'adicionaFuncionario']
-)->name("area-de-servico.adiciona-funcionario");
+)->middleware('auth')->name("area-de-servico.adiciona-funcionario");
 
-Route::resource('area-de-servico', AreaDeServicoController::class);
+Route::resource('area-de-servico', AreaDeServicoController::class)->middleware('auth');
 
 // TAREFA
-Route::controller(TarefaController::class)->group(
+Route::controller(TarefaController::class)->middleware('auth')->group(
     function () {
         //Listar Tarefas
         Route::get('/tarefa', 'index')->name('tarefa.index'); // Listagem de tarefas
@@ -80,7 +81,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware('auth')->name('dashboard');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

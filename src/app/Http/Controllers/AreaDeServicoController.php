@@ -23,6 +23,7 @@ class AreaDeServicoController extends Controller
      */
     public function index()
     {
+        $this->authorize('areasDeServico', AreaDeServico::class);
         $areas_de_servico = AreaDeServico::paginate(10);
 
         return view('area-de-servico.index', ['areas_de_servico' => $areas_de_servico]);
@@ -33,6 +34,7 @@ class AreaDeServicoController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', AreaDeServico::class);
         $gerentes = $this->getGerentes();
         $funcionarios = ArraysHelper::to_array($this->getFuncionarios());
 
@@ -65,6 +67,7 @@ class AreaDeServicoController extends Controller
      */
     public function show(AreaDeServico $areaDeServico)
     {
+
         $tarefas = $areaDeServico->tarefas;
 
         return view('area-de-servico.show', [
@@ -78,6 +81,7 @@ class AreaDeServicoController extends Controller
      */
     public function edit(AreaDeServico $areaDeServico)
     {
+        $this->authorize('update', $areaDeServico);
         $gerentes = $this->getGerentes();
         $funcionarios = ArraysHelper::to_array($this->getFuncionariosUpdate($areaDeServico));
         $selected_funcionarios = $areaDeServico->funcionarios->all();
@@ -95,6 +99,7 @@ class AreaDeServicoController extends Controller
      */
     public function update(UpdateAreaDeServicoRequest $request, AreaDeServico $areaDeServico)
     {
+        $this->authorize('update', $areaDeServico);
         $campos = $request->validated();
         $funcionarios = $campos['selectedItems'];
         $funcionarios_salvos = array_column($areaDeServico->servicoTarefas->all(), 'funcionario_id');
@@ -124,7 +129,8 @@ class AreaDeServicoController extends Controller
      */
     public function destroy(AreaDeServico $areaDeServico)
     {
-        $var = $areaDeServico->delete();
+        $this->authorize('delete', $areaDeServico);
+        $areaDeServico->delete();
 
         return redirect()->route('area-de-servico.index');
     }
@@ -165,6 +171,7 @@ class AreaDeServicoController extends Controller
 
     public function salvaFuncionario(Request $request, AreaDeServico $area_de_servico)
     {
+        $this->authorize('update', $area_de_servico);
         if ($request->funcionarios) {
             $tarefa_salva = Tarefa::where('id', '=', $request->tarefa_id)->first();
             $funcionarios_selecionados = $request->funcionarios;

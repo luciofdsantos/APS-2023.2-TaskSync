@@ -10,10 +10,5 @@
         data-tarefa="{{ $tarefa->id }}">Funcionários</button>
     <a class="btn badge bg-info"
         href="{{ route('tarefa.show', ['tarefa' => $tarefa, 'url' => url()->current()]) }}">Visualizar</a>
-    {{-- <form method="post" action="{{ route('tarefa.destroy', $tarefa) }}"
-        onsubmit="return confirm('Deseja excluir este usuário?')">
-        @csrf
-        @method('DELETE')
-        <button class="btn badge bg-danger">Deletar</button>
-    </form> --}}
+
 </div>

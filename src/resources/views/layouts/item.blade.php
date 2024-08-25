@@ -27,9 +27,10 @@
     <div id="app" class="d-flex min-vh-100">
 
         <!-- Side Bar -->
-        <aside id="sidebar" class="bg-white text-dark p-3 position-fixed d-none" style="width: 300px; 
-            margin: 15px; border-radius: 15px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+        <aside id="sidebar" class="bg-white text-dark p-3 position-fixed d-none"
+            style="width: 300px;
+            margin: 15px; border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             top: 80px; bottom: 15px; right: auto;">
 
             <!-- Logo -->
@@ -42,24 +43,31 @@
             </div>
             <!-- Nav Links -->
             <nav class="nav flex-column">
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('dashboard') ? 'btn-primary' : 'btn-outline-primary' }}" href="/dashboard">
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('dashboard') ? 'btn-primary' : 'btn-outline-primary' }}"
+                    href="/dashboard">
                     <i class="bi bi-house-door me-2"></i> Área de Trabalho
                 </a>
                 <h5>Menu</h5>
-                
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}" href="/calendar">
+
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}"
+                    href="/calendar">
                     <i class="bi bi-calendar me-2"></i> Calendário
                 </a>
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('usuario') ? 'btn-primary' : 'btn-outline-primary' }}" href="/usuario">
-                    <i class="bi bi-person me-2"></i> Usuários
-                </a>
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('reports') ? 'btn-primary' : 'btn-outline-primary' }}" href="/reports">
+                @can('usuarios', 'App\Models\Usuario\Usuario')
+                    <a class="btn d-flex align-items-center mb-2 {{ request()->is('usuario') ? 'btn-primary' : 'btn-outline-primary' }}"
+                        href="/usuario">
+                        <i class="bi bi-person me-2"></i> Usuários
+                    </a>
+                @endcan
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('reports') ? 'btn-primary' : 'btn-outline-primary' }}"
+                    href="/reports">
                     <i class="bi bi-file-earmark-text me-2"></i> Relatórios
                 </a>
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('tarefa') ? 'btn-primary' : 'btn-outline-primary' }}" href="/tarefa">
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('tarefa') ? 'btn-primary' : 'btn-outline-primary' }}"
+                    href="/tarefa">
                     <i class="bi bi-list-task me-2"></i> Tarefas
                 </a>
-                
+
                 <!-- Logout Button -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -71,27 +79,32 @@
         </aside>
 
         <!-- Mini Sidebar -->
-        <aside id="miniSidebar" class="d-flex flex-column position-fixed bg-light p-2 text-center" 
+        <aside id="miniSidebar" class="d-flex flex-column position-fixed bg-light p-2 text-center"
             style="width: 60px; top: 90px; bottom: 15px; left: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-            
+
             <div class="d-flex flex-column align-items-center mt-4">
                 <!-- Placeholder for the collapsed state -->
                 <button id="expandButton" class="btn btn-outline-secondary">
                     <i class="bi bi-chevron-right"></i>
                 </button>
-                <a href="/dashboard" class="text-dark mb-4 {{ request()->is('dashboard') ? 'btn-primary' : 'btn-outline-primary' }}">
+                <a href="/dashboard"
+                    class="text-dark mb-4 {{ request()->is('dashboard') ? 'btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-house-door" style="font-size: 1.5rem"></i>
                 </a>
-                <a href="/calendar" class="text-dark mb-4 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}">
+                <a href="/calendar"
+                    class="text-dark mb-4 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-calendar" style="font-size: 1.5rem"></i>
                 </a>
-                <a href="/usuario" class="text-dark mb-4 {{ request()->is('usuario') ? 'btn-primary' : 'btn-outline-primary' }}">
+                <a href="/usuario"
+                    class="text-dark mb-4 {{ request()->is('usuario') ? 'btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-person" style="font-size: 1.5rem"></i>
                 </a>
-                <a href="/reports" class="text-dark mb-4 {{ request()->is('reports') ? 'btn-primary' : 'btn-outline-primary' }}">
+                <a href="/reports"
+                    class="text-dark mb-4 {{ request()->is('reports') ? 'btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-file-earmark-text" style="font-size: 1.5rem"></i>
                 </a>
-                <a href="/tarefa" class="text-dark mb-4 {{ request()->is('tarefa') ? 'btn-primary' : 'btn-outline-primary' }}">
+                <a href="/tarefa"
+                    class="text-dark mb-4 {{ request()->is('tarefa') ? 'btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-list-task" style="font-size: 1.5rem"></i>
                 </a>
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
@@ -110,7 +123,7 @@
 
     <!-- Custom JS -->
     <script>
-       document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.getElementById('sidebar');
             const miniSidebar = document.getElementById('miniSidebar');
             const sidebarToggle = document.getElementById('sidebarToggle');
@@ -121,7 +134,7 @@
             miniSidebar.classList.remove('d-none');
             sidebar.classList.add('d-none');
 
-            sidebarToggle.addEventListener('click', function () {
+            sidebarToggle.addEventListener('click', function() {
                 if (sidebar.classList.contains('d-none')) {
                     // Mostrar sidebar e ocultar miniSidebar
                     sidebar.classList.remove('d-none');
@@ -137,7 +150,7 @@
                 }
             });
 
-            expandButton.addEventListener('click', function () {
+            expandButton.addEventListener('click', function() {
                 sidebar.classList.remove('d-none');
                 miniSidebar.classList.add('d-none');
                 expandButton.classList.add('d-none');
@@ -147,4 +160,5 @@
         });
     </script>
 </body>
+
 </html>

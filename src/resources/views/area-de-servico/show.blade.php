@@ -9,9 +9,11 @@
     <a class="btn btn-secondary" href="{{ route('area-de-servico.index') }}">Voltar</a>
     {{-- <a class="btn btn-success" href="{{ route('tarefa.create', ['area_de_servico' => $area_de_servico]) }}">Adicionar
         Tarefa</a> --}}
-    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tarefa-form">Adicionar Tarefa</a>
+    @can('create', 'App\Models\AreaDeServico\AreaDeServico')
+        <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tarefa-form">Adicionar Tarefa</a>
+    @endcan
 
-    <x-message/>
+    <x-message />
 
     <table>
         <tr>
@@ -36,7 +38,6 @@
         <form method="POST" id="ajax-form"
             action="{{ route('area-de-servico.modifica', ['area_de_servico' => $area_de_servico]) }}" id="tarefas">
             @csrf
-            {{-- <button class="btn btn-info" type="submit">Adicionar</button> --}}
 
             <div class="row">
                 <div class="col-sm">
