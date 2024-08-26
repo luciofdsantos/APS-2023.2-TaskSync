@@ -3,6 +3,7 @@
 use App\Http\Controllers\AreaDeServicoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TarefaController;
+use App\Http\Controllers\SolicitacaoController; 
 use App\Models\AreaDeServico;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,28 @@ Route::controller(TarefaController::class)->group(
 
         //Apagar Tarefa
         Route::delete('/tarefa/{tarefa}', 'destroy')->name("tarefa.destroy");
+    }
+);
+
+// Solicitacao
+Route::controller(SolicitacaoController::class)->group(
+    function () {
+        //Listar Solicitações
+        Route::get('/solicitacoes', 'index')->name('solicitacoes.index'); // Listagem de solicitações
+
+        // Criar Solicitacao e Salvar
+        Route::get('/solicitacoes-create', 'create')->name('solicitacoes.create');
+        Route::post('/solicitacoes', 'store')->name("solicitacoes.store");
+
+        // Editar Solicitacao
+        Route::get('/solicitacoes/{solicitacoes}/edit', 'edit')->name('solicitacoes.edit');
+        Route::put('/solicitacoes/{solicitacoes}', 'update')->name("solicitacoes.update");
+
+        // Visualizar Solicitacao
+        Route::get('/solicitacoes/{solicitacoes}', 'show')->name("solicitacoes.show");
+
+        //Apagar Solicitacao
+        Route::delete('/solicitacoes/{solicitacoes}', 'destroy')->name("solicitacoes.destroy");
     }
 );
 

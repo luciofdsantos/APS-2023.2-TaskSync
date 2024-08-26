@@ -15,6 +15,7 @@
         <a href="/usuario" class="btn btn-info">Usuarios</a>
         <a href="/tarefa" class="btn btn-info">Tarefas</a>
         <a href="/area-de-servico" class="btn btn-info">Area de Serviço</a>
+        <a href="/solicitacoes" class="btn btn-info">Solicitações do Cliente</a>
     </header>
 
     <main class="container">
