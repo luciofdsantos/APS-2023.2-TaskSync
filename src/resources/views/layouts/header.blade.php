@@ -41,7 +41,7 @@
         </header>
 
         <!-- Espaçamento para garantir que o conteúdo não fique coberto pelo header -->
-        <div style="height: 110px;"></div>
+        <div style="height: 45px;"></div>
 
         <!-- Conteúdo principal -->
         <!--

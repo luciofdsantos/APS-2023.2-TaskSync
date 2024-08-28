@@ -18,8 +18,9 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::with('user')->paginate(10);
+        $tipos = TipoUsuario::getAll();
 
-        return view('usuario.index', ['usuarios' => $usuarios]);
+        return view('usuario.index', ['usuarios' => $usuarios, 'tipos' => $tipos]);
     }
 
     public function create()

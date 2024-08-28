@@ -5,17 +5,16 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div class="contain">
+    <div class="content-container">
+        <div class="main-content">
+        <main class="main-cntt">
+            <div class="content-box">
+                Lista de Áreas de Serviço
+            </div>
+        </main>
         <!-- Sidebar ou outro componente -->
         <x-item-layout/>
-
-        <!-- Conteúdo principal -->
-        <!--
-        <main class=" flex-grow-1 content">
-            <div class="bg-white shadow-lg rounded-3 p-4">
-                
-            </div>
-        </main>-->
+        </div>
     </div>
 </body>
 </html>
