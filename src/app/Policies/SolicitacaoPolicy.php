@@ -42,7 +42,7 @@ class SolicitacaoPolicy
 
     public function cancelar(User $user, Solicitacao $solicitacao): bool
     {
-        if($solicitacao->status == StatusSolicitacao::CANCELADA){
+        if($solicitacao->status != StatusSolicitacao::PENDENTE){
             return false;
         }
 

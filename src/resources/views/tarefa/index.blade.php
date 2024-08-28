@@ -12,10 +12,10 @@
         <main class="main-cntt">
             <div class="content-box">
                 <x-message/>
-                <h1>Gerenciar Tarefas</h1>
+                {{-- <h1>Gerenciar Tarefas</h1> --}}
 
-                <div class="card">
-                    <div class="card-body">
+                <div>
+                    <div>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -40,7 +40,7 @@
                                             <a class="btn bi bi-eye"
                                                 href="{{ route('tarefa.show', ['tarefa' => $tarefa]) }}"></a>
                                             <form method="post" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
-                                                onsubmit="return confirm('Deseja excluir esta tarefa?')">
+                                                onsubmit="return confirm('Deseja excluir esta tarefa?')" style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn bi bi-trash"></button>

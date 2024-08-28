@@ -11,9 +11,7 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <h1>Solicitações</h1>
-
-                <a href="{{ route('solicitacoes.create') }}" class="btn btn-success">Solicitar Serviço</a>
+                <a href="{{ route('area-de-servico.create') }}" class="btnAdd btn">Nova Solicitação +</a>
 
                 <x-message />
 
@@ -22,10 +20,10 @@
                         <tr>
                             <th style="width: 5%;">ID</th>
                             <th style="width: 10%;">Assunto</th>
-                            <th style="width: 55%;">Descrição</th>
+                            <th style="width: 50%;">Descrição</th>
                             <th style="width: 10%;">Status</th>
                             <th style="width: 15%;">Prazo</th>
-                            <th>Ações</th>
+                            <th style="width: 10%;">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,22 +39,22 @@
                                     @if ($solicitacao->cliente_id == auth()->user()->id)
                                     <a class="btn bi bi-pencil"
                                         href="{{ route('solicitacoes.edit', ['solicitacao' => $solicitacao]) }}"></a>
-                                    <br>
+
                                     @endif
 
+                                    @can('visualizar', $solicitacao)
                                     <a class="btn bi bi-eye"
                                             href="{{ route('solicitacoes.show', ['solicitacao' => $solicitacao]) }}"></a>
-
-
-
+                                    @endcan
 
                                     @can('cancelar', $solicitacao)
                                         <form method="post"
                                             action="{{ route('solicitacoes.cancelar', ['solicitacao' => $solicitacao]) }}"
-                                            onsubmit="return confirm('Deseja cancelar essa solicitação')">
+                                            onsubmit="return confirm('Deseja cancelar essa solicitação')"
+                                            style="display:inline-block;">
                                             @csrf
                                             @method('PUT')
-                                            <button class="btn btn-warning btn-sm">Cancelar</button>
+                                            <button class="btn bi bi-x-circle" title="Cancelar"></button>
                                         </form>
                                     @endcan
 

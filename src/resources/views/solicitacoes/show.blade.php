@@ -14,9 +14,10 @@
                 <div style="display: flex; align-items; ">
                 <a href="{{ route('solicitacoes.index') }}" class="btn btn-secondary">Voltar</a>
 
+                @can('mudarStatus', $solicitacao)
                 <form method="post"
                     action="{{ route('solicitacoes.mudar-status', ['solicitacao' => $solicitacao, 'cancelar' => false]) }}"
-                    onsubmit="return confirm('Deseja aceitar essa solicitação?')">
+                    onsubmit="return confirm('Deseja aceitar essa solicitação?')" style="display:inline-block;">
                     @csrf
                     @method('PUT')
                     <button class="btn btn-success">Aceitar</button>
@@ -24,11 +25,12 @@
                 <br>
                 <form method="post"
                     action="{{ route('solicitacoes.mudar-status', ['solicitacao' => $solicitacao, 'cancelar' => false]) }}"
-                    onsubmit="return confirm('Deseja cancelar essa solicitação?')">
+                    onsubmit="return confirm('Deseja cancelar essa solicitação?')" style="display:inline-block;">
                     @csrf
                     @method('PUT')
                     <button class="btn btn-warning">Cancelar</button>
                 </form>
+                @endcan
                 </div>
                 <table class="table">
 

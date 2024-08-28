@@ -82,13 +82,9 @@
 
                 <a class="btn d-flex align-items-center mb-2 {{ request()->is('solicitacoes') ? 'btn-primary' : 'btn-outline-primary' }}"
                     href="/solicitacoes">
-                    <i class="bi bi-envelope me-2"></i> Solicitações
+                    <i class="bi bi-envelope me-2"></i> Solicitacoes
                 </a>
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('solicitacoes') ? 'btn-primary' : 'btn-outline-primary' }}"
-                    href="/solicitacoes">
-                    <i class="bi bi-sticky me-2"></i> Solicitacoes
-                </a>
-                
+
 
                 <!-- Logout Button -->
                 <form method="POST" action="{{ route('logout') }}">
@@ -110,48 +106,44 @@
                     <i class="bi bi-chevron-right"></i>
                 </button>
                 <a href="/dashboard"
-                    class="text-dark mb-4 {{ request()->is('dashboard') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    class="text-dark mb-4 {{ request()->is('dashboard') ? 'btn btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-house-door" style="font-size: 1.5rem"></i>
                 </a>
 
                 @can('areasDeServico', 'App\Models\AreaDeServico')
                     <a href="/area-de-servico"
-                        class="text-dark mb-4 {{ request()->is('area-de-servico') ? 'btn-primary' : 'btn-outline-primary' }}">
+                        class="text-dark mb-4 {{ request()->is('area-de-servico') ? 'btn btn-primary' : 'btn-outline-primary' }}">
                         <i class="bi bi-border-all" style="font-size: 1.5rem"></i>
                     </a>
                 @endcan
 
                 <a href="/calendar"
-                    class="text-dark mb-4 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    class="text-dark mb-4 {{ request()->is('calendar') ? 'btn btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-calendar" style="font-size: 1.5rem"></i>
                 </a>
 
                 @can('usuarios', 'App\Models\Usuario\Usuario')
                     <a href="/usuario"
-                        class="text-dark mb-4 {{ request()->is('usuario') ? 'btn-primary' : 'btn-outline-primary' }}">
+                        class="text-dark mb-4 {{ request()->is('usuario') ? 'btn btn-primary' : 'btn-outline-primary' }}">
                         <i class="bi bi-person" style="font-size: 1.5rem"></i>
                     </a>
                 @endcan
 
                 <a href="/reports"
-                    class="text-dark mb-4 {{ request()->is('reports') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    class="text-dark mb-4 {{ request()->is('reports') ? 'btn btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-file-earmark-text" style="font-size: 1.5rem"></i>
                 </a>
 
                 @can('tarefas', 'App\Models\Tarefa')
                     <a href="/tarefa"
-                        class="text-dark mb-4 {{ request()->is('tarefa') ? 'btn-primary' : 'btn-outline-primary' }}">
+                        class="text-dark mb-4 {{ request()->is('tarefa') ? 'btn btn-primary' : 'btn-outline-primary' }}">
                         <i class="bi bi-list-task" style="font-size: 1.5rem"></i>
                     </a>
                 @endcan
 
                 <a href="/solicitacoes"
-                    class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-envelope" style="font-size: 1.5rem"></i>
-                </a>
-                <a href="/solicitacoes"
-                    class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn-primary' : 'btn-outline-primary' }}">
-                    <i class="bi bi-sticky" style="font-size: 1.5rem"></i>
                 </a>
 
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
