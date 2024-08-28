@@ -1,41 +1,60 @@
-<x-layout>
-    <x-message/>
-    <h1>Gerenciar Tarefas</h1>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <x-header-layout/>
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-    <div class="card">
-        <div class="card-body">
-            <table>
-                <th>Id</th>
-                <th>Título</th>
-                <th>Descrição</th>
-                <th>Prazo</th>
-                <th>Ações
-                <th>
-                    @foreach ($tarefas as $tarefa)
-                        <tr>
-                            <td>{{ $tarefa->id }}</td>
-                            <td>{{ $tarefa->titulo }}</td>
-                            <td>{{ $tarefa->descricao }}</td>
-                            <td> {{ $tarefa->prazo }}</td>
-                            <td>
+</head>
+<body>
 
-                                <a class="btn btn-primary btn-sm"
-                                    href="{{ route('tarefa.edit', ['tarefa' => $tarefa]) }}">Editar</a>
-                                <br>
+    <div class="content-container">
+        <main class="main-cntt">
+            <div class="content-box">
+                <x-message/>
+                <h1>Gerenciar Tarefas</h1>
 
-                                <a class="btn btn-info btn-sm"
-                                    href="{{ route('tarefa.show', ['tarefa' => $tarefa]) }}">Visualizar</a>
-                                <form method="post" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
-                                    onsubmit="return confirm('Deseja excluir esta tarefa?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm">Deletar</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-            </table>
-            {{ $tarefas->links() }}
-        </div>
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Título</th>
+                                    <th>Descrição</th>
+                                    <th>Prazo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($tarefas as $tarefa)
+                                    <tr>
+                                        <td>{{ $tarefa->id }}</td>
+                                        <td>{{ $tarefa->titulo }}</td>
+                                        <td>{{ $tarefa->descricao }}</td>
+                                        <td> {{ $tarefa->prazo }}</td>
+                                        <td class="action-icons">
+                                            <a class="btn bi bi-pencil"
+                                                href="{{ route('tarefa.edit', ['tarefa' => $tarefa]) }}""></a>
+
+                                            <a class="btn bi bi-eye"
+                                                href="{{ route('tarefa.show', ['tarefa' => $tarefa]) }}"></a>
+                                            <form method="post" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
+                                                onsubmit="return confirm('Deseja excluir esta tarefa?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn bi bi-trash"></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                        </table>
+                        {{ $tarefas->links() }}
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-</x-layout>
+    <x-item-layout/>
+</body>

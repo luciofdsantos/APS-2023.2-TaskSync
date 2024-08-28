@@ -1,36 +1,52 @@
-@php
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <x-header-layout/>
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+   
+   @php
     $data = new DateTime();
     $data = $data->format('Y-m-d');
 @endphp
-<x-layout>
-    <h1>Editar Solicitação</h1>
-    <a href="{{ route('solicitacoes.index') }}" class="btn btn-secondary">Voltar</a>
+</head>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+<body>
+    <div class="content-container">
+        <main class="main-cntt">
+            <div class="content-box">
+                <h1>Editar Solicitação</h1>
+                <a href="{{ route('solicitacoes.index') }}" class="btn btn-secondary">Voltar</a>
 
-    <form action="{{ route('solicitacoes.update', $solicitacao->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <label for="assunto">Assunto*</label>
-        <input type="text" name="assunto" value="{{ $solicitacao->assunto }}" required>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-        <label for="descricao">Descrição do Serviço Solicitado*</label>
-        <textarea name="descricao" required>{{ $solicitacao->descricao }}</textarea>
+                <form action="{{ route('solicitacoes.update', $solicitacao->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <label for="assunto">Assunto*</label>
+                    <input type="text" name="assunto" value="{{ $solicitacao->assunto }}" required class="form-control">
 
-        <label for="categoria">Categoria*</label>
-        <input type="text" name="categoria" value="{{ $solicitacao->categoria }}" required>
+                    <label for="descricao">Descrição do Serviço Solicitado*</label>
+                    <textarea class="form-control" name="descricao" required>{{ $solicitacao->descricao }}</textarea>
 
-        <label for="prazo">Prazo</label>
-        <input type="date" name="prazo" value="{{ $solicitacao->prazo }}" min={{ $data }}>
+                    <label for="categoria">Categoria*</label>
+                    <input type="text" name="categoria" value="{{ $solicitacao->categoria }}" required class="form-control">
 
-        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-    </form>
-</x-layout>
+                    <label for="prazo">Prazo</label>
+                    <input class="form-control" type="date" name="prazo" value="{{ $solicitacao->prazo }}" min={{ $data }}>
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <x-item-layout/>
+</body>
