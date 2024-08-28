@@ -55,7 +55,7 @@ class UsuarioController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('usuario.view',  ['id' => $usuario->id]);
+        return redirect()->route('/usuario',  ['id' => $usuario->id]);
     }
 
     public function view(int $id)
