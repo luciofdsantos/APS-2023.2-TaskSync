@@ -3,7 +3,7 @@
 use App\Http\Controllers\AreaDeServicoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TarefaController;
-use App\Http\Controllers\SolicitacaoController; 
+use App\Http\Controllers\SolicitacaoController;
 use App\Models\AreaDeServico;
 use Illuminate\Support\Facades\Route;
 
@@ -76,7 +76,7 @@ Route::controller(TarefaController::class)->middleware('auth')->group(
 );
 
 // Solicitacao
-Route::controller(SolicitacaoController::class)->group(
+Route::controller(SolicitacaoController::class)->middleware('auth')->group(
     function () {
         //Listar Solicitações
         Route::get('/solicitacoes', 'index')->name('solicitacoes.index'); // Listagem de solicitações
@@ -86,14 +86,20 @@ Route::controller(SolicitacaoController::class)->group(
         Route::post('/solicitacoes', 'store')->name("solicitacoes.store");
 
         // Editar Solicitacao
-        Route::get('/solicitacoes/{solicitacoes}/edit', 'edit')->name('solicitacoes.edit');
-        Route::put('/solicitacoes/{solicitacoes}', 'update')->name("solicitacoes.update");
+        Route::get('/solicitacoes/{solicitacao}/edit', 'edit')->name('solicitacoes.edit');
+        Route::put('/solicitacoes/{solicitacao}', 'update')->name('solicitacoes.update');
+
+        // Cancelar Solicitacao
+        Route::put('/solicitacoes/{solicitacao}/cancelar', 'cancelar')->name("solicitacoes.cancelar");
+
+        // Mudar Status
+        Route::put('/solicitacoes/{solicitacao}/mudar-status/{cancelar?}', 'mudarStatus')->name("solicitacoes.mudar-status");
 
         // Visualizar Solicitacao
-        Route::get('/solicitacoes/{solicitacoes}', 'show')->name("solicitacoes.show");
+        Route::get('/solicitacoes/{solicitacao}', 'show')->name("solicitacoes.show");
 
         //Apagar Solicitacao
-        Route::delete('/solicitacoes/{solicitacoes}', 'destroy')->name("solicitacoes.destroy");
+        Route::delete('/solicitacoes/{solicitacao}', 'destroy')->name("solicitacoes.destroy");
     }
 );
 

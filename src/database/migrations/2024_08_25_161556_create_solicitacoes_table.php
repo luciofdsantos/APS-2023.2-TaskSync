@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Solicitacao\StatusSolicitacao;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,11 +18,12 @@ return new class extends Migration
             $table->text('descricao');
             $table->string('categoria');
             $table->date('prazo')->nullable();
-            $table->enum('status', ['Pendente', 'Agendado', 'Cancelado'])->default('Pendente');
+            $table->integer('status')->default(StatusSolicitacao::PENDENTE);
+            $table->foreignId('cliente_id')->references('id')->on('usuario');
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      */

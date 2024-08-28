@@ -1,38 +1,59 @@
 <x-layout>
-<h1>Solicitações</h1>
+    <h1>Solicitações</h1>
 
-<a href="{{ route('solicitacoes.create') }}" class="btn btn-primary">Solicitar Serviço</a>
+    <a href="{{ route('solicitacoes.create') }}" class="btn btn-success">Solicitar Serviço</a>
 
-@if ($message = Session::get('success'))
-    <div class="alert alert-success">{{ $message }}</div>
-@endif
+    <x-message />
 
-<ul>
-    @foreach ($solicitacoes as $solicitacao)
-        <li>
-            <a href="{{ route('solicitacoes.edit', $solicitacao->id) }}">{{ $solicitacao->assunto }}</a>
-            <span>Status: {{ $solicitacao->status }}</span>
-            <form action="{{ route('solicitacoes.destroy', $solicitacao->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button id="cancelarSolicitacao" type="submit" class="btn btn-danger">Cancelar</button>
-            </form>
-        </li>
-    @endforeach
-</ul>
+    <table>
+        <th style="width: 5%;">ID</th>
+        <th style="width: 10%;">Assunto</th>
+        <th style="width: 55%;">Descrição</th>
+        <th style="width: 10%;">Status</th>
+        <th style="width: 15%;">Prazo</th>
+        <th>Ações</th>
+        <th>
+            @foreach ($solicitacoes as $solicitacao)
+                <tr>
+                    <td>{{ $solicitacao->id }}</td>
+                    <td>{{ $solicitacao->assunto }}</td>
+                    <td>{{ Str::words($solicitacao->descricao, 50, ' . . . ') }}</td>
+                    <td>{{ App\Models\Solicitacao\StatusSolicitacao::get($solicitacao->status) }}</td>
+                    <td>{{ \Carbon\Carbon::parse($solicitacao->prazo)->format('d/m/Y') ?? 'Não definido' }}</td>
+                    <td>
+                        <a class="btn btn-secondary btn-sm"
+                            href="{{ route('solicitacoes.show', ['solicitacao' => $solicitacao]) }}">Visualizar</a>
+                        <br>
 
-<script>
-        // Função que esconde o botão após determinado tempo
-        function esconderBotao() {
-            const botao = document.getElementById('cancelarSolicitacao');
+                        @if ($solicitacao->cliente_id == auth()->user()->id)
+                            <a class="btn btn-primary btn-sm"
+                                href="{{ route('solicitacoes.edit', ['solicitacao' => $solicitacao]) }}">Editar</a>
+                            <br>
+                        @endif
 
-            // Define o tempo para esconder o botão
-            setTimeout(() => {
-                botao.style.display = 'none';
-            }, 30000); // 30000 milissegundos = 30 segundos
-        }
+                        @can('cancelar', $solicitacao)
+                            <form method="post"
+                                action="{{ route('solicitacoes.cancelar', ['solicitacao' => $solicitacao]) }}"
+                                onsubmit="return confirm('Deseja cancelar essa solicitação')">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn btn-warning btn-sm">Cancelar</button>
+                            </form>
+                        @endcan
 
-        // Esconde o botão quando a página carrega
-        window.onload = esconderBotao;
-    </script>
+                        @can('delete', $solicitacao)
+                            <form method="post"
+                                action="{{ route('solicitacoes.destroy', ['solicitacao' => $solicitacao]) }}"
+                                onsubmit="return confirm('Deseja excluir esta area de serviço?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm">Deletar</button>
+                            </form>
+                        @endcan
+                        {{-- @endcan --}}
+                    </td>
+                </tr>
+            @endforeach
+    </table>
+    {{ $solicitacoes->links() }}
 </x-layout>

@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Solicitacao\Solicitacao;
+use App\Models\Solicitacao\StatusSolicitacao;
+use App\Models\Usuario\TipoUsuario;
+use Exception;
 use Illuminate\Http\Request;
 
 class SolicitacaoController extends Controller
 {
     public function index()
     {
-        $solicitacoes = Solicitacao::all();
+        $solicitacoes = $this->getSolicitacoes();
+
         return view('solicitacoes.index', compact('solicitacoes'));
     }
 
@@ -28,10 +32,13 @@ class SolicitacaoController extends Controller
             'categoria' => 'required',
         ]);
 
-        Solicitacao::create($request->all());
+        $campos = $request->all();
+        $campos['cliente_id'] = auth()->user()->id;
+
+        Solicitacao::create($campos);
 
         return redirect()->route('solicitacoes.index')
-                         ->with('success', 'Solicitação encaminhada com sucesso!');
+            ->with('success', 'Solicitação encaminhada com sucesso!');
     }
 
     #Editar uma solicitação
@@ -52,15 +59,62 @@ class SolicitacaoController extends Controller
         $solicitacao->update($request->all());
 
         return redirect()->route('solicitacoes.index')
-                         ->with('success', 'Solicitação atualizada com sucesso!');
+            ->with('success', 'Solicitação atualizada com sucesso!');
     }
 
-    #Deletar Solicitação
+    public function cancelar(Solicitacao $solicitacao)
+    {
+        if (!$solicitacao->podeEditar()) {
+            return redirect()->route('solicitacoes.index')
+                ->with('warning', 'Não foi possível cancelar seu pedido.');
+        }
+
+        $solicitacao->update(['status' => StatusSolicitacao::CANCELADA]);
+        return redirect()->route('solicitacoes.index')
+            ->with('success', 'Seu pedido foi cancelado');
+    }
+
+    public function mudarStatus(Solicitacao $solicitacao, bool $cancelar = false)
+    {
+        if ($cancelar) {
+            $solicitacao->update(['status' => StatusSolicitacao::CANCELADA]);
+            return redirect()->route('solicitacoes.show', ['solicitacao' => $solicitacao])
+                ->with('success', 'Solicitação cancelada!');
+        } else {
+            ddd($solicitacao->update(['status' => StatusSolicitacao::AGENDADA]));
+            return redirect()->route('solicitacoes.show', ['solicitacao' => $solicitacao])
+                ->with('success', 'Solicitação cancelada!');
+        }
+    }
+
+    // Excluir uma tarefa
     public function destroy(Solicitacao $solicitacao)
     {
-        $solicitacao->update(['status' => 'Cancelado']);
-        return redirect()->route('solicitacoes.index')
-                         ->with('success', 'Seu pedido foi cancelado');
+        $this->authorize('delete', Solicitacao::class);
+        try {
+            $solicitacao->delete();
+        } catch (Exception $e) {
+            return redirect()->route('solicitacoes.index')->with('danger', "Não é possível excluir solicitação!.");
+        }
+        return redirect()->route('solicitacoes.index')->with('success', 'Solicitação excluída com sucesso!');
+    }
+
+    public function show(Solicitacao $solicitacao)
+    {
+        return view('solicitacoes.show', ['solicitacao' => $solicitacao]);
+    }
+
+
+    private function getSolicitacoes()
+    {
+        $usuario = auth()->user()->usuario;
+        $solicitacoes = null;
+        if ($usuario->tipo_usuario == TipoUsuario::CLIENTE) {
+            $solicitacoes = Solicitacao::where('cliente_id', '=', $usuario->id)->paginate(10);
+        } else {
+            $solicitacoes = Solicitacao::where('status', '=', StatusSolicitacao::PENDENTE)
+                ->paginate(10);
+        }
+        return $solicitacoes;
     }
 }
-
