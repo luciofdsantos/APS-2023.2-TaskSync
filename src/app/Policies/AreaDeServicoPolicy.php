@@ -15,7 +15,7 @@ class AreaDeServicoPolicy
      */
     public function areasDeServico(User $user): bool
     {
-        $usuario = $user->usuario;
+        $usuario = session()->get('usuario');
 
         if (
             $usuario->tipo_usuario == TipoUsuario::FUNCIONARIO ||

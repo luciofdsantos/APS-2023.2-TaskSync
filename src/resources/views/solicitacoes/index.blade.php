@@ -21,15 +21,18 @@
                     <td>{{ App\Models\Solicitacao\StatusSolicitacao::get($solicitacao->status) }}</td>
                     <td>{{ \Carbon\Carbon::parse($solicitacao->prazo)->format('d/m/Y') ?? 'Não definido' }}</td>
                     <td>
-                        <a class="btn btn-secondary btn-sm"
-                            href="{{ route('solicitacoes.show', ['solicitacao' => $solicitacao]) }}">Visualizar</a>
-                        <br>
 
-                        @if ($solicitacao->cliente_id == auth()->user()->id)
+                        @can('visualizar', '\App\Models\Solicitacao\Solicitacao')
+                            <a class="btn btn-secondary btn-sm"
+                                href="{{ route('solicitacoes.show', ['solicitacao' => $solicitacao]) }}">Visualizar</a>
+                            <br>
+                        @endcan
+
+                        @can('editar', $solicitacao)
                             <a class="btn btn-primary btn-sm"
                                 href="{{ route('solicitacoes.edit', ['solicitacao' => $solicitacao]) }}">Editar</a>
                             <br>
-                        @endif
+                        @endcan
 
                         @can('cancelar', $solicitacao)
                             <form method="post"

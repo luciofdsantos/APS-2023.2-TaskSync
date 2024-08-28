@@ -2,26 +2,32 @@
 
     <a href="{{ route('solicitacoes.index') }}" class="btn btn-secondary">Voltar</a>
 
-    <form method="post"
-        action="{{ route('solicitacoes.mudar-status', ['solicitacao' => $solicitacao, 'cancelar' => true]) }}"
-        onsubmit="return confirm('Deseja cancelar essa solicitação')">
-        @csrf
-        @method('PUT')
-        <button class="btn btn-success">Aceitar</button>
-    </form>
-    <br>
-    <form method="post"
-        action="{{ route('solicitacoes.mudar-status', ['solicitacao' => $solicitacao, 'cancelar' => false]) }}"
-        onsubmit="return confirm('Deseja aceitar essa solicitação')">
-        @csrf
-        @method('PUT')
-        <button class="btn btn-warning">Cancelar</button>
-    </form>
+    @can('mudarStatus', $solicitacao)
+        <form method="post"
+            action="{{ route('solicitacoes.mudar-status', ['solicitacao' => $solicitacao, 'cancelar' => false]) }}"
+            onsubmit="return confirm('Deseja aceitar essa solicitação')">
+            @csrf
+            @method('PUT')
+            <button class="btn btn-success">Aceitar</button>
+        </form>
+        <br>
+        <form method="post"
+            action="{{ route('solicitacoes.mudar-status', ['solicitacao' => $solicitacao, 'cancelar' => true]) }}"
+            onsubmit="return confirm('Deseja cancelar essa solicitação')">
+            @csrf
+            @method('PUT')
+            <button class="btn btn-warning">Cancelar</button>
+        </form>
+    @endcan
 
     <table>
         <tr>
             <td class="bold">ID:</td>
             <td>{{ $solicitacao->id }}</td>
+        </tr>
+        <tr>
+            <td class="bold">Cliente:</td>
+            <td>{{ $solicitacao->cliente->user->name }}</td>
         </tr>
         <tr>
             <td class="bold">Assunto:</td>

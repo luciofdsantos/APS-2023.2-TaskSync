@@ -31,7 +31,7 @@
 
         <label for="prazo">Prazo</label>
         <input type="date" name="prazo" value="{{ old('prazo') }}" min={{ $data }}>
-
+        <br>
         <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
     </form>
 
