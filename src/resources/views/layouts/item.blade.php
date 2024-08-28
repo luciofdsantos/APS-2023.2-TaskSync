@@ -106,7 +106,7 @@
                     <i class="bi bi-chevron-right"></i>
                 </button>
                 <a href="/dashboard"
-                    class="text-dark mb-4 {{ request()->is('dashboard') ? 'btn btn-primary' : 'btn-outline-primary' }}">
+                    class="text-dark mb-4 {{ request()->is('dashboard') ? ' btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-house-door" style="font-size: 1.5rem"></i>
                 </a>
 
