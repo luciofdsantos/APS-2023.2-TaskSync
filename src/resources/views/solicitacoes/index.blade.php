@@ -11,7 +11,7 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <a href="{{ route('area-de-servico.create') }}" class="btnAdd btn">Nova Solicitação +</a>
+                <a href="{{ route('solicitacoes.create') }}" class="btnAdd btn">Nova Solicitação +</a>
 
                 <x-message />
 

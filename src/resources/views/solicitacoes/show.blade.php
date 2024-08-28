@@ -11,13 +11,15 @@
         <main class="main-cntt">
             <div class="content-box">
                 <h1>Solicitação</h1>
+                <x-message/>
                 <div style="display: flex; align-items; ">
                 <a href="{{ route('solicitacoes.index') }}" class="btn btn-secondary">Voltar</a>
 
                 @can('mudarStatus', $solicitacao)
                 <form method="post"
                     action="{{ route('solicitacoes.mudar-status', ['solicitacao' => $solicitacao, 'cancelar' => false]) }}"
-                    onsubmit="return confirm('Deseja aceitar essa solicitação?')" style="display:inline-block;">
+                        {{-- onsubmit="return confirm('Deseja aceitar essa solicitação?')"  --}}
+                        style="display:inline-block;">
                     @csrf
                     @method('PUT')
                     <button class="btn btn-success">Aceitar</button>
@@ -25,7 +27,8 @@
                 <br>
                 <form method="post"
                     action="{{ route('solicitacoes.mudar-status', ['solicitacao' => $solicitacao, 'cancelar' => false]) }}"
-                    onsubmit="return confirm('Deseja cancelar essa solicitação?')" style="display:inline-block;">
+                    {{-- onsubmit="return confirm('Deseja cancelar essa solicitação?')"  --}}
+                    style="display:inline-block;">
                     @csrf
                     @method('PUT')
                     <button class="btn btn-warning">Cancelar</button>
