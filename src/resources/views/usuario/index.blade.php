@@ -4,7 +4,7 @@
 
     <a href="{{ route('usuario.create') }}" class="btn btn-success" role="button">Criar</a>
     <div class="card">
-        <x-message/>
+        <x-message />
         <div class="card-body">
             <table>
                 <th>Id</th>
@@ -22,7 +22,7 @@
                             <td>{{ $usuario->user->email ?? '' }}</td>
                             <td> {{ $usuario->telefone }}</td>
                             <td> {{ $usuario->cpf }}</td>
-                            <td>{{ $usuario->data_nascimento }}</td>
+                            <td>{{ \Carbon\Carbon::parse($usuario->data_nascimento)->format('d/m/Y') }}</td>
                             <td>
 
                                 <a class="btn btn-primary btn-sm"

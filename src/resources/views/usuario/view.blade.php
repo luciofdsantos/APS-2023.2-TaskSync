@@ -13,7 +13,7 @@
         </tr>
         <tr>
             <td class="bold">Data de Nascimento:</td>
-            <td>{{ $usuario->data_nascimento }}</td>
+            <td>{{ \Carbon\Carbon::parse($usuario->data_nascimento)->format('d/m/Y') }}</td>
         </tr>
         <tr>
             <td class="bold">CPF:</td>
