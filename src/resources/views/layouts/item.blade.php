@@ -49,6 +49,10 @@
                 </a>
                 <h5>Menu</h5>
 
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('area-de-servico') ? 'btn-primary' : 'btn-outline-primary' }}"
+                    href="/area-de-servico">
+                    <i class="bi bi-border-all me-2"></i> Área de Serviço
+                </a>
                 <a class="btn d-flex align-items-center mb-2 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}"
                     href="/calendar">
                     <i class="bi bi-calendar me-2"></i> Calendário
@@ -79,17 +83,21 @@
         </aside>
 
         <!-- Mini Sidebar -->
-        <aside id="miniSidebar" class="d-flex flex-column position-fixed bg-light p-2 text-center"
+        <aside id="miniSidebar" class="bg-white d-flex flex-column position-fixed bg-light p-2 text-center"
             style="width: 60px; top: 90px; bottom: 15px; left: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
 
             <div class="d-flex flex-column align-items-center mt-4">
                 <!-- Placeholder for the collapsed state -->
-                <button id="expandButton" class="btn btn-outline-secondary">
+                <button id="expandButton" class="hideButton">
                     <i class="bi bi-chevron-right"></i>
                 </button>
                 <a href="/dashboard"
                     class="text-dark mb-4 {{ request()->is('dashboard') ? 'btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-house-door" style="font-size: 1.5rem"></i>
+                </a>
+                <a href="/area-de-servico"
+                    class="text-dark mb-4 {{ request()->is('area-de-servico') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="bi bi-border-all" style="font-size: 1.5rem"></i>
                 </a>
                 <a href="/calendar"
                     class="text-dark mb-4 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}">

@@ -24,8 +24,9 @@ class UsuarioController extends Controller
         $this->authorize('usuarios', Usuario::class);
 
         $usuarios = Usuario::with('user')->paginate(10);
+        $tipos = TipoUsuario::getAll();
 
-        return view('usuario.index', ['usuarios' => $usuarios]);
+        return view('usuario.index', ['usuarios' => $usuarios, 'tipos' => $tipos]);
     }
 
     public function create()
