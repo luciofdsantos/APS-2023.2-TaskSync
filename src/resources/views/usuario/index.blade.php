@@ -40,7 +40,7 @@
                                     <td class="action-icons">
                                         <a class="btn bi bi-pencil"
                                             href="{{ route('usuario.update', ['usuario' => $usuario]) }}""></a>
-
+                                        
                                         <a class="btn bi bi-eye"></a>
 
                                         <form method="post"

@@ -71,6 +71,11 @@
                     href="/tarefa">
                     <i class="bi bi-list-task me-2"></i> Tarefas
                 </a>
+                <a class="btn d-flex align-items-center mb-2 {{ request()->is('solicitacoes') ? 'btn-primary' : 'btn-outline-primary' }}"
+                    href="/solicitacoes">
+                    <i class="bi bi-sticky me-2"></i> Solicitacoes
+                </a>
+                
 
                 <!-- Logout Button -->
                 <form method="POST" action="{{ route('logout') }}">
@@ -115,6 +120,11 @@
                     class="text-dark mb-4 {{ request()->is('tarefa') ? 'btn-primary' : 'btn-outline-primary' }}">
                     <i class="bi bi-list-task" style="font-size: 1.5rem"></i>
                 </a>
+                <a href="/solicitacoes"
+                    class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn-primary' : 'btn-outline-primary' }}">
+                    <i class="bi bi-sticky" style="font-size: 1.5rem"></i>
+                </a>
+
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                     @csrf
                     <button type="submit" class="btn text-dark mb-4">
