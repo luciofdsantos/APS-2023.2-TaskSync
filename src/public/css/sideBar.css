@@ -22,6 +22,11 @@
     border: 1px solid transparent; /* Define a borda como transparente */
 }
 
+.btn-primary .bi {
+    color: white; /* Torna o ícone branco quando o botão estiver ativo */
+}
+
+
 
 #expandButton {
     position: fixed;

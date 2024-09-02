@@ -159,6 +159,54 @@ body{
         background-color: #fff; /* Fundo branco para os inputs */
 }
 
+/* Cards Área de Trabalho - Gerente*/
+.card-columns{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 65px;
+    margin: 0 auto;
+    
+}
+
+.card {
+    //width: 30%;
+    width: 800px;
+    height: 300px;
+    border: 0px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btnAdd {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
 
 
 
@@ -183,6 +231,9 @@ body{
         }
         .delete-button{
             font-size: 15px;
+        }
+        .card {
+            flex: 1 1 calc(50% - 40px); /* 2 colunas para telas menores */
         }
 
     }
@@ -229,5 +280,8 @@ body{
     }
     .delete-button{
         font-size: 14px;
+    }
+    .card {
+        flex: 1 1 calc(100% - 40px); /* 1 coluna para telas pequenas */
     }
 }

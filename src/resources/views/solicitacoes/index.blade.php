@@ -22,10 +22,17 @@
                         <tr>
                             <th style="width: 5%;">ID</th>
                             <th style="width: 10%;">Assunto</th>
+<<<<<<< Updated upstream
                             <th style="width: 55%;">Descrição</th>
                             <th style="width: 10%;">Status</th>
                             <th style="width: 15%;">Prazo</th>
                             <th>Ações</th>
+=======
+                            <th style="width: 40%;">Descrição</th>
+                            <th style="width: 10%;">Status</th>
+                            <th style="width: 15%;">Prazo</th>
+                            <th style="width: 15%;">Ações</th>
+>>>>>>> Stashed changes
                         </tr>
                     </thead>
                     <tbody>

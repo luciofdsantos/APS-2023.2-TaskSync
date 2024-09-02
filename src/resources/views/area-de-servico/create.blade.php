@@ -47,5 +47,8 @@
 
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
+            </div>
+        </main>
+    </div>
     <x-item-layout/>
 </body>
