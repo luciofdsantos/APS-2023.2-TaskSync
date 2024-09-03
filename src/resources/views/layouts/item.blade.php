@@ -71,19 +71,10 @@
                     href="/tarefa">
                     <i class="bi bi-list-task me-2"></i> Tarefas
                 </a>
-                <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('solicitacoes') ? 'btn-primary' : 'btn-outline-primary' }}"
+                <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('solicitacoes') ? 'btn-active' : 'btn-outline-primary' }}"
                     href="/solicitacoes">
                     <i class="bi bi-envelope-exclamation me-2"></i> Solicitacoes
                 </a>
-                
-
-                <!-- Logout Button -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-danger">
-                        <i class="bi bi-box-arrow-right"></i> {{ __('Logout') }}
-                    </button>
-                </form>
             </nav>
         </aside>
 
@@ -121,16 +112,9 @@
                     <i class="bi bi-list-task" style="font-size: 1.5rem"></i>
                 </a>
                 <a href="/solicitacoes"
-                    class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn-mini btn' : 'btn-outline-primary' }}">
+                    class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn-mini' : 'btn-outline-primary' }}">
                     <i class="bi bi-envelope-exclamation" style="font-size: 1.5rem"></i>
                 </a>
-
-                <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn text-dark mb-4">
-                        <i class="bi bi-box-arrow-right" style="font-size: 1.5rem"></i>
-                    </button>
-                </form>
             </div>
         </aside>
 

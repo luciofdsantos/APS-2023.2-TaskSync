@@ -12,27 +12,18 @@
         <main class="main-cntt">
             <div class="content-box">
                 <h1>Solicitações</h1>
-
-                <a href="{{ route('solicitacoes.create') }}" class="btn btn-success">Solicitar Serviço</a>
-
+                <a href="{{ route('solicitacoes.create') }}" class="btnAdd btn">Solicitar Serviço +</a>
                 <x-message />
             
                 <table class="table" style="font-family: 'Roboto', sans-serif;">
                     <thead>
                         <tr>
                             <th style="width: 5%;">ID</th>
-                            <th style="width: 10%;">Assunto</th>
-<<<<<<< Updated upstream
-                            <th style="width: 55%;">Descrição</th>
+                            <th style="width: 20%;">Assunto</th>
+                            <th style="width: 50%;">Descrição</th>
                             <th style="width: 10%;">Status</th>
                             <th style="width: 15%;">Prazo</th>
                             <th>Ações</th>
-=======
-                            <th style="width: 40%;">Descrição</th>
-                            <th style="width: 10%;">Status</th>
-                            <th style="width: 15%;">Prazo</th>
-                            <th style="width: 15%;">Ações</th>
->>>>>>> Stashed changes
                         </tr>
                     </thead>
                     <tbody>

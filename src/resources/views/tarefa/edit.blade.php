@@ -54,5 +54,9 @@
 
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
+            </div>
+        </main>
+    </div>    
     <x-item-layout/>
-<body>
+</body>
+</html>

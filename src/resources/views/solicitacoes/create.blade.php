@@ -4,6 +4,10 @@
     <x-header-layout/>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        
+
+    </style>
 
 </head>
 <body>
@@ -15,9 +19,10 @@
                     $data = $data->format('Y-m-d');
                 @endphp
 
-                <h1>Nova Solicitação</h1>
+                <h1 >Nova Solicitação</h1>
+                <!--
                 <a href="{{ route('solicitacoes.index') }}" class="btn btn-secondary">Voltar</a>
-
+                -->
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -35,13 +40,17 @@
 
                     <label for="descricao">Descrição do Serviço Solicitado*</label>
                     <textarea class="form-control" name="descricao" required>{{ old('descricao') }} </textarea>
-
-                    <label for="categoria">Categoria*</label>
-                    <input class="form-control" type="text" name="categoria" value="{{ old('categoria') }}" required>
-
-                    <label for="prazo">Prazo</label>
-                    <input class="form-control" type="date" name="prazo" value="{{ old('prazo') }}" min={{ $data }}>
-                    <br/>
+                    
+                    <div class="form-row">
+                        <div>
+                            <label for="prazo">Prazo</label>
+                            <input class="form-control" type="date" name="prazo" value="{{ old('prazo') }}" min={{ $data }}>
+                        </div>
+                        <div>
+                            <label for="categoria">Categoria*</label>
+                            <input class="form-control" type="text" name="categoria" value="{{ old('categoria') }}" required>
+                        </div>
+                    </div>
                     
                     <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
                 </form>
@@ -50,3 +59,4 @@
     </div>
     <x-item-layout/>
 </body>
+</html>

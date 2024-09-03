@@ -33,7 +33,7 @@
     color: white !important ; 
 
     background-color: #3A57E8 !important;
-    padding: 8px;
+    padding: 12px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
@@ -43,13 +43,12 @@
 }
 .btn-active{
     color: white !important;
-    background-color: #3A57E8;
+    background-color: #3A57E8 !important;
     //border: none;
-    //border-radius: 15px !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
-.btn:hover{
-    background-color: #8A92A6;
+.btn-active:hover{
+    background-color: #3A57E8;
     transform: translateY(1px);
 }
 

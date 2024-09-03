@@ -4,6 +4,8 @@
 <head>
     <x-header-layout />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user.css') }}" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
@@ -15,16 +17,14 @@
             <div class="content-box">
                 <a href="{{ route('usuario.create') }}" class="btnAdd btn">Novo Usuário +</a>
                 <div class="table-responsive">
-                    <table class="table" style="font-family: 'Roboto', sans-serif;">
+                    <table class="tableUser" style="font-family: 'Roboto', sans-serif;">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Nome</th>
-                                <th>Email</th>
-                                <th>Telefone</th>
-                                <th>CPF</th>
-                                <th>Data de Nascimento</th>
-                                <th>Ações</th>
+                                <th style="width: 5%;">Id</th>
+                                <th style="width: 30%;">Nome</th>
+                                <th style="width: 30%;">Email</th>
+                                <th style="width: 15%;">Telefone</th>
+                                <th style="width: 15%;">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,12 +34,10 @@
                                     <td>{{ $usuario->user->name ?? '' }}</td>
                                     <td>{{ $usuario->user->email ?? '' }}</td>
                                     <td>{{ $usuario->telefone }}</td>
-                                    <td>{{ $usuario->cpf }}</td>
-                                    <td>{{ $usuario->data_nascimento }}</td>
 
                                     <td class="action-icons">
                                         <a class="btn bi bi-pencil"
-                                            href="{{ route('usuario.update', ['usuario' => $usuario]) }}""></a>
+                                            href="{{ route('usuario.update', ['usuario' => $usuario]) }}"></a>
                                         
                                         <a class="btn bi bi-eye"></a>
 
@@ -109,7 +107,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             var viewModal = document.getElementById("userModal");
             var viewSpan = document.getElementsByClassName("close")[0];
-            var editSpan = document.getElementsByClassName("close")[1];
             var addModal = document.getElementById("addUserModal");
             var btnAddUser = document.getElementById("btnAddUser");
 

@@ -25,8 +25,8 @@
                             @foreach ($areas_de_servico as $area_de_servico)
                                 <tr>
                                     <td style="width: 5%;">{{ $area_de_servico->id }}</td>
-                                    <td style="width: 30%">{{ $area_de_servico->nome }}</td>
-                                    <td style="width: 30%;">{{ $area_de_servico->gerente->user->name ?? '' }}</td>
+                                    <td style="width: 40%">{{ $area_de_servico->nome }}</td>
+                                    <td style="width: 40%;">{{ $area_de_servico->gerente->user->name ?? '' }}</td>
 
                                     <td style="width: 15%;" class="action-icons">
                                         <a class="btn bi bi-pencil"

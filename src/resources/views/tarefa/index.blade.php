@@ -12,7 +12,7 @@
         <main class="main-cntt">
             <div class="content-box">
                 <x-message/>
-                <h1>Gerenciar Tarefas</h1>
+                <h2 style="color: #717171;">Gerenciar Tarefas</h2>
 
                 <div class="cardy">
                     <div class="card-body">
@@ -29,11 +29,11 @@
                             <tbody>
                                 @foreach ($tarefas as $tarefa)
                                     <tr>
-                                        <td>{{ $tarefa->id }}</td>
-                                        <td>{{ $tarefa->titulo }}</td>
-                                        <td>{{ $tarefa->descricao }}</td>
-                                        <td> {{ $tarefa->prazo }}</td>
-                                        <td class="action-icons">
+                                        <td style="width: 5%;">{{ $tarefa->id }}</td>
+                                        <td style="width: 20%;">{{ $tarefa->titulo }}</td>
+                                        <td style="width: 60%;">{{ $tarefa->descricao }}</td>
+                                        <td style="width: 15%;"> {{ $tarefa->prazo }}</td>
+                                        <td style="width: 15%;" class="action-icons">
                                             <a class="btn bi bi-pencil"
                                                 href="{{ route('tarefa.edit', ['tarefa' => $tarefa]) }}""></a>
 

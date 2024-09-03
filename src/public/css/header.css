@@ -1,0 +1,45 @@
+.btnSair {
+    border: none;
+    background-color: #fff;
+    margin-right: -80px; /* Adiciona um espaçamento à direita */
+    overflow: hidden;
+}
+
+.btnSair:hover {
+    transform: translateY(-1px);
+}
+
+.btnLogo {
+    max-width: 250px;
+    margin-left: -40px; /* Adiciona um espaçamento à esquerda */
+    overflow: hidden;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0; /* Remove qualquer padding adicional */
+}
+
+
+@media (max-width: 1080px) {
+    .btnLogo{
+        margin-left: 15px;  
+        
+    }
+    .btnSair{
+        margin-left: -15px;   
+    }
+}
+
+@media (max-width: 768px) {
+    .btnLogo{
+        margin-left: 15px;  
+        max-width: 175px;
+    }
+    .btnSair{
+        margin-left: -15px;   
+    }
+}

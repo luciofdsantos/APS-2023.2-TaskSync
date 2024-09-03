@@ -10,8 +10,8 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <a class="btn btn-secondary" href="{{ route('area-de-servico.index') }}">Voltar</a>
-                <form method="post" action="{{ route('area-de-servico.store') }}" class="form-control">
+                <h2>Criar Área de Serviço</h2>
+                <form method="post" action="{{ route('area-de-servico.store') }}" class="">
                     @csrf
 
                     <label for="nome">Nome</label>
@@ -23,7 +23,7 @@
                         </div>
                     @enderror
                     <label for="gerente_id">Gerente responsável</label>
-                    <select class="form-control" class="form-control" name="gerente_id" value="0">
+                    <select class="form-control" class="form-control" name="gerente_id" value="0" style="border-radius: 15px;">
                         @foreach ($gerentes as $gerente)
                             <option value="{{ $gerente['id'] }}">{{ $gerente->user->name . ' - ' . $gerente->cpf }}</option>
                         @endforeach
@@ -45,7 +45,7 @@
                         </div>
                     @enderror
 
-                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
             </div>
         </main>
