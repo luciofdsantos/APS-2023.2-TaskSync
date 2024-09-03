@@ -11,9 +11,20 @@ use Illuminate\Auth\Access\Response;
 
 class SolicitacaoPolicy
 {
+
+    public function criar(User $user)
+    {
+        $usuario = $user->usuario;
+
+        if ($usuario->tipo_usuario != TipoUsuario::CLIENTE) {
+            return false;
+        }
+        return true;
+    }
+
     public function editar(User $user, Solicitacao $solicitacao)
     {
-        if($solicitacao->status != StatusSolicitacao::PENDENTE){
+        if ($solicitacao->status != StatusSolicitacao::PENDENTE) {
             return false;
         }
 
@@ -31,7 +42,7 @@ class SolicitacaoPolicy
      */
     public function delete(User $user, Solicitacao $solicitacao): bool
     {
-        $usuario = session()->get('usuario');
+        $usuario = $user->usuario;
 
         if ($usuario->tipo_usuario == TipoUsuario::ADMINISTRADOR) {
             return true;
@@ -42,7 +53,7 @@ class SolicitacaoPolicy
 
     public function cancelar(User $user, Solicitacao $solicitacao): bool
     {
-        if($solicitacao->status != StatusSolicitacao::PENDENTE){
+        if ($solicitacao->status != StatusSolicitacao::PENDENTE) {
             return false;
         }
 
@@ -55,8 +66,9 @@ class SolicitacaoPolicy
         return false;
     }
 
-    public function mudarStatus(User $user, Solicitacao $solicitacao){
-        if($solicitacao->status != StatusSolicitacao::PENDENTE){
+    public function mudarStatus(User $user, Solicitacao $solicitacao)
+    {
+        if ($solicitacao->status != StatusSolicitacao::PENDENTE) {
             return false;
         }
         return true;
@@ -64,7 +76,7 @@ class SolicitacaoPolicy
 
     public function visualizar(User $user)
     {
-        $usuario = session()->get('usuario');
+        $usuario = $user->usuario;
 
         if ($usuario->tipo_usuario == TipoUsuario::CLIENTE) {
             return false;
