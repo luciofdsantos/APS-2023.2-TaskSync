@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ArraysHelper;
+use App\Helpers\FuncionarioHelper;
 use App\Models\AreaDeServico;
 use App\Http\Requests\StoreAreaDeServicoRequest;
 use App\Http\Requests\UpdateAreaDeServicoRequest;
@@ -36,7 +37,7 @@ class AreaDeServicoController extends Controller
     {
         $this->authorize('create', AreaDeServico::class);
         $gerentes = $this->getGerentes();
-        $funcionarios = ArraysHelper::to_array($this->getFuncionarios());
+        $funcionarios = ArraysHelper::to_array(FuncionarioHelper::getFuncionarios());
 
 
         return view('area-de-servico.create', ['gerentes' => $gerentes, 'funcionarios' => $funcionarios]);
@@ -83,7 +84,7 @@ class AreaDeServicoController extends Controller
     {
         $this->authorize('update', $areaDeServico);
         $gerentes = $this->getGerentes();
-        $funcionarios = ArraysHelper::to_array($this->getFuncionariosUpdate($areaDeServico));
+        $funcionarios = ArraysHelper::to_array(FuncionarioHelper::getFuncionariosByAreaDeServico($areaDeServico));
         $selected_funcionarios = $areaDeServico->funcionarios->all();
 
         return view('area-de-servico.edit', [
@@ -208,27 +209,6 @@ class AreaDeServicoController extends Controller
             'funcionarios_id' => $funcionarios_id,
             'funcionarios_tarefa' => $funcionarios_tarefa,
         ]);
-    }
-
-    private function getFuncionarios()
-    {
-        return DB::table('usuario')
-            ->select(['usuario.id', 'users.name as nome'])
-            ->join('users', 'usuario.id', '=', 'users.id')
-            ->where('usuario.tipo_usuario', '=', TipoUsuario::FUNCIONARIO)
-            ->get();
-    }
-
-    private function getFuncionariosUpdate(AreaDeServico $area_de_servico)
-    {
-        $ids = array_column($area_de_servico->funcionarios->all(), 'id');
-        $query = DB::table('usuario')
-            ->select(['usuario.id', 'users.name as nome'])
-            ->join('users', 'usuario.id', '=', 'users.id')
-            ->where('usuario.tipo_usuario', '=', TipoUsuario::FUNCIONARIO)
-            ->whereNotIn('usuario.id', $ids);
-
-        return $query->get();
     }
 
     private function getGerentes()
