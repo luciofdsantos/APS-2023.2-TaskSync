@@ -90,7 +90,7 @@ class SolicitacaoController extends Controller
     // Excluir uma tarefa
     public function destroy(Solicitacao $solicitacao)
     {
-        $this->authorize('delete', Solicitacao::class);
+        $this->authorize('delete', $solicitacao);
         try {
             $solicitacao->delete();
         } catch (Exception $e) {
@@ -108,11 +108,11 @@ class SolicitacaoController extends Controller
 
     private function getSolicitacoes()
     {
-        $usuario = session()->get('usuario');
+        $usuario = auth()->user()->usuario;
         if ($usuario->tipo_usuario == TipoUsuario::CLIENTE) {
             $solicitacoes = Solicitacao::where('cliente_id', '=', $usuario->id)->paginate(10);
         } else {
-            $solicitacoes = Solicitacao::orderBy('status','asc')
+            $solicitacoes = Solicitacao::orderBy('status', 'asc')
                 ->orderBy('updated_at')
                 ->paginate(10);
         }
