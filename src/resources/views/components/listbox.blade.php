@@ -41,4 +41,11 @@
             toSelect.appendChild(option);
         });
     }
+    const toSelect = document.getElementById('selected');
+    const optionElements = toSelect.getElementsByTagName('option');
+    const optionsArray = Array.from(toSelect.options);
+
+    optionsArray.forEach(element => {
+        element.selected = true
+    });
 </script>
