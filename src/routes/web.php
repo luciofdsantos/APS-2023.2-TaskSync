@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AreaDeServicoController;
+use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\SolicitacaoController;
 use App\Models\AreaDeServico;
+use App\Models\Equipe;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +54,8 @@ Route::get(
 )->middleware('auth')->name("area-de-servico.adiciona-funcionario");
 
 Route::resource('area-de-servico', AreaDeServicoController::class)->middleware('auth');
+
+Route::resource('equipe', EquipeController::class)->middleware('auth');
 
 // TAREFA
 Route::controller(TarefaController::class)->middleware('auth')->group(
