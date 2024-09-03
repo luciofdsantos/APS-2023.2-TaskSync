@@ -14,7 +14,7 @@
                 <x-message/>
                 <h1>Gerenciar Tarefas</h1>
 
-                <div class="card">
+                <div class="cardy">
                     <div class="card-body">
                         <table class="table">
                             <thead>

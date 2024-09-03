@@ -23,14 +23,14 @@
 
                             <!-- Precisa Adicionar Funcionários no card - Talvez somente a sigla deles ou 
                                 melhor seria se tivesse a foto do perfil-->
-
+                            
                         </div>
                     </div>
                     @endforeach
 
                 </div>
-                <div class="card-columns" style="padding: 20px; display: inherit; text-align: center;">
-                    <a href="{{ route('area-de-servico.create') }}" class="card btn" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray;">Nova Área de Serviço <br/> +</a>
+                <div class="card-columns" style="display: inherit; text-align: center;">
+                    <a href="{{ route('area-de-servico.create') }}" id="btnAdd"class="card btnAdd" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">Nova Área de Serviço <br/> +</a>
                 </div>
             </div>
         

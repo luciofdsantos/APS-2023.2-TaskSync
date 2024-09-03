@@ -43,16 +43,18 @@ body{
     padding: 10px;
     font-size: 18px; /* Ajuste conforme necessário */
     text-align: center;
-    background-color: white;
+    background-color: white !important;
     border: 2px dashed gray; /* Linhas falhadas */
     border-radius: 10px; /* Borda arredondada */
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-content: center;
 }
 .btnAdd:hover{
     border-color: #0d6efd;
     color: #0d6efd;
 }
+
 .table-responsive{
     //overflow-x: auto;
 }
@@ -184,7 +186,7 @@ body{
     box-sizing: border-box;
 }
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 }
 
 .card-body {
@@ -202,11 +204,6 @@ body{
     margin-top: 10px;
 }
 
-.btnAdd {
-    margin-top: 20px;
-    display: block;
-    text-align: center;
-}
 
 
 
@@ -232,8 +229,13 @@ body{
         .delete-button{
             font-size: 15px;
         }
+        .card-columns {
+            flex-direction: column; /* Exibe os cards em uma única coluna */
+            align-items: flex-start;
+        }
         .card {
-            flex: 1 1 calc(50% - 40px); /* 2 colunas para telas menores */
+            flex: 1 1 calc(100% - 40px); /* 2 colunas para telas menores */
+            max-width: 96%;
         }
 
     }
@@ -283,5 +285,11 @@ body{
     }
     .card {
         flex: 1 1 calc(100% - 40px); /* 1 coluna para telas pequenas */
+    }
+    #btnAdd{
+        width: calc(100% - 20px);
+        margin: 60px auto; /* Centraliza horizontalmente dentro do card */
+        position: static; /* Remove a posição absoluta */
+        transform: none; /* Remove qualquer transformação */
     }
 }
