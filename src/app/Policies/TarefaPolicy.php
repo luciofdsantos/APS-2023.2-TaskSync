@@ -25,4 +25,18 @@ class TarefaPolicy
 
         return false;
     }
-}
+
+    public function alterarStatus(User $user):bool
+    {
+        $usuario = $user->usuario;
+        if (
+            $usuario->tipo_usuario == TipoUsuario::ADMINISTRADOR ||
+            $usuario->tipo_usuario == TipoUsuario::GERENTE ||
+            $usuario->tipo_usuario == TipoUsuario::FUNCIONARIO
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+    }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AreaDeServico;
 use App\Models\Tarefa\Tarefa;
 use App\Models\Nota;
+use App\Models\Tarefa\StatusTarefa;
 
 use Exception;
 use Illuminate\Http\Request;
@@ -108,15 +109,17 @@ class TarefaController extends Controller
     }
 
     //Adicionar Nota
-    public function storeNote(Tarefa $tarefa, Request $request)
+
+    public function storeNote($id, Request $request)
     {
+        $tarefa = Tarefa::findOrFail($id);
+
         if (is_null($tarefa->id)) {
             return redirect()->back()->withErrors('ID da tarefa não encontrado.');
         }
-        // Valida os dados do formulário
-        $request->validate([
-            'description' => 'required|string',
-        ]);
+
+        
+       
         // Cria uma nova nota associada à tarefa
         $nota = $tarefa->notas()->create([
             'description' => $request->input('description'),
@@ -133,7 +136,7 @@ class TarefaController extends Controller
         public function addNoteForm($id)
     {
         $tarefa = Tarefa::findOrFail($id);
-        return view('tarefa.add_note_form', compact('tarefa'));
+        return view('tarefa.formNote', compact('tarefa'));
     }
 
     public function destroyNote($id)
@@ -143,6 +146,8 @@ class TarefaController extends Controller
 
         return redirect()->back()->with('success', 'Nota excluída com sucesso!');
     }
+
+    //Mostrar as notas
         public function showNotas($tarefaId)
     {
         // Encontre a tarefa pelo ID
@@ -156,5 +161,20 @@ class TarefaController extends Controller
     }
 
 
+    public function updateStatus(Request $request, $id)
+    {
+        $tarefa = Tarefa::findOrFail($id);
+    
+        // Verifique se o status enviado é válido
+        if (!in_array($request->status, array_keys(StatusTarefa::getAll()))) {
+            return redirect()->back()->with('error', 'Status inválido.');
+        }
+    
+        $tarefa->status = $request->status;
+        $tarefa->save();
+    
+        return redirect()->route('tarefa.index')->with('success', 'Status atualizado com sucesso!');
+    }
+    
 
 }

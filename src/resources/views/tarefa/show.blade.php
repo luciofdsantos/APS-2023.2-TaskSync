@@ -40,9 +40,11 @@
                         <td>{{ $tarefa->id }}</td>
                         <td>{{ $tarefa->titulo }}</td>
                         <td>{{ $tarefa->descricao }}</td>
-                        <td>{{ App\Models\Tarefa\StatusTarefa::get($tarefa->status) }}</td>
+                        <td class="action-icons">{{ App\Models\Tarefa\StatusTarefa::get($tarefa->status) }} <button type="button" class="btn bi bi-pencil" data-bs-toggle="modal" data-bs-target="#changeStatusModal"></button> </td>
                         <td class="action-icons">
-                                <a class="btn bi bi-pencil" href="{{ route('tarefa.add_note_form', ['id' => $tarefa->id]) }}"></a>
+                                <!-- Botão para abrir o modal -->
+                                <button type="button" class="btn bi bi-pencil" data-bs-toggle="modal" data-bs-target="#addNoteModal"></button>
+
                                 <a class="btn bi bi-eye" onclick="toggleNotas({{ $tarefa->id }})"></a>
                             </td>
 
@@ -56,30 +58,6 @@
                                 </td>
                             </tr>
 
-                        <!-- @include('tarefa.formNote',['tarefaId' => $tarefa->id])
-                        @if ($tarefa->notas->isNotEmpty())
-                            <h3>Notas da Tarefa</h3>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Descrição</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($tarefa->notas as $nota)
-                                        <tr>
-                                            <td>{{ $nota->id }}</td>
-                                            <td>{{ $nota->description }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <p>Não há notas associadas a esta tarefa.</p>
-                        @endif
-
-                        </td> -->
                     </tbody>
                 </table>
     <x-item-layout/>
@@ -95,4 +73,83 @@
         }
     }
 </script>
+
+<!-- Modal Nota-->
+<div class="modal fade" id="addNoteModal" tabindex="-1" aria-labelledby="addNoteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNoteModalLabel">Adicionar Nota</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addNoteForm" method="POST" action="{{ route('tarefa.storeNote', ['id' => $tarefa->id]) }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descrição</label>
+                        <textarea class="form-control" id="description" name="description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar Nota</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Status-->
+<div class="modal fade" id="changeStatusModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeStatusModalLabel">Mudar Status da Tarefa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="changeStatusForm" method="POST" action="{{ route('tarefa.updateStatus', $tarefa->id) }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Novo Status</label>
+                        <select class="form-control" id="status" name="status" required>
+                            @foreach (App\Models\Tarefa\StatusTarefa::getAll() as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <script>
+    document.getElementById('addNoteForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio tradicional do formulário
+
+        let formData = new FormData(this);
+
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Fechar o modal
+                let modal = bootstrap.Modal.getInstance(document.getElementById('addNoteModal'));
+                modal.hide();
+
+                // Atualizar a lista de notas sem recarregar a página
+                let notaList = document.getElementById('notas-' + data.nota.tarefa_id);
+                notaList.innerHTML += '<li>' + data.nota.description + '</li>';
+            }
+        })
+        .catch(error => console.error('Erro:', error));
+    });
+</script> -->
+
 
