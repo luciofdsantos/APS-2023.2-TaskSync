@@ -241,14 +241,30 @@ button[type="submit"]:hover {
     box-sizing: border-box;
 }
 
-.btnAdd {
+.btnAdd{
+    color: gray;
+    display: block;
+    width: calc(100% - 40px); /* Subtrai 20px de cada lado */
+    height: 50px; /* Ajuste conforme necessário */
+    margin: 20px; /* Espaçamento de 20px ao redor */
+    padding: 10px;
+    font-size: 18px; /* Ajuste conforme necessário */
+    text-align: center;
+    background-color: white !important;
+    border: 2px dashed gray; /* Linhas falhadas */
+    border-radius: 10px; /* Borda arredondada */
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-content: center;
+}
+
+.btnAdd2 {
     
     display: flex;
     align-items: center;
     justify-content: center;
     border: 2px dashed gray;
     border-radius: 10px;
-    margin: 20px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
     box-sizing: border-box;

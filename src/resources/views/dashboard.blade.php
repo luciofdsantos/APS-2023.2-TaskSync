@@ -25,7 +25,7 @@
                     @endforeach
 
                     <!-- Card de adicionar nova área -->
-                    <a href="{{ route('area-de-servico.create') }}" id="btnAdd" class="card btnAdd" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
+                    <a href="{{ route('area-de-servico.create') }}" id="btnAdd" class="card btnAdd2" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
                         Nova Área de Serviço <br/> +
                     </a>
                 </div>
