@@ -9,22 +9,20 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
+                <h2>Visualizar Tarefa</h2>
+                <br/>
                 {{-- <h1>{{ $tarefa->titulo }}</h1>
                 <p>Descrição: {{ $tarefa->descricao }}</p>
                 <p>Prazo: {{ $tarefa->deadline }}</p> --}}
+               
+                <!--
                 @if (app('request')->input('url'))
                     <a href="{{ app('request')->input('url') }}" class="btn btn-secondary">Voltar</a>
                 @else
                     <a href="{{ route('tarefa.index') }}" class="btn btn-secondary">Voltar</a>
                 @endif
-
-                <form method="post" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
-                    onsubmit="return confirm('Deseja excluir esta tarefa?')">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger">Deletar</button>
-                </form>
-
+                -->
+                
                 <table class="table">
 
                     <thead>
@@ -33,6 +31,7 @@
                             <th style="width: 10%;">Título</th>
                             <th style="width: 55%;">Descrição</th>
                             <th style="width: 10%;">Status</th>
+                            <th style="width: 10%;">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +39,18 @@
                         <td>{{ $tarefa->titulo }}</td>
                         <td>{{ $tarefa->descricao }}</td>
                         <td>{{ App\Models\Tarefa\StatusTarefa::get($tarefa->status) }}</td>
+                        <td>
+                            <form method="post" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
+                                onsubmit="return confirm('Deseja excluir esta tarefa?')">
+                                @csrf
+                                @method('DELETE')
+                            <button class="btn bi bi-trash"></button>
+                        </form>
+                        </td>
                     </tbody>
                 </table>
+            </div>
+        </main>
+    </div>
     <x-item-layout/>
 </body>

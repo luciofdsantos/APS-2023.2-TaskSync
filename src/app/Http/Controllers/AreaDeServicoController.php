@@ -31,6 +31,17 @@ class AreaDeServicoController extends Controller
 
         return view('area-de-servico.index', ['areas_de_servico' => $areas_de_servico]);
     }
+    /**
+     * Display a listing of the resource on dashboard.
+     */
+    public function dashboard()
+    {
+        $this->authorize('areasDeServico', AreaDeServico::class);
+        $areas_de_servico = AreaDeServico::paginate(10);
+
+        return view('dashboard', ['areas_de_servico' => $areas_de_servico]);
+    }
+    
 
     /**
      * Show the form for creating a new resource.

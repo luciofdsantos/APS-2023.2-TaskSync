@@ -12,6 +12,7 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
+                <h1>Solicitações</h1>
                 @can('criar', 'App\Models\Solicitacao')
                     <a href="{{ route('solicitacoes.create') }}" class="btnAdd btn">Nova Solicitação +</a>
                 @endcan
@@ -22,7 +23,7 @@
                     <thead>
                         <tr>
                             <th style="width: 5%;">ID</th>
-                            <th style="width: 10%;">Assunto</th>
+                            <th style="width: 20%;">Assunto</th>
                             <th style="width: 50%;">Descrição</th>
                             <th style="width: 10%;">Status</th>
                             <th style="width: 15%;">Prazo</th>

@@ -34,25 +34,85 @@ body{
     //margin: 0 auto;
 }
 
-.btnAdd{
-    //font-family: 'Open Sans', sans-serif;
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+label {
     display: block;
-    width: calc(100% - 40px); /* Subtrai 20px de cada lado */
-    height: 50px; /* Ajuste conforme necessário */
-    margin: 20px; /* Espaçamento de 20px ao redor */
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
     padding: 10px;
-    font-size: 18px; /* Ajuste conforme necessário */
-    text-align: center;
-    background-color: white;
-    border: 2px dashed gray; /* Linhas falhadas */
-    border-radius: 10px; /* Borda arredondada */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    font-size: 16px;
     box-sizing: border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
 }
-.btnAdd:hover{
-    border-color: #0d6efd;
-    color: #0d6efd;
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #3A57E8;
+    outline: none;
 }
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px; /* Espaçamento entre os campos */
+    margin-bottom: 15px;
+}
+
+.form-row > div {
+    flex: 1;
+}
+
+.form-row > div:nth-child(2) {
+    margin-left: 15px; /* Espaçamento entre os dois campos */
+}
+button[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+button[type="submit"]:hover {
+    //background-color: #0056b3;
+    transform: translateY(-1px);
+}
+/*
+.alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+}*/
+
 .table-responsive{
     //overflow-x: auto;
 }
@@ -62,7 +122,6 @@ body{
     //border-collapse: separate;
     border-collapse: collapse;
     //border-spacing: 0;
-
     border-radius: 15px;
     border-spacing: 5px;
     overflow: hidden;
@@ -75,20 +134,22 @@ body{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     //margin-bottom: 1rem;
 }
+.table th{
+    color: white !important;
+}
 .table th,
 .table td {
     padding: 12px; /* Ajuste o padding conforme necessário */
     text-align: left;
     border-borrom: 1px solid #ddd;
+    color: #717171;
 }
 
 .table thead th {
-    background-color: #0d6efd;
+    background-color: #3A57E8;
+    
 }
 
-.table tbody tr:hover {
-    background-color: #e0e0e0; /* Cor de fundo ao passar o mouse */
-}
 
 .table td,
 .table th {
@@ -159,6 +220,88 @@ body{
         background-color: #fff; /* Fundo branco para os inputs */
 }
 
+/* Cards Área de Trabalho - Gerente*/
+.card-columns {
+    display: flex;
+    gap: 75px; /* Espaçamento entre os cards */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 400px; /* Ajuste conforme necessário */
+    height: 300px; /* Ajuste conforme necessário */
+    border: 0px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.btnAdd{
+    color: gray;
+    display: block;
+    width: calc(100% - 40px); /* Subtrai 20px de cada lado */
+    height: 50px; /* Ajuste conforme necessário */
+    margin: 20px; /* Espaçamento de 20px ao redor */
+    padding: 10px;
+    font-size: 18px; /* Ajuste conforme necessário */
+    text-align: center;
+    background-color: white !important;
+    border: 2px dashed gray; /* Linhas falhadas */
+    border-radius: 10px; /* Borda arredondada */
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-content: center;
+}
+
+.btnAdd2 {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed gray;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+    background-color: white;
+    color: gray;
+    font-size: 18px;
+}
+
+.btnAdd:hover {
+    border-color: #0d6efd;
+    color: #0d6efd;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: space-between;
+    //margin: 3px;
+    border: 1px;
+}
+
+
+
+
+
 
 
 
@@ -184,6 +327,15 @@ body{
         .delete-button{
             font-size: 15px;
         }
+        .card-columns {
+            flex-direction: column; /* Exibe os cards em uma única coluna */
+            align-items: flex-start;
+        }
+        .card {
+            flex: 1 1 calc(100% - 40px); /* 2 colunas para telas menores */
+            max-width: 96%;
+        }
+    
 
     }
 
@@ -213,10 +365,11 @@ body{
         margin: 1px;
         width: calc(100% - 20px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+        
     }
 
     .table th, .table td {
-
+        
         padding: 8px; /* Ajusta o padding para telas menores */
     }
     .main-cntt{
@@ -229,5 +382,22 @@ body{
     }
     .delete-button{
         font-size: 14px;
+    }
+    .card {
+        flex: 1 1 calc(100% - 40px); /* 1 coluna para telas pequenas */
+    }
+    #btnAdd{
+        width: calc(100% - 20px);
+        margin: 60px auto; /* Centraliza horizontalmente dentro do card */
+        position: static; /* Remove a posição absoluta */
+        transform: none; /* Remove qualquer transformação */
+    }
+    .form-row {
+        flex-direction: column; /* Muda a direção dos itens para coluna */
+    }
+    
+    .form-row .form-group {
+        width: 100%; /* Garante que os campos ocupem toda a largura disponível */
+        //margin-bottom: 15px; /* Adiciona espaçamento inferior para campos */
     }
 }

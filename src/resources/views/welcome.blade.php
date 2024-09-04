@@ -79,11 +79,15 @@
             </div>
         @endif
 
-        <div class="content">
+        <div class="logo-container">
+            <img src="{{ asset('images/taskSync_logo_2.png') }}" alt="taskSync-logo">
+        </div>
+
+        <!-- <div class="content">
             <div class="title m-b-md">
                 {{ env('APP_NAME') }}
             </div>
-        </div>
+        </div> -->
     </div>
 </body>
 

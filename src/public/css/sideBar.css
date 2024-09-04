@@ -6,6 +6,9 @@
     padding: 20px;
     width: 100%;
 }
+#sidebar, #miniSidebar{
+    overflow: hidden;
+}
 
 .sidebar-hidden #mainContent {
     margin-left: 0;
@@ -15,12 +18,40 @@
     width: 35px;
     height: 35px;
     color: #fff;
-    background-color: #0d6efd;
+    background-color: #3A57E8;
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     border: 1px solid transparent; /* Define a borda como transparente */
 }
+.btn-nav{
+    //border-radius: 15px;
+    border: none;
+    color: #8A92A6;
+}
+.btn-mini{
+    color: white !important ; 
+
+    background-color: #3A57E8 !important;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+.btn-mini:hover{
+    background-color: #8A92A6;
+    transform: translateY(1px);
+}
+.btn-active{
+    color: white !important;
+    background-color: #3A57E8 !important;
+    //border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+.btn-active:hover{
+    background-color: #3A57E8;
+    transform: translateY(1px);
+}
+
 
 
 #expandButton {
@@ -30,7 +61,7 @@
     z-index: 1000;
     width: 35px;
     height: 35px;
-    background-color: #0d6efd;
+    background-color: #3A57E8;
     color: #fff;
     border-radius: 50%;
     display: flex;
@@ -41,5 +72,5 @@
 }
 
 #expandButton:hover {
-    background-color: #0056b3;
+    background-color: #3A57E8;
 }

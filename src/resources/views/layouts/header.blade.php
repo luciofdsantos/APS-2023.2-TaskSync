@@ -27,18 +27,20 @@
         
         <!-- Header fixo no topo -->
         <header class="bg-white text-dark p-4 rounded-3" style="height: 70px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; margin: 15px;">
-            <div class="container">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h1 class="mb-0">Task Sync</h1>
-
-
-                    <!--Menu Toggle 
-                    <button type="button" class="btn btn-light d-md-none" id="menuToggle">
-                        <i class="bi bi-list"></i>
-                    </button>-->
-                </div>
+            <div class="container d-flex justify-content-between align-items-center">
+                <a href="{{route('dashboard')}}">
+                <img src="images/taskSync_logo.png" class="btnLogo" alt="alt text">
+                </a>
+                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btnSair">
+                        <i class="bi bi-box-arrow-right" style="font-size: 1.5rem"></i>
+                    </button>
+                </form>
             </div>
         </header>
+        
+        
 
         <!-- Espaçamento para garantir que o conteúdo não fique coberto pelo header -->
         <div style="height: 45px;"></div>

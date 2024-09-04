@@ -30,12 +30,12 @@
         <aside id="sidebar" class="bg-white text-dark p-3 position-fixed d-none"
             style="width: 300px;
             margin: 15px; border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             top: 80px; bottom: 15px; right: auto;">
 
             <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h5>Início</h5>
+                <h5 style="color: #8A92A6">Início</h5>
                 <!--Toggle Menu -->
                 <button type="button" class="hideButton" id="sidebarToggle">
                     <i id="toggleIcon" class="bi bi-chevron-left"></i>
@@ -43,62 +43,45 @@
             </div>
             <!-- Nav Links -->
             <nav class="nav flex-column">
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('dashboard') ? 'btn-primary' : 'btn-outline-primary' }}"
+                <a class=" btn-nav btn d-flex align-items-center mb-2 {{ request()->is('dashboard') ? 'btn-active' : 'btn-outline-primary' }}"
                     href="/dashboard">
-                    <i class="bi bi-house-door me-2"></i> Área de Trabalho
+                    <i class="bi bi-grid-fill me-2"></i> Área de Trabalho
                 </a>
-                <h5>Menu</h5>
-                @can('areasDeServico', 'App\Models\AreaDeServico')
-                    <a class="btn d-flex align-items-center mb-2 {{ request()->is('area-de-servico') ? 'btn-primary' : 'btn-outline-primary' }}"
-                        href="/area-de-servico">
-                        <i class="bi bi-border-all me-2"></i> Área de Serviço
-                    </a>
-                @endcan
+                <h5 style="color: #8A92A6">Menu</h5>
 
-
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('calendar') ? 'btn-primary' : 'btn-outline-primary' }}"
+                <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('area-de-servico') ? 'btn-active' : 'btn-outline-primary' }}"
+                    href="/area-de-servico">
+                    <i class="bi bi-layout-text-window-reverse me-2"></i> Área de Serviço
+                </a>
+                <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('calendar') ? 'btn-active' : 'btn-outline-primary' }}"
                     href="/calendar">
-                    <i class="bi bi-calendar me-2"></i> Calendário
+                    <i class="bi bi-calendar3 me-2"></i> Calendário
                 </a>
 
                 @can('usuarios', 'App\Models\Usuario\Usuario')
-                    <a class="btn d-flex align-items-center mb-2 {{ request()->is('usuario') ? 'btn-primary' : 'btn-outline-primary' }}"
+                    <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('usuario') ? 'btn-active' : 'btn-outline-primary' }}"
                         href="/usuario">
-                        <i class="bi bi-person me-2"></i> Usuários
+                        <i class="bi bi-people me-2"></i> Usuários
                     </a>
                 @endcan
-
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('reports') ? 'btn-primary' : 'btn-outline-primary' }}"
+                <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('reports') ? 'btn-active' : 'btn-outline-primary' }}"
                     href="/reports">
-                    <i class="bi bi-file-earmark-text me-2"></i> Relatórios
+                    <i class="bi bi-journal-text me-2"></i> Relatórios
                 </a>
-
-                @can('tarefas', 'App\Models\Tarefa')
-                    <a class="btn d-flex align-items-center mb-2 {{ request()->is('tarefa') ? 'btn-primary' : 'btn-outline-primary' }}"
-                        href="/tarefa">
-                        <i class="bi bi-list-task me-2"></i> Tarefas
-                    </a>
-                @endcan
-
-                <a class="btn d-flex align-items-center mb-2 {{ request()->is('solicitacoes') ? 'btn-primary' : 'btn-outline-primary' }}"
+                <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('tarefa') ? 'btn-active' : 'btn-outline-primary' }}"
+                    href="/tarefa">
+                    <i class="bi bi-list-task me-2"></i> Tarefas
+                </a>
+                <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('solicitacoes') ? 'btn-active' : 'btn-outline-primary' }}"
                     href="/solicitacoes">
-                    <i class="bi bi-envelope me-2"></i> Solicitacoes
+                    <i class="bi bi-envelope-exclamation me-2"></i> Solicitacoes
                 </a>
-
-
-                <!-- Logout Button -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-danger">
-                        <i class="bi bi-box-arrow-right"></i> {{ __('Logout') }}
-                    </button>
-                </form>
             </nav>
         </aside>
 
         <!-- Mini Sidebar -->
         <aside id="miniSidebar" class="bg-white d-flex flex-column position-fixed bg-light p-2 text-center"
-            style="width: 60px; top: 90px; bottom: 15px; left: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+            style="width: 60px; top: 90px; bottom: 10px; left: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
 
             <div class="d-flex flex-column align-items-center mt-4">
                 <!-- Placeholder for the collapsed state -->
@@ -106,52 +89,33 @@
                     <i class="bi bi-chevron-right"></i>
                 </button>
                 <a href="/dashboard"
-                    class="text-dark mb-4 {{ request()->is('dashboard') ? ' btn-primary' : 'btn-outline-primary' }}">
-                    <i class="bi bi-house-door" style="font-size: 1.5rem"></i>
+                    class="text-dark mb-4 {{ request()->is('dashboard') ? '' : 'btn-outline-primary' }}">
+                    <i class="btn-nav bi bi-grid-fill" style="font-size: 1.5rem"></i>
                 </a>
-
-                @can('areasDeServico', 'App\Models\AreaDeServico')
-                    <a href="/area-de-servico"
-                        class="text-dark mb-4 {{ request()->is('area-de-servico') ? 'btn btn-primary' : 'btn-outline-primary' }}">
-                        <i class="bi bi-border-all" style="font-size: 1.5rem"></i>
-                    </a>
-                @endcan
-
+                <a href="/area-de-servico"
+                    class="text-dark mb-4 {{ request()->is('area-de-servico') ? 'btn-mini' : 'btn-outline-primary' }}">
+                    <i class="bi bi-layout-text-window-reverse" style="font-size: 1.5rem"></i>
+                </a>
                 <a href="/calendar"
-                    class="text-dark mb-4 {{ request()->is('calendar') ? 'btn btn-primary' : 'btn-outline-primary' }}">
-                    <i class="bi bi-calendar" style="font-size: 1.5rem"></i>
+                    class="text-dark mb-4 {{ request()->is('calendar') ? 'btn-mini' : 'btn-outline-primary' }}">
+                    <i class="bi bi-calendar3" style="font-size: 1.5rem"></i>
                 </a>
-
-                @can('usuarios', 'App\Models\Usuario\Usuario')
-                    <a href="/usuario"
-                        class="text-dark mb-4 {{ request()->is('usuario') ? 'btn btn-primary' : 'btn-outline-primary' }}">
-                        <i class="bi bi-person" style="font-size: 1.5rem"></i>
-                    </a>
-                @endcan
-
+                <a href="/usuario"
+                    class="text-dark mb-4 {{ request()->is('usuario') ? 'btn-mini' : 'btn-outline-primary' }}">
+                    <i class="bi bi-people" style="font-size: 1.5rem"></i>
+                </a>
                 <a href="/reports"
-                    class="text-dark mb-4 {{ request()->is('reports') ? 'btn btn-primary' : 'btn-outline-primary' }}">
-                    <i class="bi bi-file-earmark-text" style="font-size: 1.5rem"></i>
+                    class="text-dark mb-4 {{ request()->is('reports') ? 'btn-mini' : 'btn-outline-primary' }}">
+                    <i class="bi bi-journal-text" style="font-size: 1.5rem"></i>
                 </a>
-
-                @can('tarefas', 'App\Models\Tarefa')
-                    <a href="/tarefa"
-                        class="text-dark mb-4 {{ request()->is('tarefa') ? 'btn btn-primary' : 'btn-outline-primary' }}">
-                        <i class="bi bi-list-task" style="font-size: 1.5rem"></i>
-                    </a>
-                @endcan
-
+                <a href="/tarefa"
+                    class="text-dark mb-4 {{ request()->is('tarefa') ? 'btn-mini' : 'btn-outline-primary' }}">
+                    <i class="bi bi-list-task" style="font-size: 1.5rem"></i>
+                </a>
                 <a href="/solicitacoes"
-                    class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn btn-primary' : 'btn-outline-primary' }}">
-                    <i class="bi bi-envelope" style="font-size: 1.5rem"></i>
+                    class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn-mini' : 'btn-outline-primary' }}">
+                    <i class="bi bi-envelope-exclamation" style="font-size: 1.5rem"></i>
                 </a>
-
-                <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn text-dark mb-4">
-                        <i class="bi bi-box-arrow-right" style="font-size: 1.5rem"></i>
-                    </button>
-                </form>
             </div>
         </aside>
 
