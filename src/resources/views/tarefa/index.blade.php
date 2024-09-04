@@ -35,7 +35,7 @@
                                         <td> {{ $tarefa->prazo }}</td>
                                         <td class="action-icons">
                                             <a class="btn bi bi-pencil"
-                                                href="{{ route('tarefa.edit', ['tarefa' => $tarefa]) }}""></a>
+                                                href="{{ route('tarefa.edit', ['tarefa' => $tarefa]) }}"></a>
 
                                             <a class="btn bi bi-eye"
                                                 href="{{ route('tarefa.show', ['tarefa' => $tarefa]) }}"></a>
@@ -45,7 +45,7 @@
                                                 @method('DELETE')
                                                 <button class="btn bi bi-trash"></button>
                                             </form>
-                                        </td>
+                                        </td>  
                                     </tr>
                                 @endforeach
                                 </tbody>
