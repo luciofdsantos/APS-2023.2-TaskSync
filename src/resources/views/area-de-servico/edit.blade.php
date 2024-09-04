@@ -42,14 +42,14 @@
                     @enderror
                     <br>
 
-                    <label>Funcionários</label>
+                    {{-- <label>Funcionários</label>
                     <x-listbox :availableItems="$funcionarios" :selectedItems="$selected_funcionarios" />
                     @error('selectedItems')
                         <div class="error-message">
                             <i>&#9888;</i> <!-- Ícone de alerta -->
                             {{ $message }}
                         </div>
-                    @enderror
+                    @enderror --}}
 
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </form>

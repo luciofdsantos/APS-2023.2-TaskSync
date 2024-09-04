@@ -23,6 +23,10 @@
                 {{-- <a class="btn btn-success" href="{{ route('tarefa.create', ['area_de_servico' => $area_de_servico]) }}">Adicionar
                     Tarefa</a> --}}
                 <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tarefa-form">Adicionar Tarefa</a>
+                <a class="btn bg-primary"
+                    href="{{ route('area-de-servico.equipe', ['area_de_servico' => $area_de_servico]) }}">Editar
+                    Equipes</a>
+
 
                 <x-message />
 

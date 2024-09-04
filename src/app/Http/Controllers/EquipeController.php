@@ -8,8 +8,10 @@ use App\Http\Requests\EquipeRequest;
 use App\Models\Equipe;
 use App\Models\Usuario\TipoUsuario;
 use App\Models\Usuario\Usuario;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use LogicException;
 
 class EquipeController extends Controller
 {
@@ -90,8 +92,12 @@ class EquipeController extends Controller
 
     public function destroy(Equipe $equipe)
     {
-        $equipe->delete();
-
+        try {
+            $equipe->delete();
+        } catch (Exception $e) {
+            return redirect()->route('equipe.index')->with('danger', 'Não foi possível apagar equipe');
+        }
+        
         return redirect()->route('equipe.index')->with('success', 'Equipe apagada com sucesso!');
     }
 

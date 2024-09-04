@@ -39,6 +39,18 @@ Route::controller(UsuarioController::class)->middleware('auth')->group(
 
 // AREA DE SERVIÇO
 
+Route::get('/area-de-servico/{area_de_servico}/equipe', [AreaDeServicoController::class, 'equipe'])
+    ->middleware('auth')
+    ->name("area-de-servico.equipe");
+
+Route::get('/area-de-servico/{area_de_servico}/equipe/{equipe}', [AreaDeServicoController::class, 'addEquipe'])
+    ->middleware('auth')
+    ->name("area-de-servico.add-equipe");
+
+Route::get('/area-de-servico/{area_de_servico}/equipe/{equipe}/del', [AreaDeServicoController::class, 'delEquipe'])
+    ->middleware('auth')
+    ->name("area-de-servico.del-equipe");
+
 Route::post('/area-de-servico/{area_de_servico}', [AreaDeServicoController::class, 'modifica'])
     ->middleware('auth')
     ->name("area-de-servico.modifica");
@@ -54,6 +66,9 @@ Route::get(
 )->middleware('auth')->name("area-de-servico.adiciona-funcionario");
 
 Route::resource('area-de-servico', AreaDeServicoController::class)->middleware('auth');
+
+
+// EQUIPE
 
 Route::resource('equipe', EquipeController::class)->middleware('auth');
 

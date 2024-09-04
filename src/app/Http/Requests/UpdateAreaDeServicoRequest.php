@@ -25,7 +25,7 @@ class UpdateAreaDeServicoRequest extends FormRequest
         return [
             'nome' => ['required', 'max:255'],
             'gerente_id' => ['integer', 'required'],
-            'selectedItems' => ['required'],
+            // 'selectedItems' => ['required'],
         ];
     }
 }
