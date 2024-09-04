@@ -11,7 +11,7 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <h1>Editar Tarefa</h1>
+                <h2 style="color: #717171;">Editar Tarefa</h2>
 
                 <!-- Mensagem de  Erro-->
                 @if ($errors->any())
