@@ -3,6 +3,7 @@
 <head>
     <x-header-layout/>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/solicitacoes.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
@@ -11,19 +12,19 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <h1>Solicitações</h1>
+                <h1 style="color: #717171;">Solicitações</h1>
                 <a href="{{ route('solicitacoes.create') }}" class="btnAdd btn">Solicitar Serviço +</a>
                 <x-message />
             
-                <table class="table" style="font-family: 'Roboto', sans-serif;">
+                <table class="tableS" style="font-family: 'Roboto', sans-serif;">
                     <thead>
                         <tr>
                             <th style="width: 5%;">ID</th>
                             <th style="width: 20%;">Assunto</th>
-                            <th style="width: 50%;">Descrição</th>
+                            <th style="width: 40%;">Descrição</th>
                             <th style="width: 10%;">Status</th>
-                            <th style="width: 15%;">Prazo</th>
-                            <th>Ações</th>
+                            <th style="width: 10%;">Prazo</th>
+                            <th style="width: 15%">Ações</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -4,6 +4,7 @@
 <head>
     <x-header-layout />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/areaDeServico.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -12,7 +13,7 @@
             <div class="content-box">
                 <a href="{{ route('area-de-servico.create') }}" class="btnAdd btn">Nova Área de Trabalho +</a>
                 <div class="table-responsive">
-                    <table class="table" style="font-family: 'Roboto', sans-serif;">
+                    <table class="tableServico" style="font-family: 'Roboto', sans-serif;">
                         <thead>
                             <tr>
                                 <th>Id</th>
