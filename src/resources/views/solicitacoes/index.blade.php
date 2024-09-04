@@ -4,6 +4,7 @@
 <head>
     <x-header-layout />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/solicitacoes.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
@@ -24,10 +25,10 @@
                         <tr>
                             <th style="width: 5%;">ID</th>
                             <th style="width: 20%;">Assunto</th>
-                            <th style="width: 50%;">Descrição</th>
+                            <th style="width: 40%;">Descrição</th>
                             <th style="width: 10%;">Status</th>
-                            <th style="width: 15%;">Prazo</th>
-                            <th style="width: 10%;">Ações</th>
+                            <th style="width: 10%;">Prazo</th>
+                            <th style="width: 15%">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
