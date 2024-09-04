@@ -9,7 +9,7 @@
         
         <main class="main-cntt">
             <div class="content-box">
-               <h2>Cadastro de Usuário</h2>
+               <h1 style="color: #717171;">Cadastro de Usuário</h1>
         
                 <div class="table-responsive">
                     <form method="post" class="">

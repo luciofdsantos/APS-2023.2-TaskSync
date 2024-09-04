@@ -4,6 +4,7 @@
 <head>
     <x-header-layout />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tarefa.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
@@ -13,12 +14,12 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <x-message />
-                <h2 style="color: #717171;">Gerenciar Tarefas</h2>
+                <x-message/>
+                <h1 style="color: #717171;">Gerenciar Tarefas</h1>
 
                 <div class="cardy">
                     <div class="card-body">
-                        <table class="table">
+                        <table class="tableT">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -33,8 +34,8 @@
                                     <tr>
                                         <td style="width: 5%;">{{ $tarefa->id }}</td>
                                         <td style="width: 20%;">{{ $tarefa->titulo }}</td>
-                                        <td style="width: 60%;">{{ $tarefa->descricao }}</td>
-                                        <td style="width: 15%;"> {{ $tarefa->prazo }}</td>
+                                        <td style="width: 40%;">{{ $tarefa->descricao }}</td>
+                                        <td style="width: 20%;"> {{ $tarefa->prazo }}</td>
                                         <td style="width: 15%;" class="action-icons">
                                             <a class="btn bi bi-pencil"
                                                 href="{{ route('tarefa.edit', ['tarefa' => $tarefa]) }}""></a>

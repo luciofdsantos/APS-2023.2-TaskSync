@@ -1,0 +1,110 @@
+.tableS-responsive{
+    //overflow-x: auto;
+}
+
+.tableS{
+    width: 97%;
+    //border-collapse: separate;
+    border-collapse: collapse;
+    //border-spacing: 0;
+    border-radius: 15px;
+    border-spacing: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    //margin-top: 20px;
+    margin-left: 20px;
+    width: calc(100% - 40px);
+    //margin: 20px;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    //margin-bottom: 1rem;
+}
+.tableS th{
+    color: black !important;
+}
+.tableS th,
+.tableS td {
+    padding: 12px; /* Ajuste o padding conforme necessário */
+    text-align: left;
+    border-borrom: 1px solid #ddd;
+    color: #717171;
+}
+
+.tableS thead th {
+    background-color: #3A57E8;
+    
+}
+
+
+.tableS td,
+.tableS th {
+    border-bottom: 1px solid #ddd; /* Borda inferior das células */
+}
+
+
+
+@media (max-width: 1080px) {
+
+}
+
+@media (max-width: 768px) {
+    .tableS th:nth-child(1),
+    .tableS td:nth-child(1),
+    .tableS th:nth-child(3),
+    .tableS td:nth-child(3),
+    .tableS td:nth-child(4),
+    .tableS th:nth-child(4)
+    {
+        display: none; /* Oculta a coluna */
+    }
+    .tableS th:nth-child(2),
+    .tableS td:nth-child(2){
+        width: 8%;
+    }
+
+
+    .tableS th:nth-child(5),
+    .tableS td:nth-child(5)
+    .tableS th:nth-child(6),
+    .tableS td:nth-child(6){
+        width: 5%;
+    }
+    .btnAdd{
+        margin-left: 1px;
+        margin-right: 1px;
+        width: calc(100% - 15px);
+    }
+
+    .tableS {
+        font-size: 13px; 
+        margin: 1px;
+        width: calc(100% - 20px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        
+    }
+
+    .tableS th, .tableUser td {
+        
+        padding: 8px; /* Ajusta o padding para telas menores */
+    }
+    .main-cntt{
+        width: 92%;
+    }
+    .action-icons a,
+    .action-icons form {
+        font-size: 14px;
+
+    }
+    .delete-button{
+        font-size: 14px;
+    }
+    .card {
+        flex: 1 1 calc(100% - 40px); /* 1 coluna para telas pequenas */
+    }
+    #btnAdd{
+        width: calc(100% - 20px);
+        margin: 60px auto; /* Centraliza horizontalmente dentro do card */
+        position: static; /* Remove a posição absoluta */
+        transform: none; /* Remove qualquer transformação */
+    }
+}

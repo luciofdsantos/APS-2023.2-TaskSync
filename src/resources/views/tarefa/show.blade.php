@@ -3,13 +3,14 @@
 <head>
     <x-header-layout/>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tarefa.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <h2>Visualizar Tarefa</h2>
+                <h1 style="color: #717171;">Visualizar Tarefa</h1>
                 <br/>
                 {{-- <h1>{{ $tarefa->titulo }}</h1>
                 <p>Descrição: {{ $tarefa->descricao }}</p>
@@ -23,7 +24,7 @@
                 @endif
                 -->
                 
-                <table class="table">
+                <table class="tableT">
 
                     <thead>
                         <tr>
