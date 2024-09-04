@@ -29,7 +29,7 @@
         <header class="bg-white text-dark p-4 rounded-3" style="height: 70px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; margin: 15px;">
             <div class="container d-flex justify-content-between align-items-center">
                 <a href="{{route('dashboard')}}">
-                <img src="images/1.png" class="btnLogo" alt="alt text">
+                <img src="images/taskSync_logo.png" class="btnLogo" alt="alt text">
                 </a>
                 <form method="POST" action="{{ route('logout') }}" class="d-inline">
                     @csrf

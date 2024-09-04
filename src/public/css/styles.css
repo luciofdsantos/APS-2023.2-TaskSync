@@ -113,30 +113,6 @@ button[type="submit"]:hover {
     border: 1px solid #f5c6cb;
 }*/
 
-
-
-
-.btnAdd{
-    //font-family: 'Open Sans', sans-serif;
-    display: block;
-    width: calc(100% - 40px); /* Subtrai 20px de cada lado */
-    height: 50px; /* Ajuste conforme necessário */
-    margin: 20px; /* Espaçamento de 20px ao redor */
-    padding: 10px;
-    font-size: 18px; /* Ajuste conforme necessário */
-    text-align: center;
-    background-color: white !important;
-    border: 2px dashed gray; /* Linhas falhadas */
-    border-radius: 10px; /* Borda arredondada */
-    box-sizing: border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    align-content: center;
-}
-.btnAdd:hover{
-    border-color: #0d6efd;
-    color: #0d6efd;
-}
-
 .table-responsive{
     //overflow-x: auto;
 }
@@ -159,7 +135,7 @@ button[type="submit"]:hover {
     //margin-bottom: 1rem;
 }
 .table th{
-    color: black !important;
+    color: white !important;
 }
 .table th,
 .table td {
@@ -245,19 +221,16 @@ button[type="submit"]:hover {
 }
 
 /* Cards Área de Trabalho - Gerente*/
-.card-columns{
+.card-columns {
     display: flex;
+    gap: 75px; /* Espaçamento entre os cards */
     flex-wrap: wrap;
     justify-content: center;
-    gap: 65px;
-    margin: 0 auto;
-    
 }
 
 .card {
-    //width: 30%;
-    width: 800px;
-    height: 300px;
+    width: 400px; /* Ajuste conforme necessário */
+    height: 300px; /* Ajuste conforme necessário */
     border: 0px solid #ddd;
     border-radius: 15px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
@@ -265,9 +238,30 @@ button[type="submit"]:hover {
     overflow: hidden;
     text-align: center;
     padding: 20px;
-    max-width: 400px;
     box-sizing: border-box;
 }
+
+.btnAdd {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed gray;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+    background-color: white;
+    color: gray;
+    font-size: 18px;
+}
+
+.btnAdd:hover {
+    border-color: #0d6efd;
+    color: #0d6efd;
+}
+
 .card:hover {
     transform: translateY(-8px);
 }

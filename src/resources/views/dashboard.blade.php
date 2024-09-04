@@ -14,23 +14,20 @@
                     shuffle($cores); 
                     ?>
                     @foreach ($areas_de_servico as $index => $area_de_servico)
-                    <?php $corAleatoria = $cores[$index % count($cores)]; // Distribui as cores sequencialmente ?>
-                    <a href="{{ route('area-de-servico.show', ['area_de_servico' => $area_de_servico['id']]) }}" class="card-link" style="text-decoration: none;">
-                    <div class="card btn" style="background-color: {{$corAleatoria}};">
-                        <div class="card-body">
-                            <h8
-                            <h5 class="card-title" style="font-size: 21px; color: white;">{{$area_de_servico->nome}}</h5>
-
-                            <!-- Precisa Adicionar Funcionários no card - Talvez somente a sigla deles ou 
-                                melhor seria se tivesse a foto do perfil-->
-                            
-                        </div>
-                    </div>
+                        <?php $corAleatoria = $cores[$index % count($cores)]; ?>
+                        <a href="{{ route('area-de-servico.show', ['area_de_servico' => $area_de_servico['id']]) }}" class="card-link" style="text-decoration: none;">
+                            <div class="card btn" style="background-color: {{$corAleatoria}};">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 21px; color: white;">{{$area_de_servico->nome}}</h5>
+                                </div>
+                            </div>
+                        </a>
                     @endforeach
 
-                </div>
-                <div class="card-columns" style="display: inherit; text-align: center;">
-                    <a href="{{ route('area-de-servico.create') }}" id="btnAdd"class="card btnAdd" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">Nova Área de Serviço <br/> +</a>
+                    <!-- Card de adicionar nova área -->
+                    <a href="{{ route('area-de-servico.create') }}" id="btnAdd" class="card btnAdd" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
+                        Nova Área de Serviço <br/> +
+                    </a>
                 </div>
             </div>
         
