@@ -4,6 +4,7 @@ use App\Http\Controllers\AreaDeServicoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\SolicitacaoController;
+use App\Http\Controllers\FullCalendarController;
 use App\Models\AreaDeServico;
 use Illuminate\Support\Facades\Route;
 
@@ -102,6 +103,10 @@ Route::controller(SolicitacaoController::class)->middleware('auth')->group(
         Route::delete('/solicitacoes/{solicitacao}', 'destroy')->name("solicitacoes.destroy");
     }
 );
+
+
+//Full Calendar
+Route::resource('calendar', FullCalendarController::class)->middleware('auth');
 
 // HOME
 Route::get('/', function () {
