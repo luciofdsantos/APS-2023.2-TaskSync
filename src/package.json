@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.11.3",
+        "fullcalendar": "^6.1.15",
         "inputmask": "^5.0.9"
     }
 }
