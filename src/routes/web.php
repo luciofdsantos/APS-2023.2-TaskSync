@@ -91,6 +91,20 @@ Route::controller(TarefaController::class)->middleware('auth')->group(
 
         //Apagar Tarefa
         Route::delete('/tarefa/{tarefa}', 'destroy')->name("tarefa.destroy");
+
+        // Alterar status
+        Route::post('/tarefa/{id}/update-status', [TarefaController::class, 'updateStatus'])->name('tarefa.updateStatus');
+
+        //Adicionar Notas
+        Route::get('/tarefa/{id}/form-note', [TarefaController::class, 'addNoteForm'])->name('tarefa.formNote');
+        Route::post('/tarefa/{id}/store-note', [TarefaController::class, 'storeNote'])->name('tarefa.storeNote');
+
+        // Mostrar Notas
+        Route::get('/tarefa/{id}/notas', [TarefaController::class, 'showNotas'])->name('tarefa.notas');
+
+        //Excluir Notas
+        Route::delete('/nota/{id}', [TarefaController::class, 'destroyNote'])->name('nota.destroy');
+
     }
 );
 

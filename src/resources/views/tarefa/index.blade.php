@@ -14,8 +14,12 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <x-message/>
+                <<<<<<< HEAD <x-message />
                 <h1 style="color: #717171;">Gerenciar Tarefas</h1>
+                =======
+                <x-message />
+                {{-- <h1>Gerenciar Tarefas</h1> --}}
+                >>>>>>> backend_nau
 
                 <div class="cardy">
                     <div class="card-body">
@@ -37,19 +41,22 @@
                                         <td style="width: 40%;">{{ $tarefa->descricao }}</td>
                                         <td style="width: 20%;"> {{ $tarefa->prazo }}</td>
                                         <td style="width: 15%;" class="action-icons">
-                                            <a class="btn bi bi-pencil"
-                                                href="{{ route('tarefa.edit', ['tarefa' => $tarefa]) }}""></a>
-
+                                            @can('editar', 'App\Models\Tarefa\Tarefa')
+                                                <a class="btn bi bi-pencil"
+                                                    href="{{ route('tarefa.edit', ['tarefa' => $tarefa]) }}""></a>
+                                            @endcan
                                             <a class="btn bi bi-eye"
                                                 href="{{ route('tarefa.show', ['tarefa' => $tarefa]) }}"></a>
-                                            <form method="post"
-                                                action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
-                                                onsubmit="return confirm('Deseja excluir esta tarefa?')"
-                                                style="display:inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn bi bi-trash"></button>
-                                            </form>
+                                            @can('editar', 'App\Models\Tarefa\Tarefa')
+                                                <form method="post"
+                                                    action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
+                                                    onsubmit="return confirm('Deseja excluir esta tarefa?')"
+                                                    style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn bi bi-trash"></button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach
