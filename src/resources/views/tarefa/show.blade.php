@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-    <x-header-layout/>
+    <x-header-layout />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="content-container">
         <main class="main-cntt">
@@ -17,13 +19,14 @@
                 @else
                     <a href="{{ route('tarefa.index') }}" class="btn btn-secondary">Voltar</a>
                 @endif
-
-                <form method="post" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
-                    onsubmit="return confirm('Deseja excluir esta tarefa?')">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger">Deletar</button>
-                </form>
+                @can('editar', 'App\Models\Tarefa\Tarefa')
+                    <form method="post" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
+                        onsubmit="return confirm('Deseja excluir esta tarefa?')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Deletar</button>
+                    </form>
+                @endcan
 
                 <table class="table">
 
@@ -33,34 +36,41 @@
                             <th style="width: 10%;">Título</th>
                             <th style="width: 55%;">Descrição</th>
                             <th style="width: 10%;">Status</th>
-                            <th style="width: 10%;">Adicionar Nota</th>
+                            <th style="width: 10%;">Notas</th>
                         </tr>
                     </thead>
                     <tbody>
                         <td>{{ $tarefa->id }}</td>
                         <td>{{ $tarefa->titulo }}</td>
                         <td>{{ $tarefa->descricao }}</td>
-                        <td class="action-icons">{{ App\Models\Tarefa\StatusTarefa::get($tarefa->status) }} <button type="button" class="btn bi bi-pencil" data-bs-toggle="modal" data-bs-target="#changeStatusModal"></button> </td>
+                        <td class="action-icons">{{ App\Models\Tarefa\StatusTarefa::get($tarefa->status) }}
+
+                            @can('status', $tarefa)
+                                <button type="button" class="btn bi bi-pencil" data-bs-toggle="modal"
+                                    data-bs-target="#changeStatusModal"></button>
+                            @endcan
+                        </td>
                         <td class="action-icons">
-                                <!-- Botão para abrir o modal -->
-                                <button type="button" class="btn bi bi-pencil" data-bs-toggle="modal" data-bs-target="#addNoteModal"></button>
+                            <!-- Botão para abrir o modal -->
+                            <button type="button" class="btn bi bi-pencil" data-bs-toggle="modal"
+                                data-bs-target="#addNoteModal"></button>
 
-                                <a class="btn bi bi-eye" onclick="toggleNotas({{ $tarefa->id }})"></a>
+                            <a class="btn bi bi-eye" onclick="toggleNotas({{ $tarefa->id }})"></a>
+                        </td>
+
+                        <tr id="notas-{{ $tarefa->id }}" style="">
+                            <td colspan="5">
+                                <ul>
+                                    @foreach ($tarefa->notas as $nota)
+                                        <li>{{ $nota->description }}</li>
+                                    @endforeach
+                                </ul>
                             </td>
-
-                            <tr id="notas-{{ $tarefa->id }}" style="display: none;">
-                                <td colspan="5">
-                                    <ul>
-                                        @foreach ($tarefa->notas as $nota)
-                                            <li>{{ $nota->description }}</li>
-                                        @endforeach
-                                    </ul>
-                                </td>
-                            </tr>
+                        </tr>
 
                     </tbody>
                 </table>
-    <x-item-layout/>
+                <x-item-layout />
 </body>
 
 <script>
@@ -97,7 +107,8 @@
 </div>
 
 <!-- Modal Status-->
-<div class="modal fade" id="changeStatusModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
+<div class="modal fade" id="changeStatusModal" tabindex="-1" aria-labelledby="changeStatusModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -130,26 +141,25 @@
         let formData = new FormData(this);
 
         fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Fechar o modal
-                let modal = bootstrap.Modal.getInstance(document.getElementById('addNoteModal'));
-                modal.hide();
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                        'content')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Fechar o modal
+                    let modal = bootstrap.Modal.getInstance(document.getElementById('addNoteModal'));
+                    modal.hide();
 
-                // Atualizar a lista de notas sem recarregar a página
-                let notaList = document.getElementById('notas-' + data.nota.tarefa_id);
-                notaList.innerHTML += '<li>' + data.nota.description + '</li>';
-            }
-        })
-        .catch(error => console.error('Erro:', error));
+                    // Atualizar a lista de notas sem recarregar a página
+                    let notaList = document.getElementById('notas-' + data.nota.tarefa_id);
+                    notaList.innerHTML += '<li>' + data.nota.description + '</li>';
+                }
+            })
+            .catch(error => console.error('Erro:', error));
     });
 </script> -->
-
-
