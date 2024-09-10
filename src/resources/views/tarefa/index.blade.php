@@ -14,12 +14,8 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <<<<<<< HEAD <x-message />
-                <h1 style="color: #717171;">Gerenciar Tarefas</h1>
-                =======
                 <x-message />
-                {{-- <h1>Gerenciar Tarefas</h1> --}}
-                >>>>>>> backend_nau
+                <h1 style="color: #717171;">Gerenciar Tarefas</h1>
 
                 <div class="cardy">
                     <div class="card-body">
