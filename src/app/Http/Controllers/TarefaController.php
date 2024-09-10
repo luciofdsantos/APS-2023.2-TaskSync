@@ -6,7 +6,7 @@ use App\Models\AreaDeServico;
 use App\Models\Tarefa\Tarefa;
 use App\Models\Nota;
 use App\Models\Tarefa\StatusTarefa;
-
+use App\Models\Usuario\TipoUsuario;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +19,23 @@ class TarefaController extends Controller
     {
         $this->authorize('tarefas', Tarefa::class);
 
+        $tarefas = null;
+        $usuario = auth()->user()->usuario;
+
+        switch ($usuario->tipo_usuario) {
+            case TipoUsuario::ADMINISTRADOR:
+                $tarefas = Tarefa::with('notas')->paginate(10);
+                break;
+            case TipoUsuario::FUNCIONARIO:
+                $tarefas = Tarefa::leftJoin('tarefa_usuarios', 'tarefa_id', '=', 'tarefas.id')
+                    ->where('tarefa_usuarios.usuario_id', '=', $usuario->id)->paginate(10);
+                break;
+            case TipoUsuario::GERENTE:
+                $tarefas = Tarefa::leftJoin('area_de_servico_tarefas', 'area_de_servico_tarefas.tarefa_id', '=', 'tarefas.id')
+                    ->leftJoin('area_de_servico', 'area_de_servico.id', '=', 'area_de_servico_tarefas.area_de_servico_id')
+                    ->where('area_de_servico.gerente_id', '=', $usuario->id)->paginate(10);
+        }
         // $tarefas = Tarefa::paginate(10);
-        $tarefas = Tarefa::with('notas')->paginate(10);
 
         return view('tarefa.index', compact('tarefas'));
     }
@@ -56,7 +71,7 @@ class TarefaController extends Controller
     }
 
     // //Mostra detalhes de uma tarefa
-    // public function show(Tarefa $tarefa, $id)   //$id, para receber a tarefa 
+    // public function show(Tarefa $tarefa, $id)   //$id, para receber a tarefa
     // {
     //     $this->authorize('tarefas', Tarefa::class);
     //     $tarefa = Tarefa::with('notes')->findOrFail($id); //Alteração para mostrar as notas de uma tarefa do funcionario
@@ -67,10 +82,10 @@ class TarefaController extends Controller
     public function show(Tarefa $tarefa)
     {
         $this->authorize('tarefas', Tarefa::class); // Certifique-se de que a política de autorização está configurada corretamente
-        
+
         // Carrega as notas associadas à tarefa
         $tarefa->load('notas');
-        
+
         return view('tarefa.show', compact('tarefa'));
     }
 
@@ -112,28 +127,25 @@ class TarefaController extends Controller
 
     public function storeNote($id, Request $request)
     {
+
         $tarefa = Tarefa::findOrFail($id);
 
         if (is_null($tarefa->id)) {
             return redirect()->back()->withErrors('ID da tarefa não encontrado.');
         }
 
-        
-       
+
+
         // Cria uma nova nota associada à tarefa
         $nota = $tarefa->notas()->create([
             'description' => $request->input('description'),
             'tarefa_id' => $tarefa->id,
         ]);
 
-            // Retorna uma resposta JSON com os dados da nova nota
-        return response()->json([
-            'success' => true,
-            'nota' => $nota
-        ]);
+        return redirect()->route('tarefa.show', ['tarefa' => $tarefa]);
     }
 
-        public function addNoteForm($id)
+    public function addNoteForm($id)
     {
         $tarefa = Tarefa::findOrFail($id);
         return view('tarefa.formNote', compact('tarefa'));
@@ -148,7 +160,7 @@ class TarefaController extends Controller
     }
 
     //Mostrar as notas
-        public function showNotas($tarefaId)
+    public function showNotas($tarefaId)
     {
         // Encontre a tarefa pelo ID
         $tarefa = Tarefa::findOrFail($tarefaId);
@@ -164,17 +176,15 @@ class TarefaController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $tarefa = Tarefa::findOrFail($id);
-    
+
         // Verifique se o status enviado é válido
         if (!in_array($request->status, array_keys(StatusTarefa::getAll()))) {
             return redirect()->back()->with('error', 'Status inválido.');
         }
-    
+
         $tarefa->status = $request->status;
         $tarefa->save();
-    
+
         return redirect()->route('tarefa.index')->with('success', 'Status atualizado com sucesso!');
     }
-    
-
 }
