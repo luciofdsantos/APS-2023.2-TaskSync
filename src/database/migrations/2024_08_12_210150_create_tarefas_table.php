@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('descricao')->nullable(false); //Reevaluate the task manager field -
             $table->date('prazo')->nullable(); // Campo opcional
             $table->integer('status')->default(StatusTarefa::A_FAZER);
-            // $table->enum('status', ['pendente', 'em_progresso', 'completo'])->default('pendente'); // Status com valores padrão
+            $table->integer('prioridade');
             $table->timestamps();
         });
     }

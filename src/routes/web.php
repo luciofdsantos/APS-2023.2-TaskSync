@@ -106,7 +106,12 @@ Route::controller(SolicitacaoController::class)->middleware('auth')->group(
 
 
 //Full Calendar
-Route::resource('calendar', FullCalendarController::class)->middleware('auth');
+Route::controller(FullCalendarController::class)->middleware('auth')->group(
+    function () {
+        Route::get('/calendar', 'index')->name('calendar.index');
+        Route::get('/calendar/get', 'get')->name('calendar.get');
+    }
+);
 
 // HOME
 Route::get('/', function () {
