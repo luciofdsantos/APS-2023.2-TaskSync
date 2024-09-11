@@ -5,6 +5,7 @@ use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\SolicitacaoController;
+use App\Http\Controllers\FullCalendarController;
 use App\Models\AreaDeServico;
 use App\Models\Equipe;
 use Illuminate\Support\Facades\Route;
@@ -133,6 +134,15 @@ Route::controller(SolicitacaoController::class)->middleware('auth')->group(
 
         //Apagar Solicitacao
         Route::delete('/solicitacoes/{solicitacao}', 'destroy')->name("solicitacoes.destroy");
+    }
+);
+
+
+//Full Calendar
+Route::controller(FullCalendarController::class)->middleware('auth')->group(
+    function () {
+        Route::get('/calendar', 'index')->name('calendar.index');
+        Route::get('/calendar/get', 'get')->name('calendar.get');
     }
 );
 
