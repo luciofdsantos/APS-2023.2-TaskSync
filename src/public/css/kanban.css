@@ -1,0 +1,13 @@
+
+.kanban-card {
+    width: 400px; /* Ajuste conforme necessário */
+    height: 300px; /* Ajuste conforme necessário */
+    border: 0px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}

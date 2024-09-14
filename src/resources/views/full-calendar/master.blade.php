@@ -18,7 +18,62 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
  </head>
 
+<<<<<<< Updated upstream
  <body>
+=======
+<head>
+    <x-header-layout />
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+    <!--
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" /> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.4.0/index.global.min.js'></script>
+    <script src="{{ asset('assets/fullcalendar-3.4.0/locale/pt-br.js') }}"></script>
+
+    <style>
+        .fc button {
+            background-color: #3A57E8; /* Define a cor de fundo azul */
+            color: white !important; /* Define a cor do texto */
+            border: none; /* Remove as bordas */
+            background-image: none !important; 
+            transition: none !important; /* Remove qualquer animação */
+        }
+
+        .fc button:hover {
+            //background-color: #0056b3 !important; /* Cor mais escura ao passar o mouse */
+            background-image: none !important; /* Remove qualquer efeito de background-image */
+            transition: none !important; /* Remove qualquer animação de transição */
+            transform: translateY(1px);
+            
+        }
+
+        .fc-state-active {
+            background-color: #0048B2 !important; /* Azul mais escuro para botão ativo */
+            color: white !important;
+        }
+        .fc-unthemed td.fc-today {
+	        background: #9AA6E3;
+        }
+        .fc-highlight { /* when user is selecting cells */
+            background: #8A92A6;
+            opacity: .3;
+        }
+        #calendar {
+            z-index: 1; /* Certifique-se de que o z-index da sidebar seja maior */
+            position: relative; /* Define a posição para que o z-index funcione */
+        }
+
+
+    </style>
+</head>
+
+<body>
+>>>>>>> Stashed changes
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">

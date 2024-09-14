@@ -14,9 +14,15 @@
                     shuffle($cores); 
                     ?>
                     @foreach ($areas_de_servico as $index => $area_de_servico)
+<<<<<<< Updated upstream
                     <?php $corAleatoria = $cores[$index % count($cores)]; // Distribui as cores sequencialmente ?>
                     <a href="{{ route('area-de-servico.show', ['area_de_servico' => $area_de_servico['id']]) }}" class="card-link" style="text-decoration: none;">
                     <div class="card btn" style="background-color: {{$corAleatoria}};">
+=======
+                    <?php $corAleatoria = $cores[$index % count($cores)]; ?>
+                    
+                    <div class="card btn" data-url="{{ route('area-de-servico.show', ['area_de_servico' => $area_de_servico['id']]) }}" style="background-color: {{$corAleatoria}}; position: relative;">
+>>>>>>> Stashed changes
                         <div class="card-body">
                             <h8
                             <h5 class="card-title" style="font-size: 21px; color: white;">{{$area_de_servico->nome}}</h5>
@@ -39,4 +45,25 @@
     </div>
     <x-item-layout />
 </body>
+<<<<<<< Updated upstream
 </html>
+=======
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Seleciona todos os cards que têm o atributo data-url
+    var cards = document.querySelectorAll('.card.btn[data-url]');
+
+    // Adiciona o evento de clique a cada card
+    cards.forEach(function (card) {
+        card.addEventListener('click', function () {
+            var url = this.getAttribute('data-url');
+            window.location.href = url; // Redireciona para a URL do card
+        });
+    });
+});
+
+</script>
+
+
+</html>
+>>>>>>> Stashed changes

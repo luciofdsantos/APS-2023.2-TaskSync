@@ -6,8 +6,11 @@
     padding: 20px;
     width: 100%;
 }
+
+
 #sidebar, #miniSidebar{
     overflow: hidden;
+    z-index: 1000;
 }
 
 .sidebar-hidden #mainContent {
