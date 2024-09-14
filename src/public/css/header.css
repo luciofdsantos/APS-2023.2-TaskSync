@@ -15,6 +15,7 @@
     overflow: hidden;
 }
 
+
 header .container {
     display: flex;
     justify-content: space-between;
@@ -23,6 +24,18 @@ header .container {
     padding: 0; /* Remove qualquer padding adicional */
 }
 
+/* Adiciona um fundo azul cobrindo toda a área ao redor do header */
+.header-wrapper {
+    background-color: rgba(0, 0, 255, 0); /* Define a cor como transparente */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 85px; /* Ajuste a altura para que a área ao redor do header seja coberta */
+    z-index: 999;
+    backdrop-filter: blur(10px); /* Aplica o efeito de blur */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilidade com navegadores WebKit (Safari, etc.) */
+}
 
 @media (max-width: 1080px) {
     .btnLogo{

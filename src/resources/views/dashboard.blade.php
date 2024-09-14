@@ -6,6 +6,7 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
     <style>
+        /* TODO ADICIONAR EM UM ARQUIVO .css */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -91,6 +92,31 @@
             transition: color 0.3s, transform 0.5s;
             /* Adiciona uma transição suave */
         }
+
+        .calendar-icon {
+            position: absolute;
+            bottom: 90px;
+            left: 40px;
+            display: inline-block;
+            background-color: #E9ECEF;
+            color: #717171;
+            border-radius: 5px; /* Mantém as bordas arredondadas */
+            padding: 12px; /* Aumenta o padding para criar um quadrado mais proporcional */
+            text-align: center; /* Centraliza o ícone dentro do quadrado */
+            width: 50px; /* Define uma largura fixa */
+            height: 50px; /* Define uma altura fixa igual à largura para um quadrado */
+            line-height: 25px; /* Alinha verticalmente o ícone no meio */
+        }
+
+        .calendar-icon i {
+            font-size: 1.5rem;
+        }
+
+        .calendar-icon:hover {
+             background-color: #007bff; /* Cor de fundo ao passar o mouse */
+             color: white; /* Cor do ícone ao passar o mouse */
+        }
+        
     </style>
 </head>
 
@@ -107,9 +133,16 @@
                     <?php $corAleatoria = $cores[$index % count($cores)]; ?>
                     <div class="card btn" style="background-color: {{$corAleatoria}}; position: relative;">
                         <div class="card-body">
-                            <h5 class="card-title" style="font-size: 21px; color: white;">
+                            <h5 class="card-title" style="font-size: 21px; color: white; text-align: left">
                                 {{$area_de_servico->nome}}
                             </h5>
+
+                            <!-- Ícone do calendário localizado no canto inferior esquerdo do card -->
+                            <div>
+                                <a href="{{ route('calendar.index') }}" title="Acessar Calendário" class="calendar-icon">
+                                    <i class="bi bi-calendar2-check"></i>
+                                </a>
+                            </div>
 
                             <!-- Botão de opções com ícone Bootstrap -->
                             <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
