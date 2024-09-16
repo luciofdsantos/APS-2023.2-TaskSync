@@ -18,8 +18,7 @@
     <script src="{{ asset('assets/fullcalendar-3.4.0/locale/pt-br.js') }}"></script>
 </head>
 
-<<<<<<< Updated upstream <body>
-    =======
+<body>
 
     <head>
         <x-header-layout />
@@ -84,7 +83,6 @@
     </head>
 
     <body>
-        >>>>>>> Stashed changes
         <div class="content-container">
             <main class="main-cntt">
                 <div class="content-box">
