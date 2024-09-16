@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ArraysHelper;
+use App\Helpers\FuncionarioHelper;
 use App\Models\AreaDeServico;
 use App\Http\Requests\StoreAreaDeServicoRequest;
 use App\Http\Requests\UpdateAreaDeServicoRequest;
 use App\Models\AreaDeServicoFuncionarios;
+use App\Models\Equipe;
+use App\Models\EquipeAreaDeServico;
 use App\Models\Tarefa\StatusTarefa;
 use App\Models\Tarefa\Tarefa;
 use App\Models\Usuario\TipoUsuario;
@@ -47,7 +50,7 @@ class AreaDeServicoController extends Controller
     {
         $this->authorize('create', AreaDeServico::class);
         $gerentes = $this->getGerentes();
-        $funcionarios = ArraysHelper::to_array($this->getFuncionarios());
+        $funcionarios = ArraysHelper::to_array(FuncionarioHelper::getFuncionarios());
 
 
         return view('area-de-servico.create', ['gerentes' => $gerentes, 'funcionarios' => $funcionarios]);
@@ -61,14 +64,14 @@ class AreaDeServicoController extends Controller
         $campos = $request->validated();
         $area = AreaDeServico::create($campos);
 
-        foreach ($campos['selectedItems'] as $funcionario_id) {
-            $area_funcionario = new AreaDeServicoFuncionarios();
+        // foreach ($campos['selectedItems'] as $funcionario_id) {
+        //     $area_funcionario = new AreaDeServicoFuncionarios();
 
-            $area_funcionario->funcionario_id = $funcionario_id;
-            $area_funcionario->area_de_servico_id = $area->id;
+        //     $area_funcionario->funcionario_id = $funcionario_id;
+        //     $area_funcionario->area_de_servico_id = $area->id;
 
-            $area_funcionario->save();
-        }
+        //     $area_funcionario->save();
+        // }
 
         return redirect()->route('area-de-servico.show', ['area_de_servico' => $area]);
     }
@@ -78,9 +81,8 @@ class AreaDeServicoController extends Controller
      */
     public function show(AreaDeServico $areaDeServico)
     {
-
         $tarefas = $areaDeServico->tarefas;
-
+        // dd($areaDeServico->funcionarios);
         return view('area-de-servico.show', [
             'area_de_servico' => $areaDeServico,
             'tarefas' => $tarefas,
@@ -94,7 +96,7 @@ class AreaDeServicoController extends Controller
     {
         $this->authorize('update', $areaDeServico);
         $gerentes = $this->getGerentes();
-        $funcionarios = ArraysHelper::to_array($this->getFuncionariosUpdate($areaDeServico));
+        $funcionarios = ArraysHelper::to_array(FuncionarioHelper::getFuncionariosByAreaDeServico($areaDeServico));
         $selected_funcionarios = $areaDeServico->funcionarios->all();
 
         return view('area-de-servico.edit', [
@@ -112,23 +114,23 @@ class AreaDeServicoController extends Controller
     {
         $this->authorize('update', $areaDeServico);
         $campos = $request->validated();
-        $funcionarios = $campos['selectedItems'];
-        $funcionarios_salvos = array_column($areaDeServico->servicoTarefas->all(), 'funcionario_id');
+        // $funcionarios = $campos['selectedItems'];
+        // $funcionarios_salvos = array_column($areaDeServico->servicoTarefas->all(), 'funcionario_id');
 
-        foreach ($funcionarios_salvos as $funcionario) {
-            if (!in_array($funcionario, $funcionarios)) {
-                $funcionario->delete();
-            }
-        }
+        // foreach ($funcionarios_salvos as $funcionario) {
+        //     if (!in_array($funcionario, $funcionarios)) {
+        //         $funcionario->delete();
+        //     }
+        // }
 
-        foreach ($funcionarios as $funcionario) {
-            if (!in_array($funcionario, $funcionarios_salvos)) {
-                $area = new AreaDeServicoFuncionarios();
-                $area->funcionario_id = $funcionario;
-                $area->area_de_servico_id = $areaDeServico->id;
-                $area->save();
-            }
-        }
+        // foreach ($funcionarios as $funcionario) {
+        //     if (!in_array($funcionario, $funcionarios_salvos)) {
+        //         $area = new AreaDeServicoFuncionarios();
+        //         $area->funcionario_id = $funcionario;
+        //         $area->area_de_servico_id = $areaDeServico->id;
+        //         $area->save();
+        //     }
+        // }
 
         $areaDeServico->update($campos);
 
@@ -180,6 +182,77 @@ class AreaDeServicoController extends Controller
         return response()->json(["success" => [$return]]);
     }
 
+    public function equipe(AreaDeServico $area_de_servico)
+    {
+        $equipes = Equipe::all();
+
+        $equipes_area = EquipeAreaDeServico::select('equipe_id')
+            ->where('area_de_servico_id', '=', $area_de_servico->id)
+            ->pluck('equipe_id')
+            ->toArray();
+
+        return view('area-de-servico.equipe', [
+            'area_de_servico' => $area_de_servico,
+            'equipes' => $equipes,
+            'equipes_area' => $equipes_area,
+        ]);
+    }
+
+    public function addEquipe(AreaDeServico $area_de_servico, Equipe $equipe)
+    {
+        EquipeAreaDeServico::create([
+            'area_de_servico_id' => $area_de_servico->id,
+            'equipe_id' => $equipe->id,
+        ]);
+
+        $funcionarios_area = $area_de_servico->funcionarios->pluck('id')->toArray();
+        $funcionarios_equipe = $equipe->funcionarios->pluck('id')->toArray();
+
+        foreach ($funcionarios_equipe as $funcionario_id) {
+            if (!in_array($funcionario_id, $funcionarios_area)) {
+                DB::table('area_de_servico_funcionarios')
+                    ->insert([
+                        'area_de_servico_id' => $area_de_servico->id,
+                        'funcionario_id' => $funcionario_id,
+                    ]);
+            }
+        }
+
+        return redirect()->route('area-de-servico.equipe', ['area_de_servico' => $area_de_servico])
+            ->with('success', 'Equipe adicionada com sucesso!');
+    }
+
+    public function delEquipe(AreaDeServico $area_de_servico, Equipe $equipe)
+    {
+        $funcionarios_area = $area_de_servico->funcionarios->pluck('id')->toArray();
+        $funcionarios_equipe = $equipe->funcionarios->pluck('id')->toArray();
+
+        foreach ($funcionarios_equipe as $funcionario_id) {
+            if (in_array($funcionario_id, $funcionarios_area)) {
+
+                DB::table('area_de_servico_funcionarios')
+                    ->where([
+                        'area_de_servico_id' => $area_de_servico->id,
+                        'funcionario_id' => $funcionario_id,
+                    ])->delete();
+
+                DB::table('tarefa_usuarios', 'tarefa')
+                    ->leftJoin('area_de_servico_tarefas', 'area_de_servico_tarefas.tarefa_id', '=', 'tarefa.tarefa_id')
+                    ->where('area_de_servico_tarefas.area_de_servico_id', '=', $area_de_servico->id)
+                    ->where('tarefa.usuario_id', '=', $funcionario_id)
+                    ->delete();
+            }
+        }
+
+
+        DB::table('equipe_area_de_servico')->where('equipe_id', '=', $equipe->id)
+            ->where('area_de_servico_id', '=', $area_de_servico->id)
+            ->delete();
+
+        return redirect()->route('area-de-servico.equipe', ['area_de_servico' => $area_de_servico])
+            ->with('success', 'Equipe removida com sucesso!');
+    }
+
     public function salvaFuncionario(Request $request, AreaDeServico $area_de_servico)
     {
         $this->authorize('update', $area_de_servico);
@@ -219,27 +292,6 @@ class AreaDeServicoController extends Controller
             'funcionarios_id' => $funcionarios_id,
             'funcionarios_tarefa' => $funcionarios_tarefa,
         ]);
-    }
-
-    private function getFuncionarios()
-    {
-        return DB::table('usuario')
-            ->select(['usuario.id', 'users.name as nome'])
-            ->join('users', 'usuario.id', '=', 'users.id')
-            ->where('usuario.tipo_usuario', '=', TipoUsuario::FUNCIONARIO)
-            ->get();
-    }
-
-    private function getFuncionariosUpdate(AreaDeServico $area_de_servico)
-    {
-        $ids = array_column($area_de_servico->funcionarios->all(), 'id');
-        $query = DB::table('usuario')
-            ->select(['usuario.id', 'users.name as nome'])
-            ->join('users', 'usuario.id', '=', 'users.id')
-            ->where('usuario.tipo_usuario', '=', TipoUsuario::FUNCIONARIO)
-            ->whereNotIn('usuario.id', $ids);
-
-        return $query->get();
     }
 
     private function getGerentes()

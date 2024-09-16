@@ -8,11 +8,13 @@
             @csrf
             <div class="form-check">
                 @foreach ($funcionarios as $funcionario)
-                    <input class="opcao form-check-input" name="funcionarios[]" type="checkbox"
-                        value="{{ $funcionario->id }}" id="{{ $funcionario->id }}">
-                    <label class="form-check-label" for="funcionarios[]">
-                        {{ $funcionario->user->name }}
-                    </label>
+                    <div>
+                        <input class="opcao form-check-input" name="funcionarios[]" type="checkbox"
+                            value="{{ $funcionario->id }}" id="{{ $funcionario->id }}">
+                        <label class="form-check-label" for="funcionarios[]">
+                            {{ $funcionario->user->name }}
+                        </label>
+                    </div>
                 @endforeach
             </div>
             <input type="hidden" id="tarefa_id" name="tarefa_id" value="">

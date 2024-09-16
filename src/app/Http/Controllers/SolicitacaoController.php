@@ -81,7 +81,7 @@ class SolicitacaoController extends Controller
             return redirect()->route('solicitacoes.show', ['solicitacao' => $solicitacao])
                 ->with('success', 'Solicitação cancelada!');
         } else {
-            ddd($solicitacao->update(['status' => StatusSolicitacao::AGENDADA]));
+            $solicitacao->update(['status' => StatusSolicitacao::AGENDADA]);
             return redirect()->route('solicitacoes.show', ['solicitacao' => $solicitacao])
                 ->with('success', 'Solicitação cancelada!');
         }
@@ -90,7 +90,7 @@ class SolicitacaoController extends Controller
     // Excluir uma tarefa
     public function destroy(Solicitacao $solicitacao)
     {
-        $this->authorize('delete', Solicitacao::class);
+        $this->authorize('delete', $solicitacao);
         try {
             $solicitacao->delete();
         } catch (Exception $e) {
@@ -101,6 +101,7 @@ class SolicitacaoController extends Controller
 
     public function show(Solicitacao $solicitacao)
     {
+
         return view('solicitacoes.show', ['solicitacao' => $solicitacao]);
     }
 
@@ -108,11 +109,11 @@ class SolicitacaoController extends Controller
     private function getSolicitacoes()
     {
         $usuario = auth()->user()->usuario;
-        $solicitacoes = null;
         if ($usuario->tipo_usuario == TipoUsuario::CLIENTE) {
             $solicitacoes = Solicitacao::where('cliente_id', '=', $usuario->id)->paginate(10);
         } else {
-            $solicitacoes = Solicitacao::where('status', '=', StatusSolicitacao::PENDENTE)
+            $solicitacoes = Solicitacao::orderBy('status', 'asc')
+                ->orderBy('updated_at')
                 ->paginate(10);
         }
         return $solicitacoes;

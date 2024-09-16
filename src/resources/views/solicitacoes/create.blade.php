@@ -5,7 +5,7 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        
+
 
     </style>
 
@@ -40,7 +40,7 @@
 
                     <label for="descricao">Descrição do Serviço Solicitado*</label>
                     <textarea class="form-control" name="descricao" required>{{ old('descricao') }} </textarea>
-                    
+
                     <div class="form-row">
                         <div>
                             <label for="prazo">Prazo</label>
@@ -51,7 +51,7 @@
                             <input class="form-control" type="text" name="categoria" value="{{ old('categoria') }}" required>
                         </div>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
                 </form>
             </div>

@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="pt">
+
 <head>
-    <x-header-layout/>
+    <x-header-layout />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
     <div class="content-container">
         <main class="main-cntt">
@@ -15,7 +17,7 @@
                     class="">
                     @csrf
                     @method('put')
-                    
+
                     <div class="form-row">
                         <div>
                             <label for="nome">Nome</label>
@@ -43,31 +45,23 @@
                         </div>
                     </div>
 
-                    <label>Funcionários</label>
+                    {{-- <label>Funcionários</label>
                     <x-listbox :availableItems="$funcionarios" :selectedItems="$selected_funcionarios" />
                     @error('selectedItems')
                         <div class="error-message">
                             <i>&#9888;</i> <!-- Ícone de alerta -->
                             {{ $message }}
                         </div>
-                    @enderror
+                    @enderror --}}
 
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
             </div>
         </main>
     </div>
-    <x-item-layout/>
-<body>
+    <x-item-layout />
 
-<script>
-    const toSelect = document.getElementById('selected');
-    const optionElements = toSelect.getElementsByTagName('option');
-    const optionsArray = Array.from(toSelect.options);
+    <body>
 
-    optionsArray.forEach(element => {
-        element.selected = true
-    });
 
-</script>
 </html>

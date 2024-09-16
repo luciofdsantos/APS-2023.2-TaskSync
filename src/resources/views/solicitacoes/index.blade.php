@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-    <x-header-layout/>
+    <x-header-layout />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/solicitacoes.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -12,11 +13,14 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <h1 style="color: #717171;">Solicitações</h1>
-                <a href="{{ route('solicitacoes.create') }}" class="btnAdd btn">Solicitar Serviço +</a>
+                <h1>Solicitações</h1>
+                @can('criar', 'App\Models\Solicitacao')
+                    <a href="{{ route('solicitacoes.create') }}" class="btnAdd btn">Nova Solicitação +</a>
+                @endcan
+
                 <x-message />
-            
-                <table class="tableS" style="font-family: 'Roboto', sans-serif;">
+
+                <table class="table" style="font-family: 'Roboto', sans-serif;">
                     <thead>
                         <tr>
                             <th style="width: 5%;">ID</th>
@@ -34,34 +38,34 @@
                                 <td>{{ $solicitacao->assunto }}</td>
                                 <td>{{ Str::words($solicitacao->descricao, 50, ' . . . ') }}</td>
                                 <td>{{ App\Models\Solicitacao\StatusSolicitacao::get($solicitacao->status) }}</td>
-                                <td>{{ \Carbon\Carbon::parse($solicitacao->prazo)->format('d/m/Y') ?? 'Não definido' }}</td>
+                                <td>{{ \Carbon\Carbon::parse($solicitacao->prazo)->format('d/m/Y') ?? 'Não definido' }}
+                                </td>
                                 <td class="action-icons">
 
                                     @if ($solicitacao->cliente_id == auth()->user()->id)
-                                    <a class="btn bi bi-pencil"
-                                        href="{{ route('solicitacoes.edit', ['solicitacao' => $solicitacao]) }}"></a>
-                                    <br>
+                                        <a class="btn bi bi-pencil"
+                                            href="{{ route('solicitacoes.edit', ['solicitacao' => $solicitacao]) }}"></a>
                                     @endif
-                                    
-                                    <a class="btn bi bi-eye"
+
+                                    @can('visualizar', $solicitacao)
+                                        <a class="btn bi bi-eye"
                                             href="{{ route('solicitacoes.show', ['solicitacao' => $solicitacao]) }}"></a>
-
-
-                                   
+                                    @endcan
 
                                     @can('cancelar', $solicitacao)
                                         <form method="post"
                                             action="{{ route('solicitacoes.cancelar', ['solicitacao' => $solicitacao]) }}"
-                                            onsubmit="return confirm('Deseja cancelar essa solicitação')">
+                                            onsubmit="return confirm('Deseja cancelar essa solicitação')"
+                                            style="display:inline-block;">
                                             @csrf
                                             @method('PUT')
-                                            <button class="btn btn-warning btn-sm">Cancelar</button>
+                                            <button class="btn bi bi-x-circle" title="Cancelar"></button>
                                         </form>
                                     @endcan
 
 
                                     @can('delete', $solicitacao)
-                                    <form method="post"
+                                        <form method="post"
                                             action="{{ route('solicitacoes.destroy', ['solicitacao' => $solicitacao]) }}"
                                             style="display:inline-block;"
                                             onsubmit="return confirm('Deseja excluir esta area de serviço?')">
@@ -69,9 +73,9 @@
                                             @method('DELETE')
                                             <button class="btn delete-button bi bi-trash"></button>
                                         </form>
-                                        @endcan
-                                        {{-- @endcan --}}
-                                    
+                                    @endcan
+                                    {{-- @endcan --}}
+
                                 </td>
                             </tr>
                         @endforeach
@@ -81,5 +85,5 @@
             </div>
         </main>
     </div>
-    <x-item-layout/>
+    <x-item-layout />
 </body>

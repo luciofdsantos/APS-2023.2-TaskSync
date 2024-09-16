@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\AreaDeServicoController;
+use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\SolicitacaoController;
 use App\Http\Controllers\FullCalendarController;
 use App\Models\AreaDeServico;
+use App\Models\Equipe;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +40,18 @@ Route::controller(UsuarioController::class)->middleware('auth')->group(
 
 // AREA DE SERVIÇO
 
+Route::get('/area-de-servico/{area_de_servico}/equipe', [AreaDeServicoController::class, 'equipe'])
+    ->middleware('auth')
+    ->name("area-de-servico.equipe");
+
+Route::get('/area-de-servico/{area_de_servico}/equipe/{equipe}', [AreaDeServicoController::class, 'addEquipe'])
+    ->middleware('auth')
+    ->name("area-de-servico.add-equipe");
+
+Route::get('/area-de-servico/{area_de_servico}/equipe/{equipe}/del', [AreaDeServicoController::class, 'delEquipe'])
+    ->middleware('auth')
+    ->name("area-de-servico.del-equipe");
+
 Route::post('/area-de-servico/{area_de_servico}', [AreaDeServicoController::class, 'modifica'])
     ->middleware('auth')
     ->name("area-de-servico.modifica");
@@ -53,6 +67,11 @@ Route::get(
 )->middleware('auth')->name("area-de-servico.adiciona-funcionario");
 
 Route::resource('area-de-servico', AreaDeServicoController::class)->middleware('auth');
+
+
+// EQUIPE
+
+Route::resource('equipe', EquipeController::class)->middleware('auth');
 
 // TAREFA
 Route::controller(TarefaController::class)->middleware('auth')->group(
@@ -73,6 +92,20 @@ Route::controller(TarefaController::class)->middleware('auth')->group(
 
         //Apagar Tarefa
         Route::delete('/tarefa/{tarefa}', 'destroy')->name("tarefa.destroy");
+
+        // Alterar status
+        Route::post('/tarefa/{id}/update-status', [TarefaController::class, 'updateStatus'])->name('tarefa.updateStatus');
+
+        //Adicionar Notas
+        Route::get('/tarefa/{id}/form-note', [TarefaController::class, 'addNoteForm'])->name('tarefa.formNote');
+        Route::post('/tarefa/{id}/store-note', [TarefaController::class, 'storeNote'])->name('tarefa.storeNote');
+
+        // Mostrar Notas
+        Route::get('/tarefa/{id}/notas', [TarefaController::class, 'showNotas'])->name('tarefa.notas');
+
+        //Excluir Notas
+        Route::delete('/nota/{id}', [TarefaController::class, 'destroyNote'])->name('nota.destroy');
+
     }
 );
 

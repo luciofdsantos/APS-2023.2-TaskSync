@@ -3,9 +3,11 @@
 namespace App\Models\Solicitacao;
 
 use App\Models\Usuario\TipoUsuario;
+use App\Models\Usuario\Usuario;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Solicitacao extends Model
 {
@@ -19,6 +21,11 @@ class Solicitacao extends Model
         'cliente_id'
     ];
     protected $table = 'solicitacoes';
+
+    public function cliente() : HasOne{
+
+        return $this->hasOne(Usuario::class, 'id','cliente_id');
+    }
 
     public function podeEditar(): bool
     {

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
-    <x-header-layout/>
+    <x-header-layout />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
     <div class="content-container">
         <main class="main-cntt">
@@ -25,7 +27,8 @@
                     <label for="gerente_id">Gerente responsável</label>
                     <select class="form-control" class="form-control" name="gerente_id" value="0" style="border-radius: 15px;">
                         @foreach ($gerentes as $gerente)
-                            <option value="{{ $gerente['id'] }}">{{ $gerente->user->name . ' - ' . $gerente->cpf }}</option>
+                            <option value="{{ $gerente['id'] }}">{{ $gerente->user->name . ' - ' . $gerente->cpf }}
+                            </option>
                         @endforeach
                     </select>
                     @error('gerente_id')
@@ -36,14 +39,14 @@
                     @enderror
                     <br>
 
-                    <label>Funcionários</label>
+                    {{-- <label>Funcionários</label>
                     <x-listbox :availableItems="$funcionarios" :selectedItems="[]" class="form-control"/>
                     @error('selectedItems')
                         <div class="error-message">
                             <i>&#9888;</i> <!-- Ícone de alerta -->
                             {{ $message }}
                         </div>
-                    @enderror
+                    @enderror --}}
 
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>

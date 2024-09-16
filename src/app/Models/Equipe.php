@@ -1,38 +1,31 @@
 <?php
 
-namespace App\Models\Tarefa;
+namespace App\Models;
 
 use App\Models\Usuario\Usuario;
-use App\Models\Nota;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Tarefa extends Model
+class Equipe extends Model
 {
+    use HasFactory;
+
+    protected $table = "equipe";
 
     protected $fillable = [
-        'titulo',
+        'id',
+        'nome',
         'descricao',
-        'prazo',
-        'prioridade',
-        'data_conclusao',
     ];
 
     public function funcionarios(): BelongsToMany
     {
         return $this->belongsToMany(
             Usuario::class,
-            'tarefa_usuarios',
-            'tarefa_id',
-            'usuario_id',
+            'funcionario_equipe',
+            'equipe_id',
+            'funcionario_id'
         );
-    }
-
-
-    public function notas()
-    {
-        return $this->hasMany(Nota::class, 'tarefa_id');
     }
 }

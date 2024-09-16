@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\SelectArray;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAreaDeServicoRequest extends FormRequest
+class EquipeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +22,9 @@ class UpdateAreaDeServicoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => ['required', 'max:255'],
-            'gerente_id' => ['integer', 'required'],
-            // 'selectedItems' => ['required'],
+            'nome' => 'required|max:255',
+            'descricao' => 'required|max:255',
+            'selectedItems' => 'required',
         ];
     }
 }

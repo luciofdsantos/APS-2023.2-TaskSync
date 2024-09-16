@@ -1,5 +1,5 @@
 <div class="task card w-75" draggable="true" value="{{ $tarefa->id }}">
-    <p> Nome: {{ $tarefa->nome }} </p>
+    <p> Nome: {{ $tarefa->titulo }} </p>
     <p> Descrição: {{ $tarefa->descricao }} </p>
     <p> Funcionarios: </p>
     @foreach ($tarefa->funcionarios as $funcionario)

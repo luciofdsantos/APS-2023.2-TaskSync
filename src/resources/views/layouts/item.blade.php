@@ -57,6 +57,7 @@
                     href="/calendar">
                     <i class="bi bi-calendar3 me-2"></i> Calendário
                 </a>
+
                 @can('usuarios', 'App\Models\Usuario\Usuario')
                     <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('usuario') ? 'btn-active' : 'btn-outline-primary' }}"
                         href="/usuario">
@@ -74,6 +75,10 @@
                 <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('solicitacoes') ? 'btn-active' : 'btn-outline-primary' }}"
                     href="/solicitacoes">
                     <i class="bi bi-envelope-exclamation me-2"></i> Solicitacoes
+                </a>
+                <a class="btn-nav btn d-flex align-items-center mb-2 {{ request()->is('equipe') ? 'btn-active' : 'btn-outline-primary' }}"
+                    href="/equipe">
+                    <i class="bi  bi-person-lines-fill me-2"></i> Equipes
                 </a>
             </nav>
         </aside>
@@ -114,6 +119,10 @@
                 <a href="/solicitacoes"
                     class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn-mini' : 'btn-outline-primary' }}">
                     <i class="bi bi-envelope-exclamation" style="font-size: 1.5rem"></i>
+                </a>
+                <a href="/solicitacoes"
+                    class="text-dark mb-4 {{ request()->is('equipe') ? 'btn-mini' : 'btn-outline-primary' }}">
+                    <i class="bi bi-person-lines-fill" style="font-size: 1.5rem"></i>
                 </a>
             </div>
         </aside>
