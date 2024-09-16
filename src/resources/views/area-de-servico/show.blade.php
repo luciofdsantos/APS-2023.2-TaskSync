@@ -3,6 +3,7 @@
 
 <head>
     <x-header-layout />
+    <link href="{{ asset('css/kanban.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
@@ -19,14 +20,22 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <a class="btn btn-secondary" href="{{ route('area-de-servico.index') }}">Voltar</a>
                 {{-- <a class="btn btn-success" href="{{ route('tarefa.create', ['area_de_servico' => $area_de_servico]) }}">Adicionar
                     Tarefa</a> --}}
+<<<<<<< Updated upstream
                 <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tarefa-form">Adicionar Tarefa</a>
+=======
+                {{--<a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tarefa-form">Adicionar Tarefa</a> --}}
+                
+                <a class="btn bg-primary"
+                    href="{{ route('area-de-servico.equipe', ['area_de_servico' => $area_de_servico]) }}">Editar
+                    Equipes</a>
+
+>>>>>>> Stashed changes
 
                 <x-message />
 
-                <table>
+                {{--<table>
                     <tr>
                         <td>Nome:</td>
                         <td>{{ $area_de_servico->nome }}</td>
@@ -41,7 +50,7 @@
                             <td>{{ $funcionario->user->name }}</td>
                         @endforeach
                     </tr>
-                </table>
+                </table> --}}
 
 
 
@@ -54,8 +63,8 @@
 
                         <div class="row">
                             <div class="col-sm">
-                                <div class="card cartao" id="to-do">
-                                    <h3>TO-DO</h3>
+                                <div class="kanban-card cartao" id="to-do">
+                                    <h3>Abertas</h3>
                                     @foreach ($tarefas as $tarefa)
                                         @if ($tarefa->status == App\Models\Tarefa\StatusTarefa::A_FAZER)
                                             @include('area-de-servico.cartao', ['tarefa' => $tarefa])
@@ -64,8 +73,8 @@
                                 </div>
                             </div>
                             <div class="col-sm">
-                                <div class="card cartao" id="doing">
-                                    <h3>DOING</h3>
+                                <div class="kanban-card cartao" id="doing">
+                                    <h3>Em Progresso</h3>
                                     @foreach ($tarefas as $tarefa)
                                         @if ($tarefa->status == App\Models\Tarefa\StatusTarefa::FAZENDO)
                                             @include('area-de-servico.cartao', ['tarefa' => $tarefa])
@@ -74,8 +83,8 @@
                                 </div>
                             </div>
                             <div class="col-sm">
-                                <div class="card cartao" id="finished">
-                                    <h3>FINISHED</h3>
+                                <div class="kanban-card cartao" id="finished">
+                                    <h3>Concluídas</h3>
 
                                     @foreach ($tarefas as $tarefa)
                                         @if ($tarefa->status == App\Models\Tarefa\StatusTarefa::CONCLUIDA)
