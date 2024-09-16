@@ -183,6 +183,11 @@ class TarefaController extends Controller
         }
 
         $tarefa->status = $request->status;
+
+        if ($tarefa->status == StatusTarefa::CONCLUIDA) {
+            $tarefa->data_conclusao = date('Y-m-d');
+        }
+
         $tarefa->save();
 
         return redirect()->route('tarefa.index')->with('success', 'Status atualizado com sucesso!');
