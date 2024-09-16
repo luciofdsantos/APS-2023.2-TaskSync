@@ -17,6 +17,7 @@ class Tarefa extends Model
         'descricao',
         'prazo',
         'prioridade',
+        'data_conclusao',
     ];
 
     public function funcionarios(): BelongsToMany
