@@ -6,6 +6,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\SolicitacaoController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\RelatoriosController;
+use App\Http\Controllers\SiteController;
 use App\Models\AreaDeServico;
 use App\Models\Equipe;
 use Illuminate\Support\Facades\Route;
@@ -105,7 +107,6 @@ Route::controller(TarefaController::class)->middleware('auth')->group(
 
         //Excluir Notas
         Route::delete('/nota/{id}', [TarefaController::class, 'destroyNote'])->name('nota.destroy');
-
     }
 );
 
@@ -142,7 +143,25 @@ Route::controller(SolicitacaoController::class)->middleware('auth')->group(
 Route::controller(FullCalendarController::class)->middleware('auth')->group(
     function () {
         Route::get('/calendar', 'index')->name('calendar.index');
-        Route::get('/calendar/get', 'get')->name('calendar.get');
+        Route::post('/calendar', 'index')->name('calendar.index');
+        Route::get('/calendar/get/{area_de_servico_id?}', 'get')->name('calendar.get');
+    }
+);
+
+
+Route::controller(RelatoriosController::class)->middleware('auth')->group(
+
+    function () {
+        Route::get('/reports', 'index')->name('relatorios.index');
+
+        Route::get('/reports/tarefas-area', 'tarefasArea')->name('relatorios.tarefasArea');
+        Route::post('/reports/tarefas-area', 'buscaTarefasArea')->name('relatorios.buscaTarefasArea');
+
+        Route::get('/reports/funcionarios', 'funcionarios')->name('relatorios.funcionarios');
+        Route::post('/reports/funcionarios', 'buscaTarefasFuncionarios')->name('relatorios.buscaTarefasFuncionarios');
+
+        Route::get('/reports/clientes', 'clientes')->name('relatorios.clientes');
+        Route::post('/reports/clientes', 'buscaSolicitacoesClientes')->name('relatorios.buscaSolicitacoesClientes');
     }
 );
 
@@ -151,7 +170,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [AreaDeServicoController::class, 'dashboard'])->middleware('auth')->name('dashboard');
+Route::get('/dashboard', [SiteController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
