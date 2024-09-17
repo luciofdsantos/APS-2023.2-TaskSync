@@ -120,7 +120,7 @@
                     class="text-dark mb-4 {{ request()->is('solicitacoes') ? 'btn-mini' : 'btn-outline-primary' }}">
                     <i class="bi bi-envelope-exclamation" style="font-size: 1.5rem"></i>
                 </a>
-                <a href="/solicitacoes"
+                <a href="/equipe"
                     class="text-dark mb-4 {{ request()->is('equipe') ? 'btn-mini' : 'btn-outline-primary' }}">
                     <i class="bi bi-person-lines-fill" style="font-size: 1.5rem"></i>
                 </a>

@@ -11,7 +11,7 @@
 
         <main class="main-cntt">
             <div class="content-box">
-                <a class="btn btn-secondary" href="{{ route('equipe.index') }}">Voltar</a>
+                <h2>Editar Equipe</h2>
 
                 <div class="table-responsive">
                     <form method="post" class="form-control"

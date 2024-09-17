@@ -4,21 +4,6 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <x-header-layout />
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@3.4.0/index.global.min.js'></script>
-    <script src="{{ asset('assets/fullcalendar-3.4.0/locale/pt-br.js') }}"></script>
-</head>
-
-<body>
 
     <head>
         <x-header-layout />
@@ -81,13 +66,11 @@
             }
         </style>
     </head>
-
     <body>
         <div class="content-container">
             <main class="main-cntt">
                 <div class="content-box">
                     <h2>Calendário</h2>
-                    <br />
                     <div class="container">
                         <div id="calendar"></div>
                     </div>

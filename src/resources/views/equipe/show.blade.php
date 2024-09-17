@@ -8,11 +8,8 @@
 <body>
     <div class="content-container">
         <main class="main-cntt">
-                @if (app('request')->input('url'))
-                    <a href="{{ app('request')->input('url') }}" class="btn btn-secondary">Voltar</a>
-                @else
-                    <a href="{{ route('equipe.index') }}" class="btn btn-secondary">Voltar</a>
-                @endif
+                
+                <h2>Equipe</h2>
 
                 <table class="table">
 
