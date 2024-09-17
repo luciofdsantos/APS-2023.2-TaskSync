@@ -18,7 +18,6 @@ class AreaDeServicoPolicy
         $usuario = $user->usuario;
 
         if (
-            $usuario->tipo_usuario == TipoUsuario::FUNCIONARIO ||
             $usuario->tipo_usuario == TipoUsuario::GERENTE ||
             $usuario->tipo_usuario == TipoUsuario::ADMINISTRADOR
         ) {
