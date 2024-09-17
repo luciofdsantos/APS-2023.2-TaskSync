@@ -1,6 +1,3 @@
-<?php
-//index.php
-?>
 <!DOCTYPE html>
 <html>
 
@@ -25,6 +22,21 @@
                 <h2>Calendário</h2>
                 <br />
                 <div class="container">
+                    @can('alterarArea')
+                        <form method="POST">
+                            @csrf
+                            <label>Area de Serviço:</label>
+                            <select name="area_de_servico_id">
+                                <option value="" selected></option>
+                                @foreach ($areas as $area)
+                                    <option value="{{ $area->id }}">{{ $area->nome }}</option>
+                                @endforeach
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </form>
+                        <hr>
+                    @endcan
                     <div id="calendar"></div>
                 </div>
             </div>
@@ -46,7 +58,7 @@
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            events: '/calendar/get',
+            events: "{{ $url }}",
             selectable: true,
             selectHelper: true,
             editable: false,
