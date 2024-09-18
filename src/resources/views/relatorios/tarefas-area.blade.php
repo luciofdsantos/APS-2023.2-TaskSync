@@ -59,9 +59,9 @@
                         <tbody>
                             @foreach ($tarefas as $tarefa)
                                 <tr>
-                                    <td style="width: 5%;">{{ $tarefa->id }}</td>
-                                    <td style="width: 20%;">{{ $tarefa->titulo }}</td>
-                                    <td style="width: 35%;">{{ $tarefa->descricao }}</td>
+                                    <td style="width: 3%;">{{ $tarefa->id }}</td>
+                                    <td style="width: 15%;">{{ $tarefa->titulo }}</td>
+                                    <td style="width: 25%;">{{ $tarefa->descricao }}</td>
                                     <td style="width: 20%;">
                                         <ul>
                                             @foreach ($tarefa->funcionarios as $funcionario)
@@ -71,8 +71,8 @@
                                     </td>
                                     <td style="width: 10;">{{ App\Models\Tarefa\StatusTarefa::get($tarefa->status) }}
                                     </td>
-                                    <td style="width: 20%;"> {{ $tarefa->prazo }}</td>
-                                    <td style="width: 20%;"> {{ $tarefa->data_conclusao ?? 'Não concluída' }}</td>
+                                    <td style="width: 10%;"> {{ $tarefa->prazo }}</td>
+                                    <td style="width: 15%;"> {{ $tarefa->data_conclusao ?? 'Não concluída' }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

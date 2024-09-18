@@ -29,6 +29,47 @@
             border-radius: 0.3rem;
             outline: 0;
         }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ccc; /* Linha separadora */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header h2 {
+            margin: 0;
+        }
+
+        .edit-team-button-container {
+            text-align: center;
+        }
+        .edit-team-button {
+            display: inline-block;
+            width: 200px;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 15px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .edit-team-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .edit-team-button:focus {
+            outline: none;
+        }
+        @media (max-width: 768px) {
+            .edit-team-button {
+            width: 150px;
+            
+            }
+        }
     </style>
 
 </head>
@@ -38,6 +79,13 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
+                <div class="header">
+                    <h2>Área de Serviço</h2>
+                    <div class="edit-team-button-container">
+                        <a class="edit-team-button"
+                            href="{{ route('area-de-servico.equipe', ['area_de_servico' => $area_de_servico]) }}">Editar Equipes</a>
+                    </div>
+                </div>
                 <x-message />
 
 
@@ -147,6 +195,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </main>
     </div>

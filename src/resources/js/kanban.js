@@ -5,13 +5,13 @@ let changed = false;
 
 draggable.forEach((task) => {
     task.addEventListener("dragstart", () => {
-        task.classList.add("bg-info");
+        task.classList.add("dragging-gray");
         task.classList.add("is-dragging");
         changed = true;
     });
 
     task.addEventListener("dragend", () => {
-        task.classList.remove("bg-info");
+        task.classList.remove("dragging-gray");
         task.classList.remove("is-dragging");
         itera_filhos();
     });
