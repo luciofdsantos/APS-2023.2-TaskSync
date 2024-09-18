@@ -13,6 +13,24 @@
     @php
         $area_funcionarios = $area_de_servico->funcionarios;
     @endphp
+
+    <style>
+        .modal-conteudo {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            width: 100%;
+            pointer-events: auto;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0.3rem;
+            outline: 0;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -32,14 +50,17 @@
                             <div class="col-sm">
                                 <div class="cardKanban cartao" id="to-do">
                                     <div class="title" style="background-color: #9C9C9C;">
-                                    <h5>Abertas</h5>
+                                        <h5>Abertas</h5>
                                     </div>
-                                    <a href="{{ route('area-de-servico.create') }}" data-bs-toggle="modal" data-bs-target="#tarefa-form" id="btnAdd" class="btnAddK" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
-                                        <div style="display: flex; justify-content: space-between; width: 100%; padding: 5px 15px;">
+                                    <a href="{{ route('area-de-servico.create') }}" data-bs-toggle="modal"
+                                        data-bs-target="#tarefa-form" id="btnAdd" class="btnAddK"
+                                        style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
+                                        <div
+                                            style="display: flex; justify-content: space-between; width: 100%; padding: 5px 15px;">
                                             <span>Nova Tarefa</span>
                                             <span>+</span>
                                         </div>
-                                        
+
                                     </a>
                                     @foreach ($tarefas as $tarefa)
                                         @if ($tarefa->status == App\Models\Tarefa\StatusTarefa::A_FAZER)
@@ -47,19 +68,22 @@
                                         @endif
                                     @endforeach
                                 </div>
-                                <br/>
+                                <br />
                             </div>
                             <div class="col-sm">
                                 <div class="cardKanban cartao" id="doing">
                                     <div class="title" style="background-color: #0062FF;">
                                         <h5>Em Processo</h5>
                                     </div>
-                                    <a href="{{ route('area-de-servico.create') }}" data-bs-toggle="modal" data-bs-target="#tarefa-form" id="btnAdd" class="btnAddK" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
-                                        <div style="display: flex; justify-content: space-between; width: 100%; padding: 5px 15px;">
+                                    <a href="{{ route('area-de-servico.create') }}" data-bs-toggle="modal"
+                                        data-bs-target="#tarefa-form" id="btnAdd" class="btnAddK"
+                                        style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
+                                        <div
+                                            style="display: flex; justify-content: space-between; width: 100%; padding: 5px 15px;">
                                             <span>Nova Tarefa</span>
                                             <span>+</span>
                                         </div>
-                                        
+
                                     </a>
                                     @foreach ($tarefas as $tarefa)
                                         @if ($tarefa->status == App\Models\Tarefa\StatusTarefa::FAZENDO)
@@ -67,19 +91,22 @@
                                         @endif
                                     @endforeach
                                 </div>
-                                <br/>
+                                <br />
                             </div>
                             <div class="col-sm">
                                 <div class="cardKanban cartao" id="finished">
                                     <div class="title" style="background-color: #00E823;">
                                         <h5>Concluídas</h5>
                                     </div>
-                                    <a href="{{ route('area-de-servico.create') }}" data-bs-toggle="modal" data-bs-target="#tarefa-form" id="btnAdd" class="btnAddK" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
-                                        <div style="display: flex; justify-content: space-between; width: 100%; padding: 5px 15px;">
+                                    <a href="{{ route('area-de-servico.create') }}" data-bs-toggle="modal"
+                                        data-bs-target="#tarefa-form" id="btnAdd" class="btnAddK"
+                                        style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
+                                        <div
+                                            style="display: flex; justify-content: space-between; width: 100%; padding: 5px 15px;">
                                             <span>Nova Tarefa</span>
                                             <span>+</span>
                                         </div>
-                                        
+
                                     </a>
                                     @foreach ($tarefas as $tarefa)
                                         @if ($tarefa->status == App\Models\Tarefa\StatusTarefa::CONCLUIDA)
@@ -89,7 +116,7 @@
 
                                 </div>
                             </div>
-                            <br/>
+                            <br />
                         </div>
 
                         <input type="hidden" id="tarefas_a_fazer" value="" name="tarefas_a_fazer" />
@@ -113,12 +140,10 @@
 
                 <div class="modal fade" id="funcionarios-form" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content1">
-                            <div class="card1">
+                        <div class="modal-content">
                             @include('area-de-servico.funcionarios', [
                                 'funcionarios' => $area_de_servico->funcionarios,
                             ])
-                            </div>
                         </div>
                     </div>
                 </div>
