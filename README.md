@@ -1,9 +1,6 @@
 # APS-2023.2-TaskSync
 
 
-Seções que devem ser adicionadas no README.md
-Sobre o Projeto
-
 # **Sobre o Projeto**
 
 "Repositório destinado ao desenvolvimento do trabalho da disciplina Análise de Projeto de Sistemas do Instituto Federal do Norte de Minas Gerais (IFNMG - Montes Claros) do curso de Ciência da Computação. Nele estará mantido o processo de documentação de requisitos, modelagem, análise e código desenvolvido pela turma. O tema escolhido foi **Task Sync** , o qual foi submetidos a etapa de elicitação de requisitos, elaboração, análise do projeto e desenvolvimento do código, sendo as técnicas utilizadas em conformidade com a disciplina. "
