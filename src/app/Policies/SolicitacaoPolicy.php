@@ -12,6 +12,16 @@ use Illuminate\Auth\Access\Response;
 class SolicitacaoPolicy
 {
 
+    public function verSolicitacoes(User $user)
+    {
+        $usuario = $user->usuario;
+
+        if ($usuario->tipo_usuario == TipoUsuario::CLIENTE || $usuario->tipo_usuario == TipoUsuario::GERENTE) {
+            return true;
+        }
+        return false;
+    }
+
     public function criar(User $user)
     {
         $usuario = $user->usuario;

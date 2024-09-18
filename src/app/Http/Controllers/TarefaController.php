@@ -34,7 +34,9 @@ class TarefaController extends Controller
                 $tarefas = Tarefa::leftJoin('area_de_servico_tarefas', 'area_de_servico_tarefas.tarefa_id', '=', 'tarefas.id')
                     ->leftJoin('area_de_servico', 'area_de_servico.id', '=', 'area_de_servico_tarefas.area_de_servico_id')
                     ->where('area_de_servico.gerente_id', '=', $usuario->id)->paginate(10);
+                break;
         }
+
         // $tarefas = Tarefa::paginate(10);
 
         return view('tarefa.index', compact('tarefas'));

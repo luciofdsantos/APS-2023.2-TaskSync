@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Equipe;
 use App\Models\User;
+use App\Models\Usuario\TipoUsuario;
 use Illuminate\Auth\Access\Response;
 
 class EquipePolicy
@@ -13,7 +14,13 @@ class EquipePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        $usuario = $user->usuario;
+
+        if ($usuario->tipo_usuario == TipoUsuario::ADMINISTRADOR) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

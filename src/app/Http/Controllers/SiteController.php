@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AreaDeServico;
 use App\Models\Tarefa\StatusTarefa;
+use App\Models\Usuario\TipoUsuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +12,23 @@ class SiteController extends Controller
 {
     public function dashboard()
     {
-        $areas_de_servico = AreaDeServico::paginate(10);
+        $usuario = auth()->user()->usuario;
+
+        if ($usuario->tipo_usuario == TipoUsuario::FUNCIONARIO) {
+            return redirect()->route("tarefa.index");
+        }
+        if ($usuario->tipo_usuario == TipoUsuario::CLIENTE) {
+            return redirect()->route("solicitacoes.index");
+        }
+        $areas_de_servico = null;
+
+        if ($usuario->tipo_usuario == TipoUsuario::GERENTE) {
+            $areas_de_servico = AreaDeServico::where('gerente_id', $usuario->id)->paginate(10);
+        } else {
+            $areas_de_servico = AreaDeServico::paginate(10);
+        }
+
+
 
         $tarefas = DB::table('area_de_servico_tarefas')->select([
             'area_de_servico.nome as nome',

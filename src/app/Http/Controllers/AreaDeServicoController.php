@@ -27,7 +27,14 @@ class AreaDeServicoController extends Controller
     public function index()
     {
         $this->authorize('areasDeServico', AreaDeServico::class);
-        $areas_de_servico = AreaDeServico::paginate(10);
+        $usuario = auth()->user()->usuario;
+
+        if ($usuario->tipo_usuario == TipoUsuario::GERENTE) {
+            $areas_de_servico = AreaDeServico::where('gerente_id', $usuario->id)->paginate(10);
+        } else {
+            $areas_de_servico = AreaDeServico::paginate(10);
+        }
+
         return view('area-de-servico.index', ['areas_de_servico' => $areas_de_servico]);
     }
 
