@@ -21,10 +21,12 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Nome</th>
-                                    <th>Descrição</th>
-                                    <th>Ações</th>
+                                    <th style="width: 5%;">Id</th>
+                                    <th style="width: 25%;">Nome</th>
+                                    <th style="width: 55%;">Descrição</th>
+                                    <th><th>
+                                        <th><th>
+                                    <th style="width: 15%;">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -33,6 +35,8 @@
                                         <td>{{ $equipe->id }}</td>
                                         <td>{{ $equipe->nome }}</td>
                                         <td>{{ $equipe->descricao }}</td>
+                                        <th><th>
+                                        <th><th>
                                         <td class="action-icons">
                                             <a class="btn bi bi-pencil"
                                                 href="{{ route('equipe.edit', ['equipe' => $equipe]) }}""></a>
