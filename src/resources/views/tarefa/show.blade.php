@@ -13,25 +13,20 @@
         <main class="main-cntt">
             <div class="content-box">
                 <h1 style="color: #717171;">Visualizar Tarefa</h1>
-                <br />
+
                 {{-- <h1>{{ $tarefa->titulo }}</h1>
                 <p>Descrição: {{ $tarefa->descricao }}</p>
                 <p>Prazo: {{ $tarefa->deadline }}</p> --}}
 
-
-                @if (app('request')->input('url'))
-                    <a href="{{ app('request')->input('url') }}" class="btn btn-secondary">Voltar</a>
-                @else
-                    <a href="{{ route('tarefa.index') }}" class="btn btn-secondary">Voltar</a>
-                @endif
                 @can('editar', 'App\Models\Tarefa\Tarefa')
                     <form method="post" action="{{ route('tarefa.destroy', ['tarefa' => $tarefa]) }}"
                         onsubmit="return confirm('Deseja excluir esta tarefa?')">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger">Deletar</button>
+                        <button class="btn btn-danger" style="border: 20px;">Deletar</button>
                     </form>
                 @endcan
+                <br/>
 
                 <table class="table">
 
@@ -74,6 +69,9 @@
 
                     </tbody>
                 </table>
+            </div>
+        </main>
+    </div>
                 <x-item-layout />
 </body>
 

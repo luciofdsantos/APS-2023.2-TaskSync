@@ -3,6 +3,7 @@
 
 <head>
     <x-header-layout />
+    <link href="{{ asset('css/kanban.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
@@ -12,6 +13,24 @@
     @php
         $area_funcionarios = $area_de_servico->funcionarios;
     @endphp
+
+    <style>
+        .modal-conteudo {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            width: 100%;
+            pointer-events: auto;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0.3rem;
+            outline: 0;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -19,34 +38,7 @@
     <div class="content-container">
         <main class="main-cntt">
             <div class="content-box">
-                <a class="btn btn-secondary" href="{{ route('area-de-servico.index') }}">Voltar</a>
-                {{-- <a class="btn btn-success" href="{{ route('tarefa.create', ['area_de_servico' => $area_de_servico]) }}">Adicionar
-                    Tarefa</a> --}}
-                <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tarefa-form">Adicionar Tarefa</a>
-                <a class="btn bg-primary"
-                    href="{{ route('area-de-servico.equipe', ['area_de_servico' => $area_de_servico]) }}">Editar
-                    Equipes</a>
-
-
                 <x-message />
-
-                <table>
-                    <tr>
-                        <td>Nome:</td>
-                        <td>{{ $area_de_servico->nome }}</td>
-                    </tr>
-                    <tr>
-                        <td>Gerente:</td>
-                        <td>{{ $area_de_servico->gerente->user->name }}</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="{{ count($area_funcionarios) }}">Funcionarios:</td>
-                        @foreach ($area_funcionarios as $funcionario)
-                            <td>{{ $funcionario->user->name }}</td>
-                        @endforeach
-                    </tr>
-                </table>
-
 
 
                 <div class="board">
@@ -54,33 +46,68 @@
                         action="{{ route('area-de-servico.modifica', ['area_de_servico' => $area_de_servico]) }}"
                         id="tarefas">
                         @csrf
-                        {{-- <button class="btn btn-info" type="submit">Adicionar</button> --}}
-
                         <div class="row">
                             <div class="col-sm">
-                                <div class="card cartao" id="to-do">
-                                    <h3>TO-DO</h3>
+                                <div class="cardKanban cartao" id="to-do">
+                                    <div class="title" style="background-color: #9C9C9C;">
+                                        <h5>Abertas</h5>
+                                    </div>
+                                    <a href="{{ route('area-de-servico.create') }}" data-bs-toggle="modal"
+                                        data-bs-target="#tarefa-form" id="btnAdd" class="btnAddK"
+                                        style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
+                                        <div
+                                            style="display: flex; justify-content: space-between; width: 100%; padding: 5px 15px;">
+                                            <span>Nova Tarefa</span>
+                                            <span>+</span>
+                                        </div>
+
+                                    </a>
                                     @foreach ($tarefas as $tarefa)
                                         @if ($tarefa->status == App\Models\Tarefa\StatusTarefa::A_FAZER)
                                             @include('area-de-servico.cartao', ['tarefa' => $tarefa])
                                         @endif
                                     @endforeach
                                 </div>
+                                <br />
                             </div>
                             <div class="col-sm">
-                                <div class="card cartao" id="doing">
-                                    <h3>DOING</h3>
+                                <div class="cardKanban cartao" id="doing">
+                                    <div class="title" style="background-color: #0062FF;">
+                                        <h5>Em Processo</h5>
+                                    </div>
+                                    <a href="{{ route('area-de-servico.create') }}" data-bs-toggle="modal"
+                                        data-bs-target="#tarefa-form" id="btnAdd" class="btnAddK"
+                                        style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
+                                        <div
+                                            style="display: flex; justify-content: space-between; width: 100%; padding: 5px 15px;">
+                                            <span>Nova Tarefa</span>
+                                            <span>+</span>
+                                        </div>
+
+                                    </a>
                                     @foreach ($tarefas as $tarefa)
                                         @if ($tarefa->status == App\Models\Tarefa\StatusTarefa::FAZENDO)
                                             @include('area-de-servico.cartao', ['tarefa' => $tarefa])
                                         @endif
                                     @endforeach
                                 </div>
+                                <br />
                             </div>
                             <div class="col-sm">
-                                <div class="card cartao" id="finished">
-                                    <h3>FINISHED</h3>
+                                <div class="cardKanban cartao" id="finished">
+                                    <div class="title" style="background-color: #00E823;">
+                                        <h5>Concluídas</h5>
+                                    </div>
+                                    <a href="{{ route('area-de-servico.create') }}" data-bs-toggle="modal"
+                                        data-bs-target="#tarefa-form" id="btnAdd" class="btnAddK"
+                                        style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
+                                        <div
+                                            style="display: flex; justify-content: space-between; width: 100%; padding: 5px 15px;">
+                                            <span>Nova Tarefa</span>
+                                            <span>+</span>
+                                        </div>
 
+                                    </a>
                                     @foreach ($tarefas as $tarefa)
                                         @if ($tarefa->status == App\Models\Tarefa\StatusTarefa::CONCLUIDA)
                                             @include('area-de-servico.cartao', ['tarefa' => $tarefa])
@@ -89,6 +116,7 @@
 
                                 </div>
                             </div>
+                            <br />
                         </div>
 
                         <input type="hidden" id="tarefas_a_fazer" value="" name="tarefas_a_fazer" />
@@ -103,7 +131,7 @@
                 <div class="modal fade" id="tarefa-form" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="card">
+                            <div class="card1">
                                 @include('tarefa.form', ['area_de_servico' => $area_de_servico])
                             </div>
                         </div>

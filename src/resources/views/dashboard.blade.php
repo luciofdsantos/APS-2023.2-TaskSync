@@ -6,6 +6,7 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
     <style>
+        /* TODO ADICIONAR EM UM ARQUIVO .css */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -91,6 +92,38 @@
             transition: color 0.3s, transform 0.5s;
             /* Adiciona uma transição suave */
         }
+
+        .calendar-icon {
+            position: absolute;
+            bottom: 90px;
+            left: 40px;
+            display: inline-block;
+            background-color: #E9ECEF;
+            color: #717171;
+            border-radius: 5px;
+            /* Mantém as bordas arredondadas */
+            padding: 12px;
+            /* Aumenta o padding para criar um quadrado mais proporcional */
+            text-align: center;
+            /* Centraliza o ícone dentro do quadrado */
+            width: 50px;
+            /* Define uma largura fixa */
+            height: 50px;
+            /* Define uma altura fixa igual à largura para um quadrado */
+            line-height: 25px;
+            /* Alinha verticalmente o ícone no meio */
+        }
+
+        .calendar-icon i {
+            font-size: 1.5rem;
+        }
+
+        .calendar-icon:hover {
+            background-color: #007bff;
+            /* Cor de fundo ao passar o mouse */
+            color: white;
+            /* Cor do ícone ao passar o mouse */
+        }
     </style>
 </head>
 
@@ -104,47 +137,63 @@
                     shuffle($cores);
                     ?>
                     @foreach ($areas_de_servico as $index => $area_de_servico)
-                    <?php $corAleatoria = $cores[$index % count($cores)]; ?>
-                    <div class="card btn" style="background-color: {{$corAleatoria}}; position: relative;">
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-size: 21px; color: white;">
-                                {{$area_de_servico->nome}}
-                            </h5>
+                        <?php $corAleatoria = $cores[$index % count($cores)]; ?>
+                        <div class="card btn" style="background-color: {{ $corAleatoria }}; position: relative;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 21px; color: white; text-align: left">
+                                    {{ $area_de_servico->nome }}
+                                </h5>
 
-                            <!-- Botão de opções com ícone Bootstrap -->
-                            <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
-                                <button class="btn-options">
-                                    <i class="bi bi-three-dots"></i> <!-- Ícone Bootstrap -->
-                                </button>
-
-                                <div class="dropdown-content">
-                                    <!-- Botão de Visualizar -->
-                                    <a href="{{ route('area-de-servico.show', ['area_de_servico' => $area_de_servico['id']]) }}" style="display: flex; align-items: center;">
-                                        <i class="bi bi-eye" style="margin-right: 8px;"></i> Visualizar
+                                <!-- Ícone do calendário localizado no canto inferior esquerdo do card -->
+                                <div>
+                                    <a href="{{ route('calendar.index') }}" title="Acessar Calendário"
+                                        class="calendar-icon">
+                                        <i class="bi bi-calendar2-check"></i>
                                     </a>
-
-                                    <!-- Botão de Editar -->
-                                    <a href="{{ route('area-de-servico.edit', ['area_de_servico' => $area_de_servico['id']]) }}" style="display: flex; align-items: center;">
-                                        <i class="bi bi-pencil" style="margin-right: 8px;"></i> Editar
-                                    </a>
-
-                                    <!-- Botão de Excluir com Formulário -->
-                                    <form action="{{ route('area-de-servico.destroy', ['area_de_servico' => $area_de_servico['id']]) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir esta área de serviço?');" style="display: flex; align-items: center;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn-delete" style="border: none; background-color: transparent; color: black; padding: 12px 16px; cursor: pointer; display: flex; align-items: center; width: 100%;">
-                                            <i class="bi bi-trash" style="margin-right: 8px;"></i> Excluir
-                                        </button>
-                                    </form>
                                 </div>
 
+                                <!-- Botão de opções com ícone Bootstrap -->
+                                <div class="dropdown" style="position: absolute; top: 10px; right: 10px;">
+                                    <button class="btn-options">
+                                        <i class="bi bi-three-dots"></i> <!-- Ícone Bootstrap -->
+                                    </button>
+
+                                    <div class="dropdown-content">
+                                        <!-- Botão de Visualizar -->
+                                        <a href="{{ route('area-de-servico.show', ['area_de_servico' => $area_de_servico['id']]) }}"
+                                            style="display: flex; align-items: center;">
+                                            <i class="bi bi-eye" style="margin-right: 8px;"></i> Visualizar
+                                        </a>
+
+                                        <!-- Botão de Editar -->
+                                        <a href="{{ route('area-de-servico.edit', ['area_de_servico' => $area_de_servico['id']]) }}"
+                                            style="display: flex; align-items: center;">
+                                            <i class="bi bi-pencil" style="margin-right: 8px;"></i> Editar
+                                        </a>
+
+                                        <!-- Botão de Excluir com Formulário -->
+                                        <form
+                                            action="{{ route('area-de-servico.destroy', ['area_de_servico' => $area_de_servico['id']]) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Tem certeza que deseja excluir esta área de serviço?');"
+                                            style="display: flex; align-items: center;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn-delete"
+                                                style="border: none; background-color: transparent; color: black; padding: 12px 16px; cursor: pointer; display: flex; align-items: center; width: 100%;">
+                                                <i class="bi bi-trash" style="margin-right: 8px;"></i> Excluir
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
 
                     <!-- Card de adicionar nova área -->
-                    <a href="{{ route('area-de-servico.create') }}" id="btnAdd" class="card btnAdd2" style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
+                    <a href="{{ route('area-de-servico.create') }}" id="btnAdd" class="card btnAdd2"
+                        style="justify-content: center; font-size: 21px; color: gray; border: 2px dashed gray; text-decoration: none;">
                         Nova Área de Serviço <br /> +
                     </a>
                 </div>
@@ -155,5 +204,21 @@
     </div>
     <x-item-layout />
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleciona todos os cards que têm o atributo data-url
+        var cards = document.querySelectorAll('.card.btn[data-url]');
+
+        // Adiciona o evento de clique a cada card
+        cards.forEach(function(card) {
+            card.addEventListener('click', function() {
+                var url = this.getAttribute('data-url');
+                window.location.href = url; // Redireciona para a URL do card
+            });
+        });
+    });
+</script>
+
 
 </html>

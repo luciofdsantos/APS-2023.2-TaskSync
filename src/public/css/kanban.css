@@ -1,0 +1,262 @@
+.cardKanban {
+    width: 400px;
+    min-height: 300px; /* Altura mínima para garantir que o card não colapse */
+    border: 0px solid #ddd;
+    border-radius: 15px;
+    //box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Fixar o conteúdo no topo */
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.title {
+    width: 100%; /* Ajustar para ocupar 100% da largura */
+    padding: 15px; /* Ajustar padding conforme necessário */
+    margin-bottom: 15px; /* Espaçamento entre o título e o conteúdo */
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    background-color: #0062FF; /* Ajuste para a cor de cada card */
+}
+
+.btnAddK {
+    color: gray;
+    display: block;
+    width: 100%; /* Ocupar 100% da largura do card */
+    height: 60px;
+    margin: 15px 0; /* Espaçamento entre o botão e os outros elementos */
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    background-color: white;
+    border: 2px dashed gray;
+    border-radius: 15px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tarefas-container {
+    flex-grow: 1; /* Permitir que o conteúdo das tarefas ocupe o restante do espaço */
+    width: 100%;
+    overflow-y: auto; /* Scroll se o conteúdo exceder o card */
+}
+
+.cardInter {
+    width: 365px;
+    min-height: 290px; /* Altura mínima para garantir que o card não colapse */
+    //border: 0px solid #ddd;
+    border-radius: 15px;
+    //box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Fixar o conteúdo no topo */
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+/* Tarefa Abertas (cinza) */
+.task[data-column="A_FAZER"] {
+    background-color: #DEDEDE;
+}
+
+/* Tarefa Em Processo (azul) */
+.task[data-column="FAZENDO"] {
+    background-color: #C7DCFF;
+}
+
+/* Tarefa Concluídas (verde) */
+.task[data-column="CONCLUIDA"] {
+    background-color: #97ECA4;
+}
+
+
+/* Estilo da tarefa com informações escondidas inicialmente */
+.task {
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    min-height: 200px;
+}
+
+
+.task-header {
+    margin-bottom: 10px; /* Espaçamento entre os cabeçalhos */
+}
+
+
+.task-details {
+    padding: 10px;
+    display: none; /* Inicialmente escondido */
+}
+
+
+
+.toggle-icon {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+
+/* Expande a tarefa ao passar o mouse */
+.task:hover {
+    background-color: white;
+}
+
+.task:hover .task-details {
+    display: block;
+}
+
+/* Ícone de expansão */
+.task.expanded .toggle-icon {
+    transform: rotate(45deg); /* Altera o ícone ao expandir */
+    
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Posiciona logo abaixo do botão */
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 15px;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+}
+
+.dropdown:hover .btn-options {
+    color: #FFFFFF;
+    transform: rotate(90deg);
+    animation: glow 1s ease-in-out infinite;
+}
+
+.dropdown-button {
+    background: transparent;
+    border: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 15px;
+    /* Estilo arredondado para combinar com os links */
+}
+
+.dropdown-button:hover {
+    background-color: #007bff;
+    color: white;
+    /* Altere a cor de fundo e o texto ao passar o mouse */
+}
+
+.modal-content1 {
+    z-index: 1050; /* Certifique-se de que este valor está alto o suficiente */
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 100%;
+}
+
+
+
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #007bff, 0 0 10px #007bff, 0 0 15px #007bff;
+    }
+    50% {
+        text-shadow: 0 0 10px #007bff, 0 0 20px #007bff, 0 0 30px #007bff;
+    }
+    100% {
+        text-shadow: 0 0 5px #007bff, 0 0 10px #007bff, 0 0 15px #007bff;
+    }
+}
+
+.btn-options {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.5s;
+}
+
+
+.employee-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.employee-list li {
+    background-color: #0062FF;
+    color: white;
+    //height: 60px;
+    width: 280px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    padding: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.employee-list li:nth-child(even) {
+    background-color: #C7DCFF; /* Alt   erna a cor de fundo para criar um efeito de listras */
+    color: #717171;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .cardKanban {
+        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+        
+    }
+
+}
