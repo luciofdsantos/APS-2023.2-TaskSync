@@ -87,7 +87,7 @@ class UsuarioController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return view('usuario.view', ['usuario' => $usuario]);
+        return view('usuario.index', ['usuario' => $usuario]);
     }
 
     public function destroy(Usuario $usuario)
