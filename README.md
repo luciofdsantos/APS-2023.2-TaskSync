@@ -24,6 +24,10 @@ Faça o clone do projeto, dentro da pasta src atualize as dependências do compo
 
 
 **Documentacao do Projeto**
-1. [Visão de Negócio] (https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/ModeloVisaoDoNegocio.docx.pdf)
-2. [Casos de Uso] (https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/DocumentodeCasosdeUso.pdf)
-3. [Diagrama de Sequência] (https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/Diagrama%20de%20Sequencia.pdf)
+1. [Visão de Negócio](https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/ModeloVisaoDoNegocio.docx.pdf)
+2. [Casos de Uso](https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/DocumentodeCasosdeUso.pdf)
+3. [Diagrama de Sequência](https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/Diagrama%20de%20Sequencia.pdf)
+4. [Diagrama de Classes](https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/Diagrama%20de%20classes.pdf)
+5. [Modelo de Domínio](https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/Modelo%20de%20Domínio.pdf)
+6. [Documento de Arquitetura](https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/Documento%20Arquitetura%20de%20Software.pdf)
+7. [Feedback do Desenvolvimento](https://github.com/luciofdsantos/APS-2023.2-TaskSync/blob/main/docs/Feedback%20sobre%20o%20Desenvolvimento.md)
