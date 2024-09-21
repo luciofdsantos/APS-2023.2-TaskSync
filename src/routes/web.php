@@ -33,7 +33,7 @@ Route::controller(UsuarioController::class)->middleware('auth')->group(
         Route::get('/usuario', 'index')->name('/usuario');
         Route::get('/usuario-create', 'create')->name("usuario.create");
         Route::post('/usuario-create', 'salvar')->name("usuario.create");
-        Route::get('/usuario/{id}', 'view')->name('usuario.view');
+        // Route::get('/usuario/{id}', 'view')->name('usuario.view');
         Route::get('/usuario/update/{usuario}', 'update')->name("usuario.update");
         Route::put('/usuario/update/{usuario}', 'atualizar')->name("usuario.update");
         Route::delete('/usuario/delete/{usuario}', 'destroy')->name('usuario.destroy');

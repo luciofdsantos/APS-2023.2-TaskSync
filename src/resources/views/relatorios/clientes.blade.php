@@ -15,7 +15,7 @@
         <main class="main-cntt">
             <div class="content-box">
                 <x-message />
-                <h1 style="color: #717171;">Relatório</h1>
+                <h2 style="color: #717171;">Relatório</h2>
 
                 <div class="cardy">
                     <div class="card-body">

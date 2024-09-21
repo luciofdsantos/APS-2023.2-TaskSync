@@ -14,10 +14,10 @@
                 </a>
 
                 <!-- Botão de Editar -->
-                <a href="{{ route('area-de-servico.equipe', ['area_de_servico' => $area_de_servico]) }}"
+                {{--<a href="{{ route('area-de-servico.equipe', ['area_de_servico' => $area_de_servico]) }}"
                     style="display: flex; align-items: center;">
                     <i class="bi bi-person-lines-fill" style="margin-right: 8px;"></i> Editar Equipe
-                </a>
+                </a>--}}
 
                 <button type="button" data-bs-toggle="modal" data-bs-target="#funcionarios-form"
                     class="dropdown-button"
@@ -25,11 +25,6 @@
                     data-tarefa="{{ $tarefa->id }}" style="display: flex; align-items: center;">
                     <i class="bi bi-pencil" style="margin-right: 8px;"></i> Editar Funcionários
                 </button>
-
-
-                {{-- <a class="btn bg-primary"
-                    href="{{ route('area-de-servico.equipe', ['area_de_servico' => $area_de_servico]) }}">Editar
-                    Equipes</a> --}}
             </div>
         </div>
     </div>
@@ -55,11 +50,6 @@
     <br />
 
 </div>
-
-
-
-
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
